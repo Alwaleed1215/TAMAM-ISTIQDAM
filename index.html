@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-i18n="title">مكتب تمام للاستقدام</title>
+    <title data-i18n="title">مكتب تمام للاستقدام | خيارك الموثوق</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -23,14 +23,9 @@
         }
     </script>
     <style>
-        body { font-family: 'Cairo', sans-serif; -webkit-tap-highlight-color: transparent; }
-        /* أنيميشن نقاط التحميل */
-        .loading-dots::after {
-            content: '.';
-            animation: dots 1.5s steps(5, end) infinite;
-        }
+        body { font-family: 'Cairo', sans-serif; -webkit-tap-highlight-color: transparent; scroll-behavior: smooth; }
+        .loading-dots::after { content: '.'; animation: dots 1.5s steps(5, end) infinite; }
         @keyframes dots { 0%, 20% { content: '.'; } 40% { content: '..'; } 60%, 100% { content: '...'; } }
-        /* إخفاء السكرول بار للقائمة الجانبية */
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-thumb { background: #112240; border-radius: 10px; }
     </style>
@@ -38,9 +33,7 @@
 <body class="bg-slate-50 text-slate-800 overflow-hidden" id="body-content">
 
     <div id="splash-screen" class="fixed inset-0 bg-white z-[100] flex flex-col justify-between items-center py-12 transition-opacity duration-700">
-        <div></div>
-        
-        <div class="flex flex-col items-center">
+        <div></div> <div class="flex flex-col items-center">
             <div class="relative w-36 h-36 flex justify-center items-center mb-6">
                 <div class="absolute inset-0 rounded-full border-4 border-transparent border-t-primary border-b-secondary animate-spin-slow shadow-lg"></div>
                 <div class="w-28 h-28 bg-white rounded-full flex justify-center items-center shadow-inner z-10 p-2">
@@ -52,7 +45,6 @@
                 <span data-i18n="loading">جاري تحميل الموقع</span><span class="loading-dots ml-1 text-secondary text-lg"></span>
             </p>
         </div>
-
         <div class="px-4 w-full max-w-md animate-bounce-slight mt-auto">
             <a href="https://wa.me/966547194788" target="_blank" class="block w-full bg-white border-2 border-primary rounded-2xl py-3 px-4 shadow-lg hover:shadow-xl transition-all text-center group">
                 <span class="text-sm font-bold text-primary group-hover:text-secondary transition-colors">
@@ -65,63 +57,163 @@
     <div id="sidebar-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden transition-opacity" onclick="toggleSidebar()"></div>
     <div id="sidebar" class="fixed top-0 bottom-0 right-0 w-64 bg-white shadow-2xl z-50 transform translate-x-full transition-transform duration-300 flex flex-col">
         <div class="p-6 border-b border-gray-100 flex justify-between items-center bg-primary text-white">
-            <span class="font-extrabold text-xl">القائمة</span>
+            <span class="font-extrabold text-xl" data-i18n="menuTitle">القائمة</span>
             <button onclick="toggleSidebar()" class="text-white hover:text-secondary focus:outline-none">
                 <i class="fa-solid fa-xmark text-2xl"></i>
             </button>
         </div>
         <nav class="flex-1 px-4 py-6 space-y-4 overflow-y-auto">
-            <a href="#" class="block px-4 py-3 rounded-lg bg-slate-50 text-primary font-bold hover:bg-primary hover:text-white transition"><i class="fa-solid fa-house ml-2 w-6"></i> <span data-i18n="navHome">الرئيسية</span></a>
-            <a href="#" class="block px-4 py-3 rounded-lg text-gray-600 font-semibold hover:bg-primary hover:text-white transition"><i class="fa-solid fa-users ml-2 w-6"></i> <span data-i18n="navAbout">من نحن</span></a>
-            <a href="#" class="block px-4 py-3 rounded-lg text-gray-600 font-semibold hover:bg-primary hover:text-white transition"><i class="fa-solid fa-tags ml-2 w-6"></i> <span data-i18n="navPrices">الأسعار والجنسيات</span></a>
-            <a href="#" class="block px-4 py-3 rounded-lg text-gray-600 font-semibold hover:bg-primary hover:text-white transition"><i class="fa-solid fa-phone ml-2 w-6"></i> <span data-i18n="navContact">تواصل معنا</span></a>
+            <a href="#home" onclick="toggleSidebar()" class="block px-4 py-3 rounded-lg bg-slate-50 text-primary font-bold hover:bg-primary hover:text-white transition"><i class="fa-solid fa-house ml-2 w-6"></i> <span data-i18n="navHome">الرئيسية</span></a>
+            <a href="#about" onclick="toggleSidebar()" class="block px-4 py-3 rounded-lg text-gray-600 font-semibold hover:bg-primary hover:text-white transition"><i class="fa-solid fa-users ml-2 w-6"></i> <span data-i18n="navAbout">من نحن</span></a>
+            <a href="prices.html" class="block px-4 py-3 rounded-lg text-gray-600 font-semibold hover:bg-primary hover:text-white transition"><i class="fa-solid fa-tags ml-2 w-6"></i> <span data-i18n="navPrices">الأسعار والجنسيات</span></a>
+            <a href="#contact" onclick="toggleSidebar()" class="block px-4 py-3 rounded-lg text-gray-600 font-semibold hover:bg-primary hover:text-white transition"><i class="fa-solid fa-phone ml-2 w-6"></i> <span data-i18n="navContact">تواصل معنا</span></a>
         </nav>
         <div class="p-4 border-t border-gray-100 flex justify-between items-center bg-slate-50">
-            <span class="text-sm font-bold text-gray-600">اللغة / Language</span>
+            <span class="text-sm font-bold text-gray-600">Language</span>
             <button onclick="switchLanguage()" class="bg-primary text-white px-4 py-1 rounded shadow hover:bg-secondary transition text-sm">EN / AR</button>
         </div>
     </div>
 
+    <div class="bg-primary text-white py-2 text-sm text-center">
+        <p data-i18n="topBar">مكتب معتمد من منصة مساند | ترخيص رقم: 3701262</p>
+    </div>
     <header class="bg-white shadow-sm sticky top-0 z-30">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <div class="flex-shrink-0 flex items-center">
                     <span class="font-extrabold text-2xl md:text-3xl text-primary tracking-tight">تمام<span class="text-secondary text-lg ml-1">للاستقدام</span></span>
                 </div>
-                <button onclick="toggleSidebar()" class="text-primary hover:text-secondary focus:outline-none">
+                <nav class="hidden md:flex space-x-8 space-x-reverse">
+                    <a href="#home" class="text-primary font-bold border-b-2 border-primary pb-1" data-i18n="navHome">الرئيسية</a>
+                    <a href="#about" class="text-gray-600 hover:text-primary transition" data-i18n="navAbout">من نحن</a>
+                    <a href="prices.html" class="text-gray-600 hover:text-primary transition" data-i18n="navPrices">الجنسيات والأسعار</a>
+                    <a href="#contact" class="text-gray-600 hover:text-primary transition" data-i18n="navContact">تواصل معنا</a>
+                </nav>
+                <div class="hidden md:flex items-center gap-4">
+                    <button onclick="switchLanguage()" class="text-primary font-bold hover:text-secondary">EN/AR</button>
+                    <a href="https://wa.me/966545797339" target="_blank" class="bg-secondary text-primary font-bold px-6 py-2 rounded-full shadow hover:bg-yellow-400 transition" data-i18n="btnOrder">اطلب عاملتك الآن</a>
+                </div>
+                <button onclick="toggleSidebar()" class="md:hidden text-primary hover:text-secondary focus:outline-none">
                     <i class="fa-solid fa-bars text-3xl"></i>
                 </button>
             </div>
         </div>
     </header>
 
-    <main class="max-w-7xl mx-auto px-4 py-12 pb-24 text-center">
-        <h1 class="text-3xl md:text-4xl font-bold text-primary mb-4" data-i18n="mainTitle">محتوى الموقع التجريبي</h1>
-        <p class="text-gray-600" data-i18n="mainDesc">تم تطبيق شاشة التحميل، اكتشاف اللغة، البار السفلي، والقائمة الجانبية بنجاح.</p>
+    <main class="flex-grow pb-24 md:pb-0">
+        <section id="home" class="relative bg-white overflow-hidden py-16 lg:py-24">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h1 class="text-4xl lg:text-5xl font-extrabold text-primary leading-tight mb-6" data-i18n="heroTitle">
+                            راحتك تبدأ من هنا..<br>استقدام موثوق وسريع
+                        </h1>
+                        <p class="text-lg text-gray-600 mb-8 leading-relaxed" data-i18n="heroDesc">
+                            نقدم لك في مكتب تمام أفضل الكوادر البشرية والعمالة المنزلية المدربة من مختلف الجنسيات، بضمان 90 يوماً وإجراءات نظامية عبر منصة مساند.
+                        </p>
+                        <div class="flex flex-wrap gap-4">
+                            <a href="https://wa.me/966545797339" target="_blank" class="bg-primary text-white font-bold px-8 py-3 rounded-lg shadow-lg hover:bg-blue-900 transition flex items-center">
+                                <i class="fa-brands fa-whatsapp text-xl ml-2"></i> <span data-i18n="btnWhatsapp">تواصل معنا واتساب</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="عمالة منزلية" class="rounded-2xl shadow-2xl object-cover h-96 w-full">
+                        <div class="absolute -bottom-6 -right-6 bg-white p-4 rounded-xl shadow-xl flex items-center gap-4 border-b-4 border-secondary">
+                            <div class="bg-green-100 p-3 rounded-full"><i class="fa-solid fa-shield-halved text-green-600 text-xl"></i></div>
+                            <div>
+                                <p class="text-sm text-gray-500" data-i18n="guarantee">ضمان العمالة</p>
+                                <p class="font-bold text-primary" data-i18n="guaranteeDays">90 يوماً</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="py-16 bg-slate-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-3xl font-extrabold text-primary mb-6" data-i18n="aboutTitle">من نحن؟</h2>
+                <div class="w-24 h-1 bg-secondary mx-auto mb-8 rounded"></div>
+                <p class="text-xl text-gray-700 leading-relaxed max-w-4xl mx-auto bg-white p-8 rounded-2xl shadow-sm border border-gray-200" data-i18n="aboutText">
+                    يعمل "مكتب تمام للاستقدام" (ترخيص 3701262) وفق أنظمة وزارة الموارد البشرية لتقديم نخبة العمالة المنزلية والكوادر المهنية لقطاعي الأفراد والأعمال. نتميز باختيار دقيق للعمالة من الجنسيات المعتمدة، مع تدقيق شامل لخبراتهم وتدريبهم بأعلى المعايير العالمية لضمان الجودة والسرعة.
+                </p>
+            </div>
+        </section>
+
+        <section id="contact" class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    <div>
+                        <h2 class="text-3xl font-extrabold text-primary mb-6" data-i18n="contactTitle">تواصل معنا</h2>
+                        <p class="text-gray-600 mb-8" data-i18n="contactDesc">نسعد باستقبال استفساراتكم وطلباتكم على مدار الساعة. فريقنا جاهز لخدمتكم!</p>
+                        <div class="space-y-6">
+                            <div class="flex items-center">
+                                <div class="bg-blue-50 p-4 rounded-full text-primary"><i class="fa-solid fa-phone text-xl"></i></div>
+                                <div class="mr-4">
+                                    <p class="text-sm text-gray-500" data-i18n="contactPhone">رقم الهاتف / واتساب</p>
+                                    <p class="text-lg font-bold text-primary" dir="ltr">+966 54 579 7339</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="bg-blue-50 p-4 rounded-full text-primary"><i class="fa-solid fa-location-dot text-xl"></i></div>
+                                <div class="mr-4">
+                                    <p class="text-sm text-gray-500" data-i18n="contactAddress">العنوان</p>
+                                    <p class="text-lg font-bold text-primary" data-i18n="addressLoc">الرياض، المملكة العربية السعودية</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rounded-2xl overflow-hidden shadow-lg border-4 border-slate-100 h-96 w-full">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2985.3323457552956!2d46.700056700000005!3d24.7949536!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2f040d0d90ea3d%3A0xb666fa5d155f4ebc!2z2YXZg9iq2Kgg2KrZhdin2YUg2YTZhNin2LPYqtmC2K_Yp9mF!5e1!3m2!1sar!2ssa!4v1774102493345!5m2!1sar!2ssa" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
+
+    <footer class="bg-primary text-white pt-12 pb-24 md:pb-6">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center border-b border-gray-700 pb-8 mb-8">
+                <div class="mb-6 md:mb-0 text-center md:text-right">
+                    <span class="font-extrabold text-3xl tracking-tight">تمام<span class="text-secondary text-lg ml-1">للاستقدام</span></span>
+                    <p class="text-gray-400 mt-2 text-sm" data-i18n="footerSlogan">شريكك الموثوق لاستقدام آمن ومريح.</p>
+                </div>
+                <div class="flex space-x-4 space-x-reverse">
+                    <a href="https://x.com/tamam_agency" target="_blank" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-secondary hover:text-primary transition"><i class="fa-brands fa-x-twitter text-lg"></i></a>
+                    <a href="https://www.instagram.com/tamam_agency/" target="_blank" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-pink-600 transition"><i class="fa-brands fa-instagram text-lg"></i></a>
+                    <a href="https://www.snapchat.com/@tamam_agency1" target="_blank" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-yellow-400 hover:text-black transition"><i class="fa-brands fa-snapchat text-lg"></i></a>
+                    <a href="https://www.facebook.com/profile.php?id=61550244177125" target="_blank" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-blue-600 transition"><i class="fa-brands fa-facebook-f text-lg"></i></a>
+                    <a href="https://www.tiktok.com/@tamam_agency" target="_blank" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-black transition"><i class="fa-brands fa-tiktok text-lg"></i></a>
+                    <a href="https://youtube.com/channel/UCQm-0IHT-DKecJULvQrSmUQ?sub_confirmation=1" target="_blank" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-red-600 transition"><i class="fa-brands fa-youtube text-lg"></i></a>
+                </div>
+            </div>
+            <div class="text-center text-gray-500 text-sm" data-i18n="footerCopy">
+                © 2026 جميع الحقوق محفوظة لمكتب تمام للاستقدام.
+            </div>
+        </div>
+    </footer>
 
     <div class="md:hidden fixed bottom-4 left-4 right-4 z-30">
         <div class="bg-white border-2 border-primary rounded-2xl shadow-2xl flex justify-around items-center px-2 py-3">
-            <a href="#" class="flex flex-col items-center text-primary w-1/4">
+            <a href="#home" class="flex flex-col items-center text-primary w-1/4">
                 <i class="fa-solid fa-house text-xl mb-1"></i>
                 <span class="text-[10px] font-bold" data-i18n="navHome">الرئيسية</span>
             </a>
-            <a href="#" class="flex flex-col items-center text-gray-400 hover:text-primary transition w-1/4">
+            <a href="prices.html" class="flex flex-col items-center text-gray-400 hover:text-primary transition w-1/4">
                 <i class="fa-solid fa-tags text-xl mb-1"></i>
                 <span class="text-[10px] font-bold" data-i18n="navPrices">الأسعار</span>
             </a>
-            
             <div class="w-1/4 flex justify-center -mt-8">
-                <a href="https://wa.me/966545797339" class="bg-secondary border-4 border-slate-50 w-14 h-14 rounded-full flex items-center justify-center text-primary shadow-lg hover:scale-105 transition transform">
+                <a href="https://wa.me/966545797339" target="_blank" class="bg-secondary border-4 border-slate-50 w-14 h-14 rounded-full flex items-center justify-center text-primary shadow-lg hover:scale-105 transition transform">
                     <i class="fa-brands fa-whatsapp text-3xl"></i>
                 </a>
             </div>
-
-            <a href="#" class="flex flex-col items-center text-gray-400 hover:text-primary transition w-1/4">
+            <a href="#about" class="flex flex-col items-center text-gray-400 hover:text-primary transition w-1/4">
                 <i class="fa-solid fa-users text-xl mb-1"></i>
                 <span class="text-[10px] font-bold" data-i18n="navAbout">من نحن</span>
             </a>
-            <a href="#" class="flex flex-col items-center text-gray-400 hover:text-primary transition w-1/4">
+            <a href="#contact" class="flex flex-col items-center text-gray-400 hover:text-primary transition w-1/4">
                 <i class="fa-solid fa-phone text-xl mb-1"></i>
                 <span class="text-[10px] font-bold" data-i18n="navContact">تواصل</span>
             </a>
@@ -129,113 +221,121 @@
     </div>
 
     <script>
-        // --- 1. إعدادات الترجمة (i18n) ---
         const translations = {
             ar: {
-                title: "مكتب تمام للاستقدام",
+                title: "مكتب تمام للاستقدام | خيارك الموثوق",
                 welcomeSplash: "مرحباً بك في موقع مكتب تمام للاستقدام",
                 loading: "جاري تحميل الموقع",
                 devSignature: "تم التطوير والتصميم بواسطة : م إسلام الشيخ",
+                menuTitle: "القائمة",
                 navHome: "الرئيسية",
                 navAbout: "من نحن",
                 navPrices: "الأسعار والجنسيات",
                 navContact: "تواصل معنا",
-                mainTitle: "محتوى الموقع التجريبي",
-                mainDesc: "تم تطبيق شاشة التحميل، اكتشاف اللغة، البار السفلي، والقائمة الجانبية بنجاح."
+                topBar: "مكتب معتمد من منصة مساند | ترخيص رقم: 3701262",
+                btnOrder: "اطلب عاملتك الآن",
+                heroTitle: "راحتك تبدأ من هنا..<br>استقدام موثوق وسريع",
+                heroDesc: "نقدم لك في مكتب تمام أفضل الكوادر البشرية والعمالة المنزلية المدربة من مختلف الجنسيات، بضمان 90 يوماً وإجراءات نظامية عبر منصة مساند.",
+                btnWhatsapp: "تواصل معنا واتساب",
+                guarantee: "ضمان العمالة",
+                guaranteeDays: "90 يوماً",
+                aboutTitle: "من نحن؟",
+                aboutText: 'يعمل "مكتب تمام للاستقدام" (ترخيص 3701262) وفق أنظمة وزارة الموارد البشرية لتقديم نخبة العمالة المنزلية والكوادر المهنية لقطاعي الأفراد والأعمال. نتميز باختيار دقيق للعمالة من الجنسيات المعتمدة، مع تدقيق شامل لخبراتهم وتدريبهم بأعلى المعايير العالمية لضمان الجودة والسرعة.',
+                contactTitle: "تواصل معنا",
+                contactDesc: "نسعد باستقبال استفساراتكم وطلباتكم على مدار الساعة. فريقنا جاهز لخدمتكم!",
+                contactPhone: "رقم الهاتف / واتساب",
+                contactAddress: "العنوان",
+                addressLoc: "الرياض، المملكة العربية السعودية",
+                footerSlogan: "شريكك الموثوق لاستقدام آمن ومريح.",
+                footerCopy: "© 2026 جميع الحقوق محفوظة لمكتب تمام للاستقدام."
             },
             en: {
-                title: "Tamam Recruitment Agency",
+                title: "Tamam Recruitment | Your Trusted Choice",
                 welcomeSplash: "Welcome to Tamam Recruitment Agency",
                 loading: "Loading Website",
                 devSignature: "Developed & Designed by: Eng. Islam Elsheikh",
+                menuTitle: "Menu",
                 navHome: "Home",
                 navAbout: "About Us",
                 navPrices: "Prices & Nationalities",
                 navContact: "Contact Us",
-                mainTitle: "Demo Website Content",
-                mainDesc: "Splash screen, language detection, bottom bar, and sidebar applied successfully."
+                topBar: "Certified by Musaned | License No: 3701262",
+                btnOrder: "Request Worker Now",
+                heroTitle: "Your Comfort Starts Here..<br>Reliable & Fast Recruitment",
+                heroDesc: "We provide the best human resources and trained domestic workers from various nationalities, with a 90-day guarantee and official procedures via Musaned.",
+                btnWhatsapp: "Contact via WhatsApp",
+                guarantee: "Worker Guarantee",
+                guaranteeDays: "90 Days",
+                aboutTitle: "About Us",
+                aboutText: 'Tamam Recruitment Agency (License 3701262) operates under the regulations of the Ministry of Human Resources to provide elite domestic and professional workers. We select carefully from approved nationalities, with comprehensive screening and training to ensure quality and speed.',
+                contactTitle: "Contact Us",
+                contactDesc: "We are happy to receive your inquiries 24/7. Our team is ready to serve you!",
+                contactPhone: "Phone / WhatsApp",
+                contactAddress: "Address",
+                addressLoc: "Riyadh, Saudi Arabia",
+                footerSlogan: "Your trusted partner for safe recruitment.",
+                footerCopy: "© 2026 All Rights Reserved to Tamam Recruitment Agency."
             }
         };
 
         let currentLang = 'ar';
 
-        // --- 2. اكتشاف لغة الجهاز أو اللغة المحفوظة ---
         function detectLanguage() {
-            // التحقق إذا كان في لغة محفوظة مسبقاً في المتصفح
             const savedLang = localStorage.getItem('siteLang');
-            if (savedLang) {
-                currentLang = savedLang;
-            } else {
-                // اكتشاف لغة الموبايل/المتصفح
+            if (savedLang) { currentLang = savedLang; } 
+            else {
                 const userLang = navigator.language || navigator.userLanguage;
                 currentLang = userLang.startsWith('ar') ? 'ar' : 'en';
             }
             applyLanguage(currentLang);
         }
 
-        // --- 3. تطبيق اللغة ---
         function applyLanguage(lang) {
             currentLang = lang;
             localStorage.setItem('siteLang', lang);
             const htmlRoot = document.getElementById('html-root');
             
-            // تغيير اتجاه الصفحة
             if (lang === 'ar') {
                 htmlRoot.setAttribute('dir', 'rtl');
                 htmlRoot.setAttribute('lang', 'ar');
-                document.getElementById('sidebar').classList.replace('-translate-x-full', 'translate-x-full'); // ضبط اتجاه القائمة
+                document.getElementById('sidebar').classList.replace('-translate-x-full', 'translate-x-full');
             } else {
                 htmlRoot.setAttribute('dir', 'ltr');
                 htmlRoot.setAttribute('lang', 'en');
-                // تغيير حركة القائمة الجانبية لتفتح من اليسار في الإنجليزي
                 const sidebar = document.getElementById('sidebar');
                 sidebar.classList.remove('right-0', 'translate-x-full');
                 sidebar.classList.add('left-0', '-translate-x-full');
             }
 
-            // استبدال النصوص بناءً على data-i18n
             document.querySelectorAll('[data-i18n]').forEach(element => {
                 const key = element.getAttribute('data-i18n');
-                if (translations[lang][key]) {
-                    element.innerHTML = translations[lang][key];
-                }
+                if (translations[lang][key]) { element.innerHTML = translations[lang][key]; }
             });
         }
 
-        // --- 4. التبديل اليدوي بين اللغتين (من زر القائمة) ---
         function switchLanguage() {
-            const newLang = currentLang === 'ar' ? 'en' : 'ar';
-            applyLanguage(newLang);
-            toggleSidebar(); // قفل القائمة بعد التغيير
+            applyLanguage(currentLang === 'ar' ? 'en' : 'ar');
+            toggleSidebar();
         }
 
-        // --- 5. منطق شاشة التحميل (Splash Screen) ---
         window.addEventListener('load', () => {
-            detectLanguage(); // ضبط اللغة أولاً
-            
+            detectLanguage();
             const splashScreen = document.getElementById('splash-screen');
             const bodyContent = document.getElementById('body-content');
-
-            // إخفاء الشاشة بعد 3 ثواني
             setTimeout(() => {
-                splashScreen.classList.add('opacity-0'); // تلاشي
+                splashScreen.classList.add('opacity-0');
                 setTimeout(() => {
-                    splashScreen.classList.add('hidden'); // إخفاء نهائي
-                    bodyContent.classList.remove('overflow-hidden'); // السماح بالسكرول
-                }, 700); // وقت التلاشي متناسق مع CSS
+                    splashScreen.classList.add('hidden');
+                    bodyContent.classList.remove('overflow-hidden');
+                }, 700);
             }, 3000);
         });
 
-        // --- 6. فتح وقفل القائمة الجانبية ---
         function toggleSidebar() {
             const sidebar = document.getElementById('sidebar');
             const overlay = document.getElementById('sidebar-overlay');
-            
-            if (currentLang === 'ar') {
-                sidebar.classList.toggle('translate-x-full');
-            } else {
-                sidebar.classList.toggle('-translate-x-full');
-            }
+            if (currentLang === 'ar') { sidebar.classList.toggle('translate-x-full'); } 
+            else { sidebar.classList.toggle('-translate-x-full'); }
             overlay.classList.toggle('hidden');
         }
     </script>
