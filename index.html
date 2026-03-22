@@ -64,7 +64,6 @@
         .partner-card { transition: all 0.3s ease; border: 1px solid transparent; }
         .partner-card:hover { transform: translateY(-5px); border-color: rgba(17, 34, 64, 0.1); box-shadow: 0 10px 20px -5px rgba(17, 34, 64, 0.1); }
 
-        /* ستايل السلايدر الخاص بالعمالة */
         .slider-container { overflow: hidden; position: relative; width: 100%; padding: 20px 0; }
         .slider-track { display: flex; transition: transform 0.5s ease-in-out; will-change: transform; gap: 1rem; padding: 0 1rem; }
         .slide-item { flex: 0 0 calc(50% - 1rem); max-width: calc(50% - 1rem); }
@@ -279,7 +278,6 @@
                 </div>
                 
                 <div class="relative w-full max-w-5xl mx-auto" id="slider-main-container">
-                    
                     <button id="prevBtn" class="nav-arrow absolute top-1/2 -translate-y-1/2 right-0 md:-right-5 z-10 w-10 h-10 rounded-full flex justify-center items-center shadow-lg focus:outline-none">
                         <i class="fa-solid fa-chevron-right"></i>
                     </button>
@@ -295,7 +293,6 @@
                                     <h3 class="text-base font-bold text-primary" data-i18n="workerMaid">عاملة منزلية</h3>
                                 </div>
                             </div>
-
                             <div class="slide-item">
                                 <div class="worker-card bg-white rounded-3xl p-6 text-center border border-slate-100 flex flex-col items-center h-full mx-2 cursor-pointer">
                                     <div class="w-24 h-24 rounded-full overflow-hidden bg-slate-50 mb-4 border-2 border-primary/10 shadow-inner flex justify-center items-center">
@@ -304,7 +301,6 @@
                                     <h3 class="text-base font-bold text-primary" data-i18n="workerDriver">سائق خاص</h3>
                                 </div>
                             </div>
-
                             <div class="slide-item">
                                 <div class="worker-card bg-white rounded-3xl p-6 text-center border border-slate-100 flex flex-col items-center h-full mx-2 cursor-pointer">
                                     <div class="w-24 h-24 rounded-full overflow-hidden bg-slate-50 mb-4 border-2 border-primary/10 shadow-inner flex justify-center items-center">
@@ -313,7 +309,6 @@
                                     <h3 class="text-base font-bold text-primary" data-i18n="workerNurse">ممرضة</h3>
                                 </div>
                             </div>
-
                             <div class="slide-item">
                                 <div class="worker-card bg-white rounded-3xl p-6 text-center border border-slate-100 flex flex-col items-center h-full mx-2 cursor-pointer">
                                     <div class="w-24 h-24 rounded-full overflow-hidden bg-slate-50 mb-4 border-2 border-primary/10 shadow-inner flex justify-center items-center">
@@ -322,7 +317,6 @@
                                     <h3 class="text-base font-bold text-primary" data-i18n="workerBabysitter">جليسة أطفال</h3>
                                 </div>
                             </div>
-
                             <div class="slide-item">
                                 <div class="worker-card bg-white rounded-3xl p-6 text-center border border-slate-100 flex flex-col items-center h-full mx-2 cursor-pointer">
                                     <div class="w-24 h-24 rounded-full overflow-hidden bg-slate-50 mb-4 border-2 border-primary/10 shadow-inner flex justify-center items-center">
@@ -331,7 +325,6 @@
                                     <h3 class="text-base font-bold text-primary" data-i18n="workerGardener">بستاني</h3>
                                 </div>
                             </div>
-
                             <div class="slide-item">
                                 <div class="worker-card bg-white rounded-3xl p-6 text-center border border-slate-100 flex flex-col items-center h-full mx-2 cursor-pointer">
                                     <div class="w-24 h-24 rounded-full overflow-hidden bg-slate-50 mb-4 border-2 border-primary/10 shadow-inner flex justify-center items-center">
@@ -340,7 +333,6 @@
                                     <h3 class="text-base font-bold text-primary" data-i18n="workerCook">طباخ</h3>
                                 </div>
                             </div>
-
                             <div class="slide-item">
                                 <div class="worker-card bg-white rounded-3xl p-6 text-center border border-slate-100 flex flex-col items-center h-full mx-2 cursor-pointer">
                                     <div class="w-24 h-24 rounded-full overflow-hidden bg-slate-50 mb-4 border-2 border-primary/10 shadow-inner flex justify-center items-center">
@@ -561,71 +553,67 @@
     </div>
 
     <script>
-        // كود السلايدر الخاص بالعمالة المستهدفة
         document.addEventListener("DOMContentLoaded", function() {
             const track = document.getElementById('sliderTrack');
-            const items = track.children;
-            const nextBtn = document.getElementById('nextBtn');
-            const prevBtn = document.getElementById('prevBtn');
-            
-            let currentIndex = 0;
-            let slideWidth = items[0].getBoundingClientRect().width;
-            let autoSlideInterval;
-            
-            // حساب عدد الكروت الظاهرة حسب الشاشة
-            function getVisibleCards() {
-                if (window.innerWidth >= 1024) return 4;
-                if (window.innerWidth >= 768) return 3;
-                return 2;
-            }
-
-            function updateSliderPosition() {
-                slideWidth = items[0].getBoundingClientRect().width;
-                // عشان اتجاه الموقع RTL، بنستخدم قيمة موجبة للحركة ناحية اليسار
-                track.style.transform = `translateX(${currentIndex * (slideWidth + 16)}px)`; 
-            }
-
-            function moveNext() {
-                const maxIndex = items.length - getVisibleCards();
-                if (currentIndex < maxIndex) {
-                    currentIndex++;
-                } else {
-                    currentIndex = 0; // يرجع للأول لو وصل للآخر
+            if(track) {
+                const items = track.children;
+                const nextBtn = document.getElementById('nextBtn');
+                const prevBtn = document.getElementById('prevBtn');
+                
+                let currentIndex = 0;
+                let slideWidth = items[0].getBoundingClientRect().width;
+                let autoSlideInterval;
+                
+                function getVisibleCards() {
+                    if (window.innerWidth >= 1024) return 4;
+                    if (window.innerWidth >= 768) return 3;
+                    return 2;
                 }
-                updateSliderPosition();
-            }
 
-            function movePrev() {
-                if (currentIndex > 0) {
-                    currentIndex--;
-                } else {
-                    currentIndex = items.length - getVisibleCards(); // يروح للآخر لو هو في الأول
+                function updateSliderPosition() {
+                    if(!items[0]) return;
+                    slideWidth = items[0].getBoundingClientRect().width;
+                    track.style.transform = `translateX(${currentIndex * (slideWidth + 16)}px)`; 
                 }
-                updateSliderPosition();
-            }
 
-            nextBtn.addEventListener('click', () => { moveNext(); pauseSlider(); resumeSlider(); });
-            prevBtn.addEventListener('click', () => { movePrev(); pauseSlider(); resumeSlider(); });
-            
-            // تحديث المقاسات لو الشاشة اتغيرت
-            window.addEventListener('resize', updateSliderPosition);
+                function moveNext() {
+                    const maxIndex = items.length - getVisibleCards();
+                    if (currentIndex < maxIndex) {
+                        currentIndex++;
+                    } else {
+                        currentIndex = 0; 
+                    }
+                    updateSliderPosition();
+                }
 
-            // الحركة التلقائية
-            window.resumeSlider = function() {
-                clearInterval(autoSlideInterval);
-                autoSlideInterval = setInterval(moveNext, 3000);
-            }
-            
-            window.pauseSlider = function() {
-                clearInterval(autoSlideInterval);
-            }
+                function movePrev() {
+                    if (currentIndex > 0) {
+                        currentIndex--;
+                    } else {
+                        currentIndex = items.length - getVisibleCards(); 
+                    }
+                    updateSliderPosition();
+                }
 
-            // تشغيل السلايدر أول مرة
-            setTimeout(resumeSlider, 1000);
+                if(nextBtn && prevBtn) {
+                    nextBtn.addEventListener('click', () => { moveNext(); pauseSlider(); resumeSlider(); });
+                    prevBtn.addEventListener('click', () => { movePrev(); pauseSlider(); resumeSlider(); });
+                }
+                
+                window.addEventListener('resize', updateSliderPosition);
+
+                window.resumeSlider = function() {
+                    clearInterval(autoSlideInterval);
+                    autoSlideInterval = setInterval(moveNext, 3000);
+                }
+                
+                window.pauseSlider = function() {
+                    clearInterval(autoSlideInterval);
+                }
+
+            }
         });
 
-
-        // كود الترجمة
         const translations = {
             ar: {
                 title: "مكتب تمام للاستقدام | خيارك الموثوق",
@@ -806,6 +794,10 @@
                 setTimeout(() => {
                     splashScreen.classList.add('hidden');
                     bodyContent.classList.remove('overflow-hidden');
+                    // Start slider after splash screen hides
+                    if(typeof window.resumeSlider === 'function') {
+                        window.resumeSlider();
+                    }
                 }, 700);
             }, 3000);
         });
