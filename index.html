@@ -38,9 +38,12 @@
         .floating-btn { transition: transform 0.3s ease, box-shadow 0.3s ease; }
         .floating-btn:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
         
-        /* تأثير الصورة الجديدة */
         .hero-image-wrapper { transition: all 0.4s ease; }
         .hero-image-wrapper:hover { transform: translateY(-8px); box-shadow: 0 20px 25px -5px rgba(17, 34, 64, 0.15); }
+        
+        /* تأثير كروت المميزات */
+        .feature-card { transition: all 0.3s ease; border: 1px solid transparent; }
+        .feature-card:hover { transform: translateY(-5px); border-color: rgba(234, 179, 8, 0.3); box-shadow: 0 10px 25px -5px rgba(17, 34, 64, 0.1); }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800 overflow-hidden" id="body-content">
@@ -80,15 +83,15 @@
             </button>
         </div>
         <nav class="flex-1 px-4 py-6 space-y-4 overflow-y-auto">
-            <a href="#home" onclick="toggleSidebar()" class="block px-4 py-3 rounded-lg bg-slate-50 text-primary font-bold hover:bg-primary hover:text-white transition"><i class="fa-solid fa-house ml-2 w-6"></i> <span data-i18n="navHome">الرئيسية</span></a>
+            <a href="index.html" class="block px-4 py-3 rounded-lg bg-slate-50 text-primary font-bold hover:bg-primary hover:text-white transition"><i class="fa-solid fa-house ml-2 w-6"></i> <span data-i18n="navHome">الرئيسية</span></a>
             <div class="space-y-1">
                 <span class="block px-4 py-2 text-sm font-bold text-gray-400" data-i18n="navServices">خدماتنا</span>
                 <a href="#mediation" onclick="toggleSidebar()" class="block px-4 py-2 rounded-lg text-gray-600 font-semibold hover:bg-primary hover:text-white transition"><i class="fa-solid fa-handshake ml-2 w-5"></i> <span data-i18n="navService1">التوسط في الاستقدام</span></a>
                 <a href="#individuals" onclick="toggleSidebar()" class="block px-4 py-2 rounded-lg text-gray-600 font-semibold hover:bg-primary hover:text-white transition"><i class="fa-solid fa-user ml-2 w-5"></i> <span data-i18n="navService2">الأفراد</span></a>
             </div>
-            <a href="#about" onclick="toggleSidebar()" class="block px-4 py-3 rounded-lg text-gray-600 font-semibold hover:bg-primary hover:text-white transition"><i class="fa-solid fa-users ml-2 w-6"></i> <span data-i18n="navAbout">من نحن</span></a>
+            <a href="about.html" class="block px-4 py-3 rounded-lg text-gray-600 font-semibold hover:bg-primary hover:text-white transition"><i class="fa-solid fa-users ml-2 w-6"></i> <span data-i18n="navAbout">من نحن</span></a>
             <a href="prices.html" class="block px-4 py-3 rounded-lg text-gray-600 font-semibold hover:bg-primary hover:text-white transition"><i class="fa-solid fa-tags ml-2 w-6"></i> <span data-i18n="navPrices">الأسعار والجنسيات</span></a>
-            <a href="#contact" onclick="toggleSidebar()" class="block px-4 py-3 rounded-lg text-gray-600 font-semibold hover:bg-primary hover:text-white transition"><i class="fa-solid fa-phone ml-2 w-6"></i> <span data-i18n="navContact">تواصل معنا</span></a>
+            <a href="contact.html" class="block px-4 py-3 rounded-lg text-gray-600 font-semibold hover:bg-primary hover:text-white transition"><i class="fa-solid fa-phone ml-2 w-6"></i> <span data-i18n="navContact">تواصل معنا</span></a>
         </nav>
     </div>
 
@@ -96,7 +99,7 @@
         <p data-i18n="topBar">مكتب معتمد من منصة مساند | ترخيص رقم: 3701262</p>
     </div>
 
-    <header class="bg-white shadow-sm sticky top-0 z-30">
+    <header class="bg-white/90 backdrop-blur-md shadow-sm sticky top-0 z-30 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <div class="flex-shrink-0 flex items-center h-full py-1">
@@ -104,29 +107,29 @@
                 </div>
                 
                 <nav class="hidden md:flex space-x-8 space-x-reverse items-center">
-                    <a href="#home" class="text-primary font-bold border-b-2 border-primary pb-1" data-i18n="navHome">الرئيسية</a>
+                    <a href="index.html" class="text-primary font-bold border-b-2 border-primary pb-1" data-i18n="navHome">الرئيسية</a>
                     <div class="relative group">
                         <button class="text-gray-600 hover:text-primary transition font-semibold flex items-center gap-1">
                             <span data-i18n="navServices">خدماتنا</span>
                             <i class="fa-solid fa-chevron-down text-xs"></i>
                         </button>
-                        <div class="absolute right-0 mt-2 w-56 bg-white rounded-md shadow-lg py-1 hidden group-hover:block z-50 border border-gray-100">
+                        <div class="absolute right-0 mt-2 w-56 bg-white/95 backdrop-blur-lg rounded-md shadow-lg py-1 hidden group-hover:block z-50 border border-gray-100">
                             <a href="#mediation" class="block px-4 py-3 text-sm text-gray-700 hover:bg-slate-50 hover:text-primary border-b border-gray-50" data-i18n="navService1">التوسط في الاستقدام</a>
                             <a href="#individuals" class="block px-4 py-3 text-sm text-gray-700 hover:bg-slate-50 hover:text-primary" data-i18n="navService2">الأفراد</a>
                         </div>
                     </div>
-                    <a href="#about" class="text-gray-600 hover:text-primary transition font-semibold" data-i18n="navAbout">من نحن</a>
+                    <a href="about.html" class="text-gray-600 hover:text-primary transition font-semibold" data-i18n="navAbout">من نحن</a>
                     <a href="prices.html" class="text-gray-600 hover:text-primary transition font-semibold" data-i18n="navPrices">الجنسيات والأسعار</a>
-                    <a href="#contact" class="text-gray-600 hover:text-primary transition font-semibold" data-i18n="navContact">تواصل معنا</a>
+                    <a href="contact.html" class="text-gray-600 hover:text-primary transition font-semibold" data-i18n="navContact">تواصل معنا</a>
                 </nav>
                 
                 <div class="hidden md:flex items-center gap-4">
-                    <button onclick="switchLanguage()" class="text-primary font-bold hover:text-secondary border border-gray-200 px-3 py-1 rounded text-sm">EN/AR</button>
+                    <button onclick="switchLanguage()" class="text-primary font-bold hover:text-secondary border border-primary/20 bg-white/50 px-3 py-1 rounded-md text-sm transition">EN/AR</button>
                     <a href="https://wa.me/966545797339" target="_blank" class="bg-secondary text-primary font-bold px-6 py-2 rounded-full shadow hover:bg-yellow-400 transition" data-i18n="btnOrder">اطلب عاملتك الآن</a>
                 </div>
                 
                 <div class="md:hidden flex items-center gap-3">
-                    <button onclick="switchLanguage()" class="text-primary font-bold text-xs border border-primary/30 px-2 py-1 rounded bg-slate-50 shadow-sm hover:bg-primary hover:text-white transition">
+                    <button onclick="switchLanguage()" class="text-primary font-bold text-xs border border-primary/30 px-2 py-1 rounded bg-slate-50/80 shadow-sm hover:bg-primary hover:text-white transition">
                         EN/AR
                     </button>
                     <button onclick="toggleSidebar()" class="text-primary hover:text-secondary focus:outline-none">
@@ -155,11 +158,9 @@
                             <span class="block mb-2" data-i18n="heroTitle1">مكتب تمام للإستقدام</span>
                             <span class="block text-2xl md:text-3xl text-secondary" data-i18n="heroTitle2">خيارك الأول لخدمات إستقدام موثوقة واحترافية</span>
                         </h1>
-                        
                         <p class="text-base md:text-lg text-gray-600 mb-8 leading-relaxed max-w-2xl text-center lg:text-right" data-i18n="heroDesc">
                             نسعى في مكتب تمام لتقديم أرقى مستويات الخدمة في توفير الكوادر البشرية المتميزة والعمالة المنزلية المدربة بعناية من مختلف الجنسيات المصرح بها. نلتزم بأعلى معايير الجودة والشفافية، مع توفير ضمان شامل لمدة 90 يوماً وإتمام كافة الإجراءات النظامية الموثقة عبر منصة مساند لضمان راحتكم واستقرار أسركم.
                         </p>
-                        
                         <div class="w-full flex justify-center lg:justify-start">
                             <a href="https://wa.me/966545797339" target="_blank" class="bg-whatsapp text-white font-bold text-sm px-6 py-2.5 rounded-full shadow-lg hover:bg-green-600 hover:scale-105 hover:shadow-xl transition-all duration-300 flex items-center gap-2 animate-pulse-slow">
                                 <i class="fa-brands fa-whatsapp text-xl"></i>
@@ -167,12 +168,10 @@
                             </a>
                         </div>
                     </div>
-                    
                     <div class="relative mt-8 lg:mt-0 px-2 md:px-0">
                         <div class="hero-image-wrapper rounded-3xl p-1 bg-white shadow-xl ring-2 ring-primary/20">
                             <img src="https://imgg.io/images/2026/03/22/c5402599499e79c402a0ccc937d31367.png" alt="عمالة منزلية" class="rounded-2xl object-cover h-72 md:h-96 w-full">
                         </div>
-                        
                         <div class="absolute -bottom-5 right-2 md:-right-4 bg-white p-3 md:p-4 rounded-xl shadow-xl flex items-center gap-3 border-b-4 border-secondary z-10">
                             <div class="bg-green-100 p-2 md:p-3 rounded-full"><i class="fa-solid fa-shield-halved text-green-600 text-lg md:text-xl"></i></div>
                             <div>
@@ -185,45 +184,67 @@
             </div>
         </section>
 
-        <section id="about" class="py-16 bg-slate-100">
+        <section id="intro" class="py-16 bg-slate-50 border-t border-slate-100">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <h2 class="text-3xl font-extrabold text-primary mb-6" data-i18n="aboutTitle">من نحن؟</h2>
+                <h2 class="text-3xl md:text-4xl font-extrabold text-primary mb-6" data-i18n="introTitle">مكتب تمام للإستقدام</h2>
                 <div class="w-24 h-1 bg-secondary mx-auto mb-8 rounded"></div>
-                <p class="text-xl text-gray-700 leading-relaxed max-w-4xl mx-auto bg-white p-8 rounded-2xl shadow-sm border border-gray-200" data-i18n="aboutText">
+                <p class="text-lg md:text-xl text-gray-700 leading-relaxed max-w-4xl mx-auto bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-gray-100" data-i18n="aboutText">
                     يعمل "مكتب تمام للاستقدام" (ترخيص 3701262) وفق أنظمة وزارة الموارد البشرية لتقديم نخبة العمالة المنزلية والكوادر المهنية لقطاعي الأفراد والأعمال. نتميز باختيار دقيق للعمالة من الجنسيات المعتمدة، مع تدقيق شامل لخبراتهم وتدريبهم بأعلى المعايير العالمية لضمان الجودة والسرعة.
                 </p>
             </div>
         </section>
 
-        <section id="contact" class="py-16 bg-white">
+        <section id="features" class="py-16 bg-white">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                    <div>
-                        <h2 class="text-3xl font-extrabold text-primary mb-6" data-i18n="contactTitle">تواصل معنا</h2>
-                        <p class="text-gray-600 mb-8" data-i18n="contactDesc">نسعد باستقبال استفساراتكم وطلباتكم على مدار الساعة. فريقنا جاهز لخدمتكم!</p>
-                        <div class="space-y-6">
-                            <div class="flex items-center">
-                                <div class="bg-blue-50 p-4 rounded-full text-primary"><i class="fa-solid fa-phone text-xl"></i></div>
-                                <div class="mr-4">
-                                    <p class="text-sm text-gray-500" data-i18n="contactPhone">رقم الهاتف / واتساب</p>
-                                    <p class="text-lg font-bold text-primary" dir="ltr">+966 54 579 7339</p>
-                                </div>
-                            </div>
-                            <div class="flex items-center">
-                                <div class="bg-blue-50 p-4 rounded-full text-primary"><i class="fa-solid fa-location-dot text-xl"></i></div>
-                                <div class="mr-4">
-                                    <p class="text-sm text-gray-500" data-i18n="contactAddress">العنوان</p>
-                                    <p class="text-lg font-bold text-primary" data-i18n="addressLoc">الرياض، المملكة العربية السعودية</p>
-                                </div>
-                            </div>
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-primary mb-4" data-i18n="whyUsTitle">لماذا تختار مكتب تمام للإستقدام؟</h2>
+                    <p class="text-gray-500 max-w-2xl mx-auto" data-i18n="whyUsDesc">نحرص على تقديم تجربة استقدام فريدة ومريحة تليق بك، من خلال مزايا حصرية تضمن راحتك وراحة أسرتك.</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="feature-card bg-slate-50 rounded-2xl p-6 text-center shadow-sm">
+                        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 text-primary">
+                            <i class="fa-solid fa-file-contract text-2xl"></i>
                         </div>
+                        <h3 class="text-xl font-bold text-primary mb-3" data-i18n="feat1Title">ضمان العمالة</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed" data-i18n="feat1Desc">
+                            طال عمرك، راحتك مضمونة معنا. نقدم لك ضمان 90 يوماً على العمالة المنزلية وفق أنظمة مساند، يشمل كافة الحالات النظامية لضمان حقوقك كاملة بدون أي قروشة.
+                        </p>
                     </div>
-                    <div class="rounded-2xl overflow-hidden shadow-lg border-4 border-slate-100 h-96 w-full">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2985.3323457552956!2d46.700056700000005!3d24.7949536!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2f040d0d90ea3d%3A0xb666fa5d155f4ebc!2z2YXZg9iq2Kgg2KrZhdin2YUg2YTZhNin2LPYqtmC2K_Yp9mF!5e1!3m2!1sar!2ssa!4v1774102493345!5m2!1sar!2ssa" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+                    <div class="feature-card bg-slate-50 rounded-2xl p-6 text-center shadow-sm">
+                        <div class="w-16 h-16 bg-secondary/20 rounded-full flex items-center justify-center mx-auto mb-4 text-secondary">
+                            <i class="fa-solid fa-hand-holding-dollar text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-primary mb-3" data-i18n="feat2Title">أسعار إستقدام تنافسية</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed" data-i18n="feat2Desc">
+                            وفر فلوسك مع أقوى باقات الاستقدام في السوق. نوفر لك أفضل الكفاءات بأسعار تنافسية وخيارات دفع ميسرة تناسب ميزانيتك، مع شفافية تامة في التكاليف بدون رسوم مخفية.
+                        </p>
+                    </div>
+
+                    <div class="feature-card bg-slate-50 rounded-2xl p-6 text-center shadow-sm">
+                        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4 text-green-600">
+                            <i class="fa-solid fa-people-group text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-primary mb-3" data-i18n="feat3Title">عمالة مدربة</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed" data-i18n="feat3Desc">
+                            نفخر بتوفير كوادر بشرية مفحوصة ومدربة على أعلى مستوى. نختبر كفاءاتهم ونراجع خبراتهم السابقة بدقة لضمان تقديم خدمة احترافية تليق ببيتك وعائلتك.
+                        </p>
+                    </div>
+
+                    <div class="feature-card bg-slate-50 rounded-2xl p-6 text-center shadow-sm">
+                        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4 text-blue-600">
+                            <i class="fa-solid fa-headset text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-primary mb-3" data-i18n="feat4Title">خدمة عملاء علي مدار الساعة</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed" data-i18n="feat4Desc">
+                            إحنا معاك في كل خطوة! فريقنا متواجد 24/7 للرد على استفساراتك، ومتابعة طلبك، وحل أي إشكالية تواجهك بأسرع وقت، لأن رضاك هو غايتنا الأولى.
+                        </p>
                     </div>
                 </div>
             </div>
         </section>
+
     </main>
 
     <footer class="bg-primary text-white pt-12 pb-20 md:pb-6">
@@ -257,13 +278,13 @@
                 <span class="text-[9px] font-bold mt-0.5" data-i18n="navPrices">الأسعار</span>
             </a>
             
-            <a href="#about" class="flex flex-col items-center text-gray-400 hover:text-primary transition w-1/5 group">
+            <a href="about.html" class="flex flex-col items-center text-gray-400 hover:text-primary transition w-1/5 group">
                 <div class="p-1.5 rounded-full group-hover:bg-primary/10 transition-colors"><i class="fa-solid fa-users text-lg"></i></div>
                 <span class="text-[9px] font-bold mt-0.5" data-i18n="navAbout">من نحن</span>
             </a>
             
             <div class="w-1/5 flex justify-center -mt-6">
-                <a href="#home" class="bg-primary border-4 border-slate-50 w-12 h-12 rounded-full flex flex-col items-center justify-center text-white shadow-lg hover:bg-secondary hover:text-primary transition transform">
+                <a href="index.html" class="bg-primary border-4 border-slate-50 w-12 h-12 rounded-full flex flex-col items-center justify-center text-white shadow-lg hover:bg-secondary hover:text-primary transition transform">
                     <i class="fa-solid fa-house text-xl"></i>
                 </a>
             </div>
@@ -273,7 +294,7 @@
                 <span class="text-[9px] font-bold mt-0.5" data-i18n="navServicesBtn">خدماتنا</span>
             </a>
             
-            <a href="#contact" class="flex flex-col items-center text-gray-400 hover:text-primary transition w-1/5 group">
+            <a href="contact.html" class="flex flex-col items-center text-gray-400 hover:text-primary transition w-1/5 group">
                 <div class="p-1.5 rounded-full group-hover:bg-primary/10 transition-colors"><i class="fa-solid fa-phone text-lg"></i></div>
                 <span class="text-[9px] font-bold mt-0.5" data-i18n="navContact">تواصل</span>
             </a>
@@ -304,13 +325,18 @@
                 btnFreeConsult: "أحصل على استشارة مجانية عبر واتساب",
                 guarantee: "ضمان العمالة",
                 guaranteeDays: "90 يوماً",
-                aboutTitle: "من نحن؟",
+                introTitle: "مكتب تمام للإستقدام",
                 aboutText: 'يعمل "مكتب تمام للاستقدام" (ترخيص 3701262) وفق أنظمة وزارة الموارد البشرية لتقديم نخبة العمالة المنزلية والكوادر المهنية لقطاعي الأفراد والأعمال. نتميز باختيار دقيق للعمالة من الجنسيات المعتمدة، مع تدقيق شامل لخبراتهم وتدريبهم بأعلى المعايير العالمية لضمان الجودة والسرعة.',
-                contactTitle: "تواصل معنا",
-                contactDesc: "نسعد باستقبال استفساراتكم وطلباتكم على مدار الساعة. فريقنا جاهز لخدمتكم!",
-                contactPhone: "رقم الهاتف / واتساب",
-                contactAddress: "العنوان",
-                addressLoc: "الرياض، المملكة العربية السعودية",
+                whyUsTitle: "لماذا تختار مكتب تمام للإستقدام؟",
+                whyUsDesc: "نحرص على تقديم تجربة استقدام فريدة ومريحة تليق بك، من خلال مزايا حصرية تضمن راحتك وراحة أسرتك.",
+                feat1Title: "ضمان العمالة",
+                feat1Desc: "طال عمرك، راحتك مضمونة معنا. نقدم لك ضمان 90 يوماً على العمالة المنزلية وفق أنظمة مساند، يشمل كافة الحالات النظامية لضمان حقوقك كاملة بدون أي قروشة.",
+                feat2Title: "أسعار إستقدام تنافسية",
+                feat2Desc: "وفر فلوسك مع أقوى باقات الاستقدام في السوق. نوفر لك أفضل الكفاءات بأسعار تنافسية وخيارات دفع ميسرة تناسب ميزانيتك، مع شفافية تامة في التكاليف.",
+                feat3Title: "عمالة مدربة",
+                feat3Desc: "نفخر بتوفير كوادر بشرية مفحوصة ومدربة على أعلى مستوى. نختبر كفاءاتهم ونراجع خبراتهم السابقة بدقة لضمان تقديم خدمة احترافية تليق ببيتك وعائلتك.",
+                feat4Title: "خدمة عملاء علي مدار الساعة",
+                feat4Desc: "إحنا معاك في كل خطوة! فريقنا متواجد 24/7 للرد على استفساراتك، ومتابعة طلبك، وحل أي إشكالية تواجهك بأسرع وقت، لأن رضاك هو غايتنا الأولى.",
                 footerSlogan: "شريكك الموثوق لاستقدام آمن ومريح.",
                 footerCopy: "© 2026 جميع الحقوق محفوظة لمكتب تمام للاستقدام."
             },
@@ -336,13 +362,18 @@
                 btnFreeConsult: "Get a Free Consultation via WhatsApp",
                 guarantee: "Worker Guarantee",
                 guaranteeDays: "90 Days",
-                aboutTitle: "About Us",
+                introTitle: "Tamam Recruitment Agency",
                 aboutText: 'Tamam Recruitment Agency (License 3701262) operates under the regulations of the Ministry of Human Resources to provide elite domestic and professional workers. We select carefully from approved nationalities, with comprehensive screening and training to ensure quality and speed.',
-                contactTitle: "Contact Us",
-                contactDesc: "We are happy to receive your inquiries 24/7. Our team is ready to serve you!",
-                contactPhone: "Phone / WhatsApp",
-                contactAddress: "Address",
-                addressLoc: "Riyadh, Saudi Arabia",
+                whyUsTitle: "Why Choose Tamam Recruitment?",
+                whyUsDesc: "We are keen to provide a unique and comfortable recruitment experience worthy of you, through exclusive advantages that ensure your comfort.",
+                feat1Title: "Worker Guarantee",
+                feat1Desc: "Your comfort is guaranteed with us. We offer a 90-day guarantee on domestic workers according to Musaned regulations, ensuring your full rights without any hassle.",
+                feat2Title: "Competitive Pricing",
+                feat2Desc: "Save your money with the strongest recruitment packages in the market. We provide the best talents at competitive prices and flexible payment options suitable for your budget.",
+                feat3Title: "Trained Workers",
+                feat3Desc: "We pride ourselves on providing highly trained and screened human resources. We thoroughly check their competence and previous experiences to ensure professional service.",
+                feat4Title: "24/7 Customer Service",
+                feat4Desc: "We are with you every step of the way! Our team is available 24/7 to answer your inquiries, track your request, and solve any issues promptly.",
                 footerSlogan: "Your trusted partner for safe recruitment.",
                 footerCopy: "© 2026 All Rights Reserved to Tamam Recruitment Agency."
             }
