@@ -15,7 +15,7 @@
                     colors: { 
                         primary: '#112240', 
                         secondary: '#eab308',
-                        whatsapp: '#25D366' /* لون واتساب الرسمي */
+                        whatsapp: '#25D366'
                     },
                     fontFamily: { sans: ['Cairo', 'sans-serif'] },
                     animation: {
@@ -35,9 +35,12 @@
         ::-webkit-scrollbar-thumb { background: #112240; border-radius: 10px; }
         .group:hover .group-hover\:block { display: block; }
         
-        /* تأثيرات إضافية للأزرار العائمة */
         .floating-btn { transition: transform 0.3s ease, box-shadow 0.3s ease; }
         .floating-btn:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
+        
+        /* تأثير الصورة الجديدة */
+        .hero-image-wrapper { transition: all 0.4s ease; }
+        .hero-image-wrapper:hover { transform: translateY(-8px); box-shadow: 0 20px 25px -5px rgba(17, 34, 64, 0.15); }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800 overflow-hidden" id="body-content">
@@ -158,16 +161,19 @@
                         </p>
                         
                         <div class="w-full flex justify-center lg:justify-start">
-                            <a href="https://wa.me/966545797339" target="_blank" class="bg-whatsapp text-white font-bold px-8 py-3.5 rounded-full shadow-lg hover:bg-green-600 hover:scale-105 hover:shadow-xl transition-all duration-300 flex items-center gap-3 animate-pulse-slow">
-                                <i class="fa-brands fa-whatsapp text-2xl"></i>
+                            <a href="https://wa.me/966545797339" target="_blank" class="bg-whatsapp text-white font-bold text-sm px-6 py-2.5 rounded-full shadow-lg hover:bg-green-600 hover:scale-105 hover:shadow-xl transition-all duration-300 flex items-center gap-2 animate-pulse-slow">
+                                <i class="fa-brands fa-whatsapp text-xl"></i>
                                 <span data-i18n="btnFreeConsult">أحصل على استشارة مجانية عبر واتساب</span>
                             </a>
                         </div>
                     </div>
                     
-                    <div class="relative mt-6 lg:mt-0 px-4 md:px-0">
-                        <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="عمالة منزلية" class="rounded-2xl shadow-2xl object-cover h-72 md:h-96 w-full">
-                        <div class="absolute -bottom-5 -right-2 md:-right-6 bg-white p-3 md:p-4 rounded-xl shadow-xl flex items-center gap-3 md:gap-4 border-b-4 border-secondary">
+                    <div class="relative mt-8 lg:mt-0 px-2 md:px-0">
+                        <div class="hero-image-wrapper rounded-3xl p-1 bg-white shadow-xl ring-2 ring-primary/20">
+                            <img src="https://imgg.io/images/2026/03/22/c5402599499e79c402a0ccc937d31367.png" alt="عمالة منزلية" class="rounded-2xl object-cover h-72 md:h-96 w-full">
+                        </div>
+                        
+                        <div class="absolute -bottom-5 right-2 md:-right-4 bg-white p-3 md:p-4 rounded-xl shadow-xl flex items-center gap-3 border-b-4 border-secondary z-10">
                             <div class="bg-green-100 p-2 md:p-3 rounded-full"><i class="fa-solid fa-shield-halved text-green-600 text-lg md:text-xl"></i></div>
                             <div>
                                 <p class="text-xs md:text-sm text-gray-500" data-i18n="guarantee">ضمان العمالة</p>
