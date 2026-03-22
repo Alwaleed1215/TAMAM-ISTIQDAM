@@ -15,7 +15,14 @@
                     colors: { 
                         primary: '#112240', 
                         secondary: '#eab308',
-                        whatsapp: '#25D366'
+                        whatsapp: '#25D366',
+                        /* ألوان السوشيال ميديا الرسمية للفوتر */
+                        twitter: '#1DA1F2',
+                        instagram: '#E1306C',
+                        snapchat: '#FFFC00',
+                        facebook: '#1877F2',
+                        tiktok: '#ffffff',
+                        youtube: '#FF0000'
                     },
                     fontFamily: { sans: ['Cairo', 'sans-serif'] },
                     animation: {
@@ -44,7 +51,6 @@
         .feature-card { transition: all 0.3s ease; border: 1px solid transparent; }
         .feature-card:hover { transform: translateY(-5px); border-color: rgba(234, 179, 8, 0.3); box-shadow: 0 10px 25px -5px rgba(17, 34, 64, 0.1); }
         
-        /* تأثير الخريطة الجديد */
         .map-container { transition: all 0.4s ease; }
         .map-container:hover { transform: translateY(-5px); box-shadow: 0 15px 30px -5px rgba(17, 34, 64, 0.15); }
     </style>
@@ -170,10 +176,12 @@
                             <img src="https://imgg.io/images/2026/03/22/c5402599499e79c402a0ccc937d31367.png" alt="عمالة منزلية" class="rounded-2xl object-cover h-72 md:h-96 w-full transform hover:scale-105 transition-transform duration-500">
                         </div>
                         <div class="absolute -bottom-5 right-2 md:-right-4 bg-white p-3 md:p-4 rounded-xl shadow-xl flex items-center gap-3 border-b-4 border-secondary z-10 animate-bounce-slight" style="animation-delay: 1s;">
-                            <div class="bg-green-100 p-2 md:p-3 rounded-full text-green-600"><i class="fa-solid fa-shield-halved text-lg md:text-xl"></i></div>
+                            <div class="bg-blue-50 p-2 md:p-3 rounded-full flex items-center justify-center">
+                                <img src="https://musaned.com.sa/assets/images/musaned-logo-arabic.svg" alt="مساند" class="h-6 md:h-8 object-contain filter drop-shadow-sm">
+                            </div>
                             <div>
-                                <p class="text-xs md:text-sm text-gray-500" data-i18n="guarantee">ضمان العمالة</p>
-                                <p class="font-bold text-primary text-sm md:text-base" data-i18n="guaranteeDays">90 يوماً</p>
+                                <p class="text-xs md:text-sm font-bold text-primary" data-i18n="guaranteeDays">90 يوماً</p>
+                                <p class="font-semibold text-gray-500 text-[10px] md:text-xs" data-i18n="viaMusaned">عبر منصة مساند</p>
                             </div>
                         </div>
                     </div>
@@ -250,7 +258,7 @@
                 
                 <div class="flex flex-col items-center">
                     <p class="text-gray-600 mb-10 leading-relaxed text-center max-w-2xl" data-i18n="contactDesc">
-                        نسعد باستقبال استفساراتكم وطلباتكم ومقترحاتكم وعلى مدار 
+                        نسعد بإستقبال إستفساراتكم و مقترحاتكم والشكاوى على مدار الساعة
                         <span class="inline-flex items-center justify-center font-extrabold text-xs bg-primary text-white rounded-full w-14 h-6 gap-0.5 mx-1" dir="ltr">
                             <span>7</span><span class="text-[10px] text-slate-300">/</span><span>24</span>
                         </span>
@@ -298,19 +306,32 @@
                     <img src="https://imgg.io/images/2026/03/22/ce7f90873f720d041ffcdb63cfe66b05.png" alt="مكتب تمام للاستقدام" class="h-12 object-contain brightness-0 invert">
                     <div>
                         <span class="font-extrabold text-2xl tracking-tight">تمام<span class="text-secondary text-lg ml-1">للاستقدام</span></span>
-                        <p class="text-gray-400 mt-1 text-xs" data-i18n="footerSlogan">شريكك الموثوق لاستقدام آمن ومريح.</p>
+                        <p class="text-gray-400 mt-1 text-xs" data-i18n="footerSlogan">شريكك الموثوق لخدمات إستقدام إحترافية</p>
                     </div>
                 </div>
                 <div class="flex space-x-4 space-x-reverse justify-center w-full lg:w-auto">
-                    <a href="https://x.com/tamam_agency" target="_blank" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-secondary hover:text-primary transition"><i class="fa-brands fa-x-twitter text-lg"></i></a>
-                    <a href="https://www.instagram.com/tamam_agency/" target="_blank" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-pink-600 transition"><i class="fa-brands fa-instagram text-lg"></i></a>
-                    <a href="https://www.snapchat.com/@tamam_agency1" target="_blank" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-yellow-400 hover:text-black transition"><i class="fa-brands fa-snapchat text-lg"></i></a>
-                    <a href="https://www.facebook.com/profile.php?id=61550244177125" target="_blank" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-blue-600 transition"><i class="fa-brands fa-facebook-f text-lg"></i></a>
-                    <a href="https://www.tiktok.com/@tamam_agency" target="_blank" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-black transition"><i class="fa-brands fa-tiktok text-lg"></i></a>
+                    <a href="https://x.com/tamam_agency" target="_blank" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-twitter text-white transition duration-300 shadow-md">
+                        <i class="fa-brands fa-x-twitter text-lg"></i>
+                    </a>
+                    <a href="https://www.instagram.com/tamam_agency/" target="_blank" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-instagram text-white transition duration-300 shadow-md">
+                        <i class="fa-brands fa-instagram text-lg"></i>
+                    </a>
+                    <a href="https://www.snapchat.com/@tamam_agency1" target="_blank" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-snapchat hover:text-black text-white transition duration-300 shadow-md">
+                        <i class="fa-brands fa-snapchat text-lg"></i>
+                    </a>
+                    <a href="https://www.facebook.com/profile.php?id=61550244177125" target="_blank" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-facebook text-white transition duration-300 shadow-md">
+                        <i class="fa-brands fa-facebook-f text-lg"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@tamam_agency" target="_blank" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-tiktok hover:text-black text-white transition duration-300 shadow-md">
+                        <i class="fa-brands fa-tiktok text-lg"></i>
+                    </a>
                 </div>
             </div>
-            <div class="text-center text-gray-500 text-sm" data-i18n="footerCopy">
-                © 2026 جميع الحقوق محفوظة لمكتب تمام للاستقدام.
+            
+            <div class="flex justify-center items-center text-center">
+                <div class="text-slate-400 text-[11px] font-semibold py-2 px-4 rounded-full bg-slate-800/50 border border-slate-700/50" dir="rtl" data-i18n="footerCopy">
+                    جميع الحقوق محفوظة لدى | مكتب تمام للإستقدام 2027
+                </div>
             </div>
         </div>
     </footer>
@@ -369,6 +390,7 @@
                 btnFreeConsult: "أحصل على استشارة مجانية عبر واتساب",
                 guarantee: "ضمان العمالة",
                 guaranteeDays: "90 يوماً",
+                viaMusaned: "عبر منصة مساند",
                 introTitle: "مكتب تمام للإستقدام",
                 aboutText: 'يعمل "مكتب تمام للاستقدام" (ترخيص 3701262) وفق أنظمة وزارة الموارد البشرية لتقديم نخبة العمالة المنزلية والكوادر المهنية لقطاعي الأفراد والأعمال. نتميز باختيار دقيق للعمالة من الجنسيات المعتمدة، مع تدقيق شامل لخبراتهم وتدريبهم بأعلى المعايير العالمية لضمان الجودة والسرعة.',
                 whyUsTitle: "لماذا تختار مكتب تمام للإستقدام؟",
@@ -382,12 +404,12 @@
                 feat4Title: "خدمة عملاء علي مدار الساعة",
                 feat4Desc: "إحنا معاك في كل خطوة! فريقنا متواجد 24/7 للرد على استفساراتك، ومتابعة طلبك، وحل أي إشكالية تواجهك بأسرع وقت، لأن رضاك هو غايتنا الأولى.",
                 contactTitle: "تواصل معنا",
-                contactDesc: "نسعد باستقبال استفساراتكم وطلباتكم ومقترحاتكم وعلى مدار 7\24",
+                contactDesc: "نسعد بإستقبال إستفساراتكم و مقترحاتكم والشكاوى على مدار الساعة",
                 contactPhone: "رقم التواصل / واتساب",
                 contactAddress: "العنوان",
                 addressLoc: "طريق عثمان بن عفان الفرعي | حي الفلاح<br>الرياض | المملكة العربية السعودية",
-                footerSlogan: "شريكك الموثوق لاستقدام آمن ومريح.",
-                footerCopy: "© 2026 جميع الحقوق محفوظة لمكتب تمام للاستقدام."
+                footerSlogan: "شريكك الموثوق لخدمات إستقدام إحترافية",
+                footerCopy: "جميع الحقوق محفوظة لدى | مكتب تمام للإستقدام 2027"
             },
             en: {
                 title: "Tamam Recruitment | Your Trusted Choice",
@@ -411,6 +433,7 @@
                 btnFreeConsult: "Get a Free Consultation via WhatsApp",
                 guarantee: "Worker Guarantee",
                 guaranteeDays: "90 Days",
+                viaMusaned: "via Musaned platform",
                 introTitle: "Tamam Recruitment Agency",
                 aboutText: 'Tamam Recruitment Agency (License 3701262) operates under the regulations of the Ministry of Human Resources to provide elite domestic and professional workers. We select carefully from approved nationalities, with comprehensive screening and training to ensure quality and speed.',
                 whyUsTitle: "Why Choose Tamam Recruitment?",
@@ -424,12 +447,12 @@
                 feat4Title: "24/7 Customer Service",
                 feat4Desc: "We are with you every step of the way! Our team is available 24/7 to answer your inquiries, track your request, and solve any issues promptly.",
                 contactTitle: "Contact Us",
-                contactDesc: "We welcome your inquiries, requests, and suggestions 24/7.",
+                contactDesc: "We welcome your inquiries, suggestions, and complaints around the clock",
                 contactPhone: "Contact Number / WhatsApp",
                 contactAddress: "Address",
                 addressLoc: "Othman Bin Affan Branch Rd | Al Falah<br>Riyadh | Saudi Arabia",
-                footerSlogan: "Your trusted partner for safe recruitment.",
-                footerCopy: "© 2026 All Rights Reserved to Tamam Recruitment Agency."
+                footerSlogan: "Your trusted partner for professional recruitment services",
+                footerCopy: "All Rights Reserved | Tamam Recruitment Agency 2027"
             }
         };
 
@@ -496,7 +519,3 @@
     </script>
 </body>
 </html>
-في الصفحة الرئيسية كمان 
-جمب تواصل معنا واتساب خليها ايقونة الواتساب بدل الايقونة دي وحط فيها رقم الواتساب 0545797339
-وتحتها جمب ضمان العمالة بدل الايقونة 
-دي حط ايقونة مساند وخلي 90 يوم باللون بتاع الشعار وتحتها " عبر منصة مساند"
