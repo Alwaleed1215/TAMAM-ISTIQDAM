@@ -16,7 +16,6 @@
                         primary: '#112240', 
                         secondary: '#eab308',
                         whatsapp: '#25D366',
-                        /* ألوان السوشيال ميديا للفوتر */
                         instagram: '#E1306C',
                         snapchat: '#FFFC00',
                         facebook: '#1877F2',
@@ -53,9 +52,12 @@
         .map-container { transition: all 0.4s ease; }
         .map-container:hover { transform: translateY(-5px); box-shadow: 0 15px 30px -5px rgba(17, 34, 64, 0.15); }
 
-        /* تأثير كروت الدول */
         .country-card { transition: all 0.3s ease; }
         .country-card:hover { transform: translateY(-5px); border-color: #eab308; box-shadow: 0 10px 20px -5px rgba(17, 34, 64, 0.1); }
+        
+        /* تأثير كروت الشركاء */
+        .partner-card { transition: all 0.3s ease; border: 1px solid transparent; }
+        .partner-card:hover { transform: translateY(-5px); border-color: rgba(17, 34, 64, 0.1); box-shadow: 0 10px 20px -5px rgba(17, 34, 64, 0.1); }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800 overflow-hidden" id="body-content">
@@ -301,7 +303,34 @@
             </div>
         </section>
 
-        <section id="contact" class="py-16 bg-white border-t border-slate-100">
+        <section id="partners" class="py-16 bg-white border-t border-slate-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-primary mb-4" data-i18n="partnersTitle">شركاء النجاح</h2>
+                    <div class="w-24 h-1 bg-secondary mx-auto rounded"></div>
+                    <p class="text-gray-500 max-w-2xl mx-auto mt-4" data-i18n="partnersDesc">نفتخر بشراكاتنا الاستراتيجية مع كبرى المنصات والجهات الرسمية لضمان تقديم خدمة موثوقة وآمنة.</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="partner-card bg-slate-50 rounded-2xl p-6 text-center flex flex-col items-center justify-center">
+                        <img src="https://imgg.io/images/2026/03/22/72e5663ab1353b2299ab407a8496c558.png" alt="وزارة العمل" class="h-16 md:h-20 object-contain mb-4 filter drop-shadow-sm">
+                        <h3 class="font-bold text-primary" data-i18n="partnerGov">وزارة الموارد البشرية والتنمية الاجتماعية</h3>
+                    </div>
+
+                    <div class="partner-card bg-slate-50 rounded-2xl p-6 text-center flex flex-col items-center justify-center">
+                        <img src="https://imgg.io/images/2026/03/22/2e0495bbca3a713e1faaa89b05e90316.png" alt="مساند" class="h-16 md:h-20 object-contain mb-4 filter drop-shadow-sm">
+                        <h3 class="font-bold text-primary" data-i18n="partnerMusaned">منصة مساند</h3>
+                    </div>
+
+                    <div class="partner-card bg-slate-50 rounded-2xl p-6 text-center flex flex-col items-center justify-center">
+                        <img src="https://imgg.io/images/2026/03/22/f907b4949242aa5a18bcf4064033165d.png" alt="تمارا" class="h-16 md:h-20 object-contain mb-4 filter drop-shadow-sm">
+                        <h3 class="font-bold text-primary" data-i18n="partnerTamara">تمارا</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="py-16 bg-slate-50 border-t border-slate-100">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 
                 <div class="flex items-center gap-6 mb-12">
@@ -457,6 +486,11 @@
                 countryEt: "إثيوبيا",
                 countryKe: "كينيا",
                 btnViewPrices: "عرض تفاصيل الجنسيات والاسعار",
+                partnersTitle: "شركاء النجاح",
+                partnersDesc: "نفتخر بشراكاتنا الاستراتيجية مع كبرى المنصات والجهات الرسمية لضمان تقديم خدمة موثوقة وآمنة.",
+                partnerGov: "وزارة الموارد البشرية والتنمية الاجتماعية",
+                partnerMusaned: "منصة مساند",
+                partnerTamara: "تمارا",
                 introTitle: "مكتب تمام للإستقدام",
                 aboutText: 'يعمل "مكتب تمام للاستقدام" (ترخيص 3701262) وفق أنظمة وزارة الموارد البشرية لتقديم نخبة العمالة المنزلية والكوادر المهنية لقطاعي الأفراد والأعمال. نتميز باختيار دقيق للعمالة من الجنسيات المعتمدة، مع تدقيق شامل لخبراتهم وتدريبهم بأعلى المعايير العالمية لضمان الجودة والسرعة.',
                 whyUsTitle: "لماذا تختار مكتب تمام للإستقدام؟",
@@ -508,6 +542,11 @@
                 countryEt: "Ethiopia",
                 countryKe: "Kenya",
                 btnViewPrices: "View Nationalities & Prices Details",
+                partnersTitle: "Success Partners",
+                partnersDesc: "We take pride in our strategic partnerships with major platforms and official entities to ensure reliable and safe services.",
+                partnerGov: "Ministry of Human Resources and Social Development",
+                partnerMusaned: "Musaned Platform",
+                partnerTamara: "Tamara",
                 introTitle: "Tamam Recruitment Agency",
                 aboutText: 'Tamam Recruitment Agency (License 3701262) operates under the regulations of the Ministry of Human Resources to provide elite domestic and professional workers. We select carefully from approved nationalities, with comprehensive screening and training to ensure quality and speed.',
                 whyUsTitle: "Why Choose Tamam Recruitment?",
