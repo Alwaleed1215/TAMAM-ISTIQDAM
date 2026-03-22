@@ -12,11 +12,16 @@
         tailwind.config = {
             theme: {
                 extend: {
-                    colors: { primary: '#112240', secondary: '#eab308' },
+                    colors: { 
+                        primary: '#112240', 
+                        secondary: '#eab308',
+                        whatsapp: '#25D366' /* لون واتساب الرسمي */
+                    },
                     fontFamily: { sans: ['Cairo', 'sans-serif'] },
                     animation: {
                         'spin-slow': 'spin 3s linear infinite',
                         'bounce-slight': 'bounce 2s infinite',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
                     }
                 }
             }
@@ -28,15 +33,16 @@
         @keyframes dots { 0%, 20% { content: '.'; } 40% { content: '..'; } 60%, 100% { content: '...'; } }
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-thumb { background: #112240; border-radius: 10px; }
-        
-        /* دعم فتح القائمة المنسدلة */
         .group:hover .group-hover\:block { display: block; }
+        
+        /* تأثيرات إضافية للأزرار العائمة */
+        .floating-btn { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .floating-btn:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800 overflow-hidden" id="body-content">
 
     <div id="splash-screen" class="fixed inset-0 bg-white z-[100] flex flex-col justify-center items-center px-4 transition-opacity duration-700">
-        
         <div class="flex flex-col items-center">
             <div class="relative w-40 h-40 flex justify-center items-center mb-8">
                 <div class="absolute inset-0 rounded-full border-4 border-slate-100 border-t-primary border-b-primary animate-spin-slow shadow-lg"></div>
@@ -44,15 +50,12 @@
                     <img src="https://imgg.io/images/2026/03/22/ce7f90873f720d041ffcdb63cfe66b05.png" alt="مكتب تمام للاستقدام" class="h-full object-contain">
                 </div>
             </div>
-            
             <h2 class="text-sm font-bold text-primary mb-3 text-center leading-relaxed max-w-sm" data-i18n="welcomeSplash">مرحباً بكم في موقع مكتب تمام للإستقدام</h2>
-            
             <p class="text-slate-500 font-semibold text-xs flex items-center">
                 <span data-i18n="loading">جاري تحميل الموقع</span>
                 <span class="loading-dots ml-1 text-primary text-base font-extrabold"></span>
             </p>
         </div>
-
         <div class="absolute bottom-10 px-4 w-full max-w-sm animate-bounce-slight mt-auto">
             <a href="https://wa.me/966547194788" target="_blank" class="block w-full bg-white border border-primary/20 rounded-full py-2.5 px-4 shadow-sm hover:shadow-md transition-all text-center group">
                 <span class="text-xs font-semibold text-primary/80 group-hover:text-primary transition-colors">
@@ -75,21 +78,15 @@
         </div>
         <nav class="flex-1 px-4 py-6 space-y-4 overflow-y-auto">
             <a href="#home" onclick="toggleSidebar()" class="block px-4 py-3 rounded-lg bg-slate-50 text-primary font-bold hover:bg-primary hover:text-white transition"><i class="fa-solid fa-house ml-2 w-6"></i> <span data-i18n="navHome">الرئيسية</span></a>
-            
             <div class="space-y-1">
                 <span class="block px-4 py-2 text-sm font-bold text-gray-400" data-i18n="navServices">خدماتنا</span>
                 <a href="#mediation" onclick="toggleSidebar()" class="block px-4 py-2 rounded-lg text-gray-600 font-semibold hover:bg-primary hover:text-white transition"><i class="fa-solid fa-handshake ml-2 w-5"></i> <span data-i18n="navService1">التوسط في الاستقدام</span></a>
                 <a href="#individuals" onclick="toggleSidebar()" class="block px-4 py-2 rounded-lg text-gray-600 font-semibold hover:bg-primary hover:text-white transition"><i class="fa-solid fa-user ml-2 w-5"></i> <span data-i18n="navService2">الأفراد</span></a>
             </div>
-
             <a href="#about" onclick="toggleSidebar()" class="block px-4 py-3 rounded-lg text-gray-600 font-semibold hover:bg-primary hover:text-white transition"><i class="fa-solid fa-users ml-2 w-6"></i> <span data-i18n="navAbout">من نحن</span></a>
             <a href="prices.html" class="block px-4 py-3 rounded-lg text-gray-600 font-semibold hover:bg-primary hover:text-white transition"><i class="fa-solid fa-tags ml-2 w-6"></i> <span data-i18n="navPrices">الأسعار والجنسيات</span></a>
             <a href="#contact" onclick="toggleSidebar()" class="block px-4 py-3 rounded-lg text-gray-600 font-semibold hover:bg-primary hover:text-white transition"><i class="fa-solid fa-phone ml-2 w-6"></i> <span data-i18n="navContact">تواصل معنا</span></a>
         </nav>
-        <div class="p-4 border-t border-gray-100 flex justify-between items-center bg-slate-50">
-            <span class="text-sm font-bold text-gray-600">Language</span>
-            <button onclick="switchLanguage()" class="bg-primary text-white px-4 py-1 rounded shadow hover:bg-secondary transition text-sm">EN / AR</button>
-        </div>
     </div>
 
     <div class="bg-primary text-white py-2 text-sm text-center">
@@ -105,7 +102,6 @@
                 
                 <nav class="hidden md:flex space-x-8 space-x-reverse items-center">
                     <a href="#home" class="text-primary font-bold border-b-2 border-primary pb-1" data-i18n="navHome">الرئيسية</a>
-                    
                     <div class="relative group">
                         <button class="text-gray-600 hover:text-primary transition font-semibold flex items-center gap-1">
                             <span data-i18n="navServices">خدماتنا</span>
@@ -116,47 +112,66 @@
                             <a href="#individuals" class="block px-4 py-3 text-sm text-gray-700 hover:bg-slate-50 hover:text-primary" data-i18n="navService2">الأفراد</a>
                         </div>
                     </div>
-
                     <a href="#about" class="text-gray-600 hover:text-primary transition font-semibold" data-i18n="navAbout">من نحن</a>
                     <a href="prices.html" class="text-gray-600 hover:text-primary transition font-semibold" data-i18n="navPrices">الجنسيات والأسعار</a>
                     <a href="#contact" class="text-gray-600 hover:text-primary transition font-semibold" data-i18n="navContact">تواصل معنا</a>
                 </nav>
                 
                 <div class="hidden md:flex items-center gap-4">
-                    <button onclick="switchLanguage()" class="text-primary font-bold hover:text-secondary">EN/AR</button>
+                    <button onclick="switchLanguage()" class="text-primary font-bold hover:text-secondary border border-gray-200 px-3 py-1 rounded text-sm">EN/AR</button>
                     <a href="https://wa.me/966545797339" target="_blank" class="bg-secondary text-primary font-bold px-6 py-2 rounded-full shadow hover:bg-yellow-400 transition" data-i18n="btnOrder">اطلب عاملتك الآن</a>
                 </div>
-                <button onclick="toggleSidebar()" class="md:hidden text-primary hover:text-secondary focus:outline-none">
-                    <i class="fa-solid fa-bars text-3xl"></i>
-                </button>
+                
+                <div class="md:hidden flex items-center gap-3">
+                    <button onclick="switchLanguage()" class="text-primary font-bold text-xs border border-primary/30 px-2 py-1 rounded bg-slate-50 shadow-sm hover:bg-primary hover:text-white transition">
+                        EN/AR
+                    </button>
+                    <button onclick="toggleSidebar()" class="text-primary hover:text-secondary focus:outline-none">
+                        <i class="fa-solid fa-bars text-3xl"></i>
+                    </button>
+                </div>
             </div>
         </div>
     </header>
 
-    <main class="flex-grow pb-24 md:pb-0">
-        <section id="home" class="relative bg-white overflow-hidden py-16 lg:py-24">
+    <div class="fixed left-4 bottom-24 z-40 flex flex-col gap-3">
+        <a href="tel:0545797339" class="floating-btn w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center shadow-lg animate-bounce-slight" style="animation-delay: 0.5s;">
+            <i class="fa-solid fa-phone text-xl"></i>
+        </a>
+        <a href="https://wa.me/966545797339" target="_blank" class="floating-btn w-12 h-12 bg-whatsapp text-white rounded-full flex items-center justify-center shadow-lg animate-bounce-slight">
+            <i class="fa-brands fa-whatsapp text-2xl"></i>
+        </a>
+    </div>
+
+    <main class="flex-grow pb-20 md:pb-0">
+        <section id="home" class="relative bg-white overflow-hidden py-12 lg:py-24 text-center lg:text-right">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                    <div>
-                        <h1 class="text-4xl lg:text-5xl font-extrabold text-primary leading-tight mb-6" data-i18n="heroTitle">
-                            راحتك تبدأ من هنا..<br>استقدام موثوق وسريع
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+                    <div class="flex flex-col items-center lg:items-start">
+                        <h1 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-primary leading-tight mb-4 text-center lg:text-right">
+                            <span class="block mb-2" data-i18n="heroTitle1">مكتب تمام للإستقدام</span>
+                            <span class="block text-2xl md:text-3xl text-secondary" data-i18n="heroTitle2">خيارك الأول لخدمات إستقدام موثوقة واحترافية</span>
                         </h1>
-                        <p class="text-lg text-gray-600 mb-8 leading-relaxed" data-i18n="heroDesc">
-                            نقدم لك في مكتب تمام أفضل الكوادر البشرية والعمالة المنزلية المدربة من مختلف الجنسيات، بضمان 90 يوماً وإجراءات نظامية عبر منصة مساند.
+                        
+                        <p class="text-base md:text-lg text-gray-600 mb-8 leading-relaxed max-w-2xl text-center lg:text-right" data-i18n="heroDesc">
+                            نسعى في مكتب تمام لتقديم أرقى مستويات الخدمة في توفير الكوادر البشرية المتميزة والعمالة المنزلية المدربة بعناية من مختلف الجنسيات المصرح بها. نلتزم بأعلى معايير الجودة والشفافية، مع توفير ضمان شامل لمدة 90 يوماً وإتمام كافة الإجراءات النظامية الموثقة عبر منصة مساند لضمان راحتكم واستقرار أسركم.
                         </p>
-                        <div class="flex flex-wrap gap-4">
-                            <a href="https://wa.me/966545797339" target="_blank" class="bg-primary text-white font-bold px-8 py-3 rounded-lg shadow-lg hover:bg-blue-900 transition flex items-center">
-                                <i class="fa-brands fa-whatsapp text-xl ml-2"></i> <span data-i18n="btnWhatsapp">تواصل معنا واتساب</span>
+                        
+                        <div class="w-full flex justify-center lg:justify-start">
+                            <a href="https://wa.me/966545797339" target="_blank" class="bg-whatsapp text-white font-bold px-8 py-3.5 rounded-full shadow-lg hover:bg-green-600 hover:scale-105 hover:shadow-xl transition-all duration-300 flex items-center gap-3 animate-pulse-slow">
+                                <i class="fa-brands fa-whatsapp text-2xl"></i>
+                                <span data-i18n="btnFreeConsult">أحصل على استشارة مجانية عبر واتساب</span>
                             </a>
                         </div>
                     </div>
-                    <div class="relative">
-                        <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="عمالة منزلية" class="rounded-2xl shadow-2xl object-cover h-96 w-full">
-                        <div class="absolute -bottom-6 -right-6 bg-white p-4 rounded-xl shadow-xl flex items-center gap-4 border-b-4 border-secondary">
-                            <div class="bg-green-100 p-3 rounded-full"><i class="fa-solid fa-shield-halved text-green-600 text-xl"></i></div>
+                    
+                    <div class="relative mt-6 lg:mt-0 px-4 md:px-0">
+                        <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="عمالة منزلية" class="rounded-2xl shadow-2xl object-cover h-72 md:h-96 w-full">
+                        <div class="absolute -bottom-5 -right-2 md:-right-6 bg-white p-3 md:p-4 rounded-xl shadow-xl flex items-center gap-3 md:gap-4 border-b-4 border-secondary">
+                            <div class="bg-green-100 p-2 md:p-3 rounded-full"><i class="fa-solid fa-shield-halved text-green-600 text-lg md:text-xl"></i></div>
                             <div>
-                                <p class="text-sm text-gray-500" data-i18n="guarantee">ضمان العمالة</p>
-                                <p class="font-bold text-primary" data-i18n="guaranteeDays">90 يوماً</p>
+                                <p class="text-xs md:text-sm text-gray-500" data-i18n="guarantee">ضمان العمالة</p>
+                                <p class="font-bold text-primary text-sm md:text-base" data-i18n="guaranteeDays">90 يوماً</p>
                             </div>
                         </div>
                     </div>
@@ -205,23 +220,22 @@
         </section>
     </main>
 
-    <footer class="bg-primary text-white pt-12 pb-24 md:pb-6">
+    <footer class="bg-primary text-white pt-12 pb-20 md:pb-6">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row justify-between items-center border-b border-gray-700 pb-8 mb-8">
-                <div class="mb-6 md:mb-0 text-center md:text-right flex items-center gap-3">
+                <div class="mb-6 md:mb-0 text-center md:text-right flex items-center justify-center lg:justify-start gap-3 w-full lg:w-auto">
                     <img src="https://imgg.io/images/2026/03/22/ce7f90873f720d041ffcdb63cfe66b05.png" alt="مكتب تمام للاستقدام" class="h-12 object-contain brightness-0 invert">
                     <div>
                         <span class="font-extrabold text-2xl tracking-tight">تمام<span class="text-secondary text-lg ml-1">للاستقدام</span></span>
                         <p class="text-gray-400 mt-1 text-xs" data-i18n="footerSlogan">شريكك الموثوق لاستقدام آمن ومريح.</p>
                     </div>
                 </div>
-                <div class="flex space-x-4 space-x-reverse">
+                <div class="flex space-x-4 space-x-reverse justify-center w-full lg:w-auto">
                     <a href="https://x.com/tamam_agency" target="_blank" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-secondary hover:text-primary transition"><i class="fa-brands fa-x-twitter text-lg"></i></a>
                     <a href="https://www.instagram.com/tamam_agency/" target="_blank" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-pink-600 transition"><i class="fa-brands fa-instagram text-lg"></i></a>
                     <a href="https://www.snapchat.com/@tamam_agency1" target="_blank" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-yellow-400 hover:text-black transition"><i class="fa-brands fa-snapchat text-lg"></i></a>
                     <a href="https://www.facebook.com/profile.php?id=61550244177125" target="_blank" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-blue-600 transition"><i class="fa-brands fa-facebook-f text-lg"></i></a>
                     <a href="https://www.tiktok.com/@tamam_agency" target="_blank" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-black transition"><i class="fa-brands fa-tiktok text-lg"></i></a>
-                    <a href="https://youtube.com/channel/UCQm-0IHT-DKecJULvQrSmUQ?sub_confirmation=1" target="_blank" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-red-600 transition"><i class="fa-brands fa-youtube text-lg"></i></a>
                 </div>
             </div>
             <div class="text-center text-gray-500 text-sm" data-i18n="footerCopy">
@@ -230,28 +244,32 @@
         </div>
     </footer>
 
-    <div class="md:hidden fixed bottom-4 left-4 right-4 z-30">
-        <div class="bg-white border-2 border-primary rounded-2xl shadow-2xl flex justify-around items-center px-2 py-3">
-            <a href="#home" class="flex flex-col items-center text-primary w-1/4">
-                <i class="fa-solid fa-house text-xl mb-1"></i>
-                <span class="text-[10px] font-bold" data-i18n="navHome">الرئيسية</span>
+    <div class="md:hidden fixed bottom-3 left-3 right-3 z-30">
+        <div class="bg-white border border-gray-200 rounded-2xl shadow-xl flex justify-around items-center px-1 py-1.5 h-16">
+            <a href="prices.html" class="flex flex-col items-center text-gray-400 hover:text-primary transition w-1/5 group">
+                <div class="p-1.5 rounded-full group-hover:bg-primary/10 transition-colors"><i class="fa-solid fa-tags text-lg"></i></div>
+                <span class="text-[9px] font-bold mt-0.5" data-i18n="navPrices">الأسعار</span>
             </a>
-            <a href="prices.html" class="flex flex-col items-center text-gray-400 hover:text-primary transition w-1/4">
-                <i class="fa-solid fa-tags text-xl mb-1"></i>
-                <span class="text-[10px] font-bold" data-i18n="navPrices">الأسعار</span>
+            
+            <a href="#about" class="flex flex-col items-center text-gray-400 hover:text-primary transition w-1/5 group">
+                <div class="p-1.5 rounded-full group-hover:bg-primary/10 transition-colors"><i class="fa-solid fa-users text-lg"></i></div>
+                <span class="text-[9px] font-bold mt-0.5" data-i18n="navAbout">من نحن</span>
             </a>
-            <div class="w-1/4 flex justify-center -mt-8">
-                <a href="https://wa.me/966545797339" target="_blank" class="bg-secondary border-4 border-slate-50 w-14 h-14 rounded-full flex items-center justify-center text-primary shadow-lg hover:scale-105 transition transform">
-                    <i class="fa-brands fa-whatsapp text-3xl"></i>
+            
+            <div class="w-1/5 flex justify-center -mt-6">
+                <a href="#home" class="bg-primary border-4 border-slate-50 w-12 h-12 rounded-full flex flex-col items-center justify-center text-white shadow-lg hover:bg-secondary hover:text-primary transition transform">
+                    <i class="fa-solid fa-house text-xl"></i>
                 </a>
             </div>
-            <a href="#about" class="flex flex-col items-center text-gray-400 hover:text-primary transition w-1/4">
-                <i class="fa-solid fa-users text-xl mb-1"></i>
-                <span class="text-[10px] font-bold" data-i18n="navAbout">من نحن</span>
+            
+            <a href="#mediation" class="flex flex-col items-center text-gray-400 hover:text-primary transition w-1/5 group">
+                <div class="p-1.5 rounded-full group-hover:bg-primary/10 transition-colors"><i class="fa-solid fa-handshake text-lg"></i></div>
+                <span class="text-[9px] font-bold mt-0.5" data-i18n="navServicesBtn">خدماتنا</span>
             </a>
-            <a href="#contact" class="flex flex-col items-center text-gray-400 hover:text-primary transition w-1/4">
-                <i class="fa-solid fa-phone text-xl mb-1"></i>
-                <span class="text-[10px] font-bold" data-i18n="navContact">تواصل</span>
+            
+            <a href="#contact" class="flex flex-col items-center text-gray-400 hover:text-primary transition w-1/5 group">
+                <div class="p-1.5 rounded-full group-hover:bg-primary/10 transition-colors"><i class="fa-solid fa-phone text-lg"></i></div>
+                <span class="text-[9px] font-bold mt-0.5" data-i18n="navContact">تواصل</span>
             </a>
         </div>
     </div>
@@ -266,6 +284,7 @@
                 menuTitle: "القائمة",
                 navHome: "الرئيسية",
                 navServices: "خدماتنا",
+                navServicesBtn: "خدماتنا",
                 navService1: "التوسط في الاستقدام",
                 navService2: "الأفراد",
                 navAbout: "من نحن",
@@ -273,9 +292,10 @@
                 navContact: "تواصل معنا",
                 topBar: "مكتب معتمد من منصة مساند | ترخيص رقم: 3701262",
                 btnOrder: "اطلب عاملتك الآن",
-                heroTitle: "راحتك تبدأ من هنا..<br>استقدام موثوق وسريع",
-                heroDesc: "نقدم لك في مكتب تمام أفضل الكوادر البشرية والعمالة المنزلية المدربة من مختلف الجنسيات، بضمان 90 يوماً وإجراءات نظامية عبر منصة مساند.",
-                btnWhatsapp: "تواصل معنا واتساب",
+                heroTitle1: "مكتب تمام للإستقدام",
+                heroTitle2: "خيارك الأول لخدمات إستقدام موثوقة واحترافية",
+                heroDesc: "نسعى في مكتب تمام لتقديم أرقى مستويات الخدمة في توفير الكوادر البشرية المتميزة والعمالة المنزلية المدربة بعناية من مختلف الجنسيات المصرح بها. نلتزم بأعلى معايير الجودة والشفافية، مع توفير ضمان شامل لمدة 90 يوماً وإتمام كافة الإجراءات النظامية الموثقة عبر منصة مساند لضمان راحتكم واستقرار أسركم.",
+                btnFreeConsult: "أحصل على استشارة مجانية عبر واتساب",
                 guarantee: "ضمان العمالة",
                 guaranteeDays: "90 يوماً",
                 aboutTitle: "من نحن؟",
@@ -296,6 +316,7 @@
                 menuTitle: "Menu",
                 navHome: "Home",
                 navServices: "Our Services",
+                navServicesBtn: "Services",
                 navService1: "Recruitment Mediation",
                 navService2: "Individuals",
                 navAbout: "About Us",
@@ -303,9 +324,10 @@
                 navContact: "Contact Us",
                 topBar: "Certified by Musaned | License No: 3701262",
                 btnOrder: "Request Worker Now",
-                heroTitle: "Your Comfort Starts Here..<br>Reliable & Fast Recruitment",
-                heroDesc: "We provide the best human resources and trained domestic workers from various nationalities, with a 90-day guarantee and official procedures via Musaned.",
-                btnWhatsapp: "Contact via WhatsApp",
+                heroTitle1: "Tamam Recruitment Agency",
+                heroTitle2: "Your First Choice for Reliable Professional Services",
+                heroDesc: "At Tamam, we strive to provide the highest level of service by supplying distinguished human resources and carefully trained domestic workers from authorized nationalities. We commit to the highest standards of quality and transparency, offering a comprehensive 90-day guarantee and completing all official procedures via Musaned to ensure your family's comfort.",
+                btnFreeConsult: "Get a Free Consultation via WhatsApp",
                 guarantee: "Worker Guarantee",
                 guaranteeDays: "90 Days",
                 aboutTitle: "About Us",
