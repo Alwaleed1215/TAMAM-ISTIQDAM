@@ -52,6 +52,10 @@
         
         .map-container { transition: all 0.4s ease; }
         .map-container:hover { transform: translateY(-5px); box-shadow: 0 15px 30px -5px rgba(17, 34, 64, 0.15); }
+
+        /* تأثير كروت الدول */
+        .country-card { transition: all 0.3s ease; }
+        .country-card:hover { transform: translateY(-5px); border-color: #eab308; box-shadow: 0 10px 20px -5px rgba(17, 34, 64, 0.1); }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800 overflow-hidden" id="body-content">
@@ -152,6 +156,7 @@
     </div>
 
     <main class="flex-grow pb-20 md:pb-0">
+        
         <section id="home" class="relative bg-white overflow-hidden py-12 lg:py-24 text-center lg:text-right">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
@@ -170,6 +175,7 @@
                             </a>
                         </div>
                     </div>
+                    
                     <div class="relative mt-8 lg:mt-0 px-2 md:px-0">
                         <div class="hero-image-wrapper rounded-3xl p-1 bg-white shadow-xl ring-2 ring-primary/20 overflow-hidden">
                             <img src="https://imgg.io/images/2026/03/22/c5402599499e79c402a0ccc937d31367.png" alt="عمالة منزلية" class="rounded-2xl object-cover h-72 md:h-96 w-full transform hover:scale-105 transition-transform duration-500">
@@ -246,7 +252,56 @@
             </div>
         </section>
 
-        <section id="contact" class="py-16 bg-white border-b border-slate-100">
+        <section id="countries" class="py-16 bg-slate-50 border-t border-slate-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-primary mb-4" data-i18n="countriesTitle">الدول المتاحة للاستقدام</h2>
+                    <div class="w-24 h-1 bg-secondary mx-auto rounded"></div>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6 mb-12">
+                    <div class="country-card bg-white rounded-2xl p-4 md:p-6 text-center shadow-sm border border-slate-100 flex flex-col items-center justify-center">
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden mb-3 md:mb-4 border-2 border-slate-100 shadow-sm">
+                            <img src="https://flagcdn.com/w160/pk.png" alt="باكستان" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="text-sm md:text-base font-bold text-primary" data-i18n="countryPk">باكستان</h3>
+                    </div>
+                    <div class="country-card bg-white rounded-2xl p-4 md:p-6 text-center shadow-sm border border-slate-100 flex flex-col items-center justify-center">
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden mb-3 md:mb-4 border-2 border-slate-100 shadow-sm">
+                            <img src="https://flagcdn.com/w160/bd.png" alt="بنغلاديش" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="text-sm md:text-base font-bold text-primary" data-i18n="countryBd">بنغلاديش</h3>
+                    </div>
+                    <div class="country-card bg-white rounded-2xl p-4 md:p-6 text-center shadow-sm border border-slate-100 flex flex-col items-center justify-center">
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden mb-3 md:mb-4 border-2 border-slate-100 shadow-sm">
+                            <img src="https://flagcdn.com/w160/ph.png" alt="الفلبين" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="text-sm md:text-base font-bold text-primary" data-i18n="countryPh">الفلبين</h3>
+                    </div>
+                    <div class="country-card bg-white rounded-2xl p-4 md:p-6 text-center shadow-sm border border-slate-100 flex flex-col items-center justify-center">
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden mb-3 md:mb-4 border-2 border-slate-100 shadow-sm">
+                            <img src="https://flagcdn.com/w160/et.png" alt="إثيوبيا" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="text-sm md:text-base font-bold text-primary" data-i18n="countryEt">إثيوبيا</h3>
+                    </div>
+                    <div class="country-card bg-white rounded-2xl p-4 md:p-6 text-center shadow-sm border border-slate-100 flex flex-col items-center justify-center">
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden mb-3 md:mb-4 border-2 border-slate-100 shadow-sm">
+                            <img src="https://flagcdn.com/w160/ke.png" alt="كينيا" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="text-sm md:text-base font-bold text-primary" data-i18n="countryKe">كينيا</h3>
+                    </div>
+                </div>
+
+                <div class="flex justify-center">
+                    <a href="prices.html" class="bg-secondary text-primary font-extrabold text-sm md:text-base px-8 py-3 rounded-full shadow-lg hover:bg-yellow-400 hover:scale-105 transition-all duration-300 animate-pulse-slow flex items-center gap-2">
+                        <span data-i18n="btnViewPrices">عرض تفاصيل الجنسيات والاسعار</span>
+                        <i class="fa-solid fa-arrow-left text-sm" dir="rtl"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="py-16 bg-white border-t border-slate-100">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 
                 <div class="flex items-center gap-6 mb-12">
@@ -395,6 +450,13 @@
                 guarantee: "ضمان العمالة",
                 guaranteeDays: "90 يوماً",
                 viaMusaned: "عبر منصة مساند",
+                countriesTitle: "الدول المتاحة للاستقدام",
+                countryPk: "باكستان",
+                countryBd: "بنغلاديش",
+                countryPh: "الفلبين",
+                countryEt: "إثيوبيا",
+                countryKe: "كينيا",
+                btnViewPrices: "عرض تفاصيل الجنسيات والاسعار",
                 introTitle: "مكتب تمام للإستقدام",
                 aboutText: 'يعمل "مكتب تمام للاستقدام" (ترخيص 3701262) وفق أنظمة وزارة الموارد البشرية لتقديم نخبة العمالة المنزلية والكوادر المهنية لقطاعي الأفراد والأعمال. نتميز باختيار دقيق للعمالة من الجنسيات المعتمدة، مع تدقيق شامل لخبراتهم وتدريبهم بأعلى المعايير العالمية لضمان الجودة والسرعة.',
                 whyUsTitle: "لماذا تختار مكتب تمام للإستقدام؟",
@@ -439,6 +501,13 @@
                 guarantee: "Worker Guarantee",
                 guaranteeDays: "90 Days",
                 viaMusaned: "via Musaned platform",
+                countriesTitle: "Available Countries for Recruitment",
+                countryPk: "Pakistan",
+                countryBd: "Bangladesh",
+                countryPh: "Philippines",
+                countryEt: "Ethiopia",
+                countryKe: "Kenya",
+                btnViewPrices: "View Nationalities & Prices Details",
                 introTitle: "Tamam Recruitment Agency",
                 aboutText: 'Tamam Recruitment Agency (License 3701262) operates under the regulations of the Ministry of Human Resources to provide elite domestic and professional workers. We select carefully from approved nationalities, with comprehensive screening and training to ensure quality and speed.',
                 whyUsTitle: "Why Choose Tamam Recruitment?",
