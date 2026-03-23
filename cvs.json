@@ -1,0 +1,53 @@
+[
+    {
+        "id": "CV-001",
+        "nameAr": "ماري جين",
+        "nameEn": "Mary Jane",
+        "professionAr": "عاملة منزلية",
+        "professionEn": "Housemaid",
+        "nationalityAr": "الفلبين",
+        "nationalityEn": "Philippines",
+        "flagCode": "ph",
+        "age": "28",
+        "religionAr": "مسيحية",
+        "religionEn": "Christian",
+        "experienceAr": "سنتين في السعودية",
+        "experienceEn": "2 Years in KSA",
+        "salary": "1500",
+        "image": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+    },
+    {
+        "id": "CV-002",
+        "nameAr": "عائشة محمد",
+        "nameEn": "Aisha Mohammed",
+        "professionAr": "عاملة منزلية",
+        "professionEn": "Housemaid",
+        "nationalityAr": "كينيا",
+        "nationalityEn": "Kenya",
+        "flagCode": "ke",
+        "age": "32",
+        "religionAr": "مسلمة",
+        "religionEn": "Muslim",
+        "experienceAr": "أول مرة",
+        "experienceEn": "First Time",
+        "salary": "900",
+        "image": "https://images.unsplash.com/photo-1531123897727-8f129e1bf98c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+    },
+    {
+        "id": "CV-003",
+        "nameAr": "هيلينا كيبيدي",
+        "nameEn": "Helena Kebede",
+        "professionAr": "عاملة منزلية",
+        "professionEn": "Housemaid",
+        "nationalityAr": "إثيوبيا",
+        "nationalityEn": "Ethiopia",
+        "flagCode": "et",
+        "age": "25",
+        "religionAr": "مسيحية",
+        "religionEn": "Christian",
+        "experienceAr": "سنة في دبي",
+        "experienceEn": "1 Year in Dubai",
+        "salary": "1000",
+        "image": "https://images.unsplash.com/photo-1531384441138-2736e62e0919?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+    }
+]
