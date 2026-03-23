@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="html-root" class="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title data-i18n="mediationTitlePage">التوسط في الاستقدام | مكتب تمام للاستقدام</title>
+    
+    <link rel="icon" type="image/png" href="https://imgg.io/images/2026/03/22/3905f931b0fa4f5e93531423df3036d8.png">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: { 
+                        primary: '#112240', secondary: '#eab308', whatsapp: '#25D366',
+                        instagram: '#E1306C', snapchat: '#FFFC00', facebook: '#1877F2', tiktok: '#ffffff'
+                    },
+                    fontFamily: { sans: ['Cairo', 'sans-serif'] },
+                    animation: {
+                        'spin-slow': 'spin 3s linear infinite',
+                        'bounce-slight': 'bounce 2s infinite',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Cairo', sans-serif; overflow-x: hidden; width: 100%; transition: background-color 0.3s, color 0.3s; }
+        .loading-dots::after { content: '.'; animation: dots 1.5s steps(5, end) infinite; }
+        @keyframes dots { 0%, 20% { content: '.'; } 40% { content: '..'; } 60%, 100% { content: '...'; } }
+        
+        .floating-btn { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .floating-btn:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
+        
+        .med-card { transition: all 0.4s ease; border: 1px solid transparent; }
+        .med-card:hover { transform: translateY(-8px); border-color: rgba(234, 179, 8, 0.4); box-shadow: 0 20px 25px -5px rgba(17, 34, 64, 0.15); }
+        
+        .step-circle { transition: all 0.3s ease; }
+        .group:hover .step-circle { transform: scale(1.1); background-color: #eab308; border-color: #eab308; color: #112240; }
+    </style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 overflow-hidden" id="body-content">
+
+    <div id="splash-screen" class="fixed inset-0 bg-white dark:bg-slate-900 z-[100] flex flex-col justify-center items-center transition-opacity duration-700">
+        <div class="flex flex-col items-center">
+            <div class="relative w-36 h-36 flex justify-center items-center mb-6">
+                <div class="absolute inset-0 rounded-full border-4 border-slate-100 dark:border-slate-800 border-t-primary dark:border-t-secondary animate-spin-slow"></div>
+                <img src="https://imgg.io/images/2026/03/22/3905f931b0fa4f5e93531423df3036d8.png" class="h-16 object-contain">
+            </div>
+            <h2 class="text-xs font-bold text-primary dark:text-white mb-2" data-i18n="splashTitle">مكتب تمام للإستقدام</h2>
+            <div class="text-slate-400 text-[10px]"><span data-i18n="loadingText">جاري تحميل الصفحة</span><span class="loading-dots"></span></div>
+        </div>
+    </div>
+
+    <div id="sidebar-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden transition-opacity" onclick="toggleSidebar()"></div>
+    <div id="sidebar" class="fixed top-0 bottom-0 right-0 w-64 bg-white dark:bg-slate-800 shadow-2xl z-50 transform translate-x-full transition-transform duration-300 flex flex-col">
+        <div class="p-4 border-b border-gray-100 dark:border-slate-700 flex justify-between items-center bg-primary text-white">
+            <div class="flex items-center gap-2">
+                <img src="https://imgg.io/images/2026/03/22/ce7f90873f720d041ffcdb63cfe66b05.png" class="h-8 brightness-0 invert">
+                <span class="font-extrabold text-lg" data-i18n="menuTitle">القائمة</span>
+            </div>
+            <button onclick="toggleSidebar()" class="text-white"><i class="fa-solid fa-xmark text-2xl"></i></button>
+        </div>
+        <nav class="flex-1 px-4 py-6 space-y-2 overflow-y-auto">
+            <a href="index.html" class="block px-4 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-bold hover:bg-primary hover:text-white transition" data-i18n="navHome">الرئيسية</a>
+            
+            <div class="pt-2 pb-1">
+                <span class="block px-4 text-xs font-bold text-gray-400" data-i18n="navServices">خدماتنا</span>
+                <a href="individuals.html" class="block px-4 py-2 mt-1 rounded-lg text-gray-600 dark:text-gray-300 font-semibold hover:bg-primary hover:text-white transition" data-i18n="navIndiv">خدمات الأفراد</a>
+                <a href="business.html" class="block px-4 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-semibold hover:bg-primary hover:text-white transition" data-i18n="navBusiness">خدمات الأعمال</a>
+                <a href="mediation.html" class="block px-4 py-2 rounded-lg bg-slate-50 dark:bg-slate-700 text-primary dark:text-secondary font-semibold" data-i18n="navMediation">التوسط في الاستقدام</a>
+            </div>
+
+            <a href="workers.html" class="block px-4 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-bold hover:bg-primary hover:text-white transition" data-i18n="navWorkers">العمالة المستهدفة</a>
+            <a href="cvs.html" class="block px-4 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-bold hover:bg-primary hover:text-white transition" data-i18n="navCVs">السير الذاتية</a>
+            <a href="countries.html" class="block px-4 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-bold hover:bg-primary hover:text-white transition" data-i18n="navCountries">الدول المتاحة</a>
+            <a href="about.html" class="block px-4 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-bold hover:bg-primary hover:text-white transition" data-i18n="navAbout">من نحن</a>
+            <a href="contact.html" class="block px-4 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-bold hover:bg-primary hover:text-white transition" data-i18n="navContact">اتصل بنا</a>
+        </nav>
+    </div>
+
+    <div class="bg-primary text-white py-2 text-sm text-center">
+        <p data-i18n="topBar">مكتب معتمد من منصة مساند | ترخيص رقم: 3701262</p>
+    </div>
+
+    <header class="bg-white/90 dark:bg-slate-900/90 backdrop-blur-md shadow-sm sticky top-0 z-30 border-b border-slate-100 dark:border-slate-800 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 h-20 flex justify-between items-center">
+            <div class="flex-shrink-0 flex items-center h-full py-1">
+                <img src="https://imgg.io/images/2026/03/22/ce7f90873f720d041ffcdb63cfe66b05.png" alt="مكتب تمام للاستقدام" class="h-14 md:h-16 object-contain dark:brightness-0 dark:invert transition-all">
+            </div>
+            
+            <nav class="hidden lg:flex space-x-5 space-x-reverse font-bold text-primary dark:text-white items-center text-sm xl:text-base">
+                <a href="index.html" class="hover:text-secondary transition" data-i18n="navHome">الرئيسية</a>
+                
+                <div class="relative group">
+                    <button class="flex items-center gap-1 text-secondary border-b-2 border-secondary pb-1 py-2" data-i18n="navServicesBtn">
+                        خدماتنا <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                    </button>
+                    <div class="absolute right-0 mt-0 w-48 bg-white dark:bg-slate-800 rounded-xl shadow-xl py-2 hidden group-hover:block border border-slate-100 dark:border-slate-700 transition-all z-50">
+                        <a href="individuals.html" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:text-secondary hover:bg-slate-50 dark:hover:bg-slate-700 transition" data-i18n="navIndiv">خدمات الأفراد</a>
+                        <a href="business.html" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:text-secondary hover:bg-slate-50 dark:hover:bg-slate-700 transition" data-i18n="navBusiness">خدمات الأعمال</a>
+                        <a href="mediation.html" class="block px-4 py-2 text-sm text-secondary bg-slate-50 dark:bg-slate-700 font-bold transition" data-i18n="navMediation">التوسط في الاستقدام</a>
+                    </div>
+                </div>
+
+                <a href="workers.html" class="hover:text-secondary transition" data-i18n="navWorkers">العمالة المستهدفة</a>
+                <a href="cvs.html" class="hover:text-secondary transition" data-i18n="navCVs">السير الذاتية</a>
+                <a href="countries.html" class="hover:text-secondary transition" data-i18n="navCountries">الدول المتاحة</a>
+                <a href="about.html" class="hover:text-secondary transition" data-i18n="navAbout">من نحن</a>
+                <a href="contact.html" class="hover:text-secondary transition" data-i18n="navContact">اتصل بنا</a>
+            </nav>
+            
+            <div class="flex items-center gap-3">
+                <button onclick="toggleDarkMode()" class="text-primary dark:text-secondary text-lg hover:scale-110 transition-transform focus:outline-none" id="darkModeBtn">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+                <button onclick="switchLanguage()" class="text-[10px] border border-primary/20 dark:border-secondary/30 px-2 py-1 rounded bg-slate-50 dark:bg-slate-800 text-primary dark:text-white font-bold hover:bg-primary hover:text-white dark:hover:bg-secondary dark:hover:text-primary transition-colors">EN/AR</button>
+                <button onclick="toggleSidebar()" class="lg:hidden text-primary dark:text-white"><i class="fa-solid fa-bars text-3xl"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <div class="fixed left-4 bottom-24 z-40 flex flex-col gap-3">
+        <a href="tel:0545797339" class="floating-btn w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center shadow-lg animate-bounce-slight" style="animation-delay: 0.5s;">
+            <i class="fa-solid fa-phone text-xl"></i>
+        </a>
+        <a href="https://wa.me/966545797339" target="_blank" class="floating-btn w-12 h-12 bg-whatsapp text-white rounded-full flex items-center justify-center shadow-lg animate-bounce-slight">
+            <i class="fa-brands fa-whatsapp text-2xl"></i>
+        </a>
+    </div>
+
+    <main class="flex-grow pb-20 md:pb-0">
+        
+        <section class="relative bg-primary dark:bg-slate-950 py-16 lg:py-24 overflow-hidden text-center border-b-4 border-secondary transition-colors duration-300">
+            <div class="absolute inset-0 opacity-20 dark:opacity-30">
+                <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32b7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" class="w-full h-full object-cover">
+            </div>
+            <div class="absolute inset-0 bg-primary/80 dark:bg-slate-950/85"></div>
+            
+            <div class="relative max-w-7xl mx-auto px-4 z-10">
+                <h1 class="text-4xl lg:text-5xl font-extrabold text-white mb-6" data-i18n="heroMedTitle">التوسط في الاستقدام</h1>
+                <p class="text-secondary font-bold text-lg max-w-3xl mx-auto leading-relaxed" data-i18n="heroMedDesc">
+                    نوفر العمالة اللازمة لقطاعي الأفراد والأعمال بعد حصولكم على التأشيرات، مع الالتزام التام بتعليمات وزارة الموارد البشرية وإتمام كافة الإجراءات باحترافية عالية.
+                </p>
+            </div>
+        </section>
+
+        <section class="py-16 px-4 bg-slate-50 dark:bg-slate-900 transition-colors duration-300">
+            <div class="max-w-7xl mx-auto flex flex-col lg:flex-row gap-12 items-center">
+                <div class="lg:w-1/2">
+                    <h2 class="text-3xl font-extrabold text-primary dark:text-white mb-6 flex items-center gap-3">
+                        <span class="w-2 h-10 bg-secondary rounded-full"></span>
+                        <span data-i18n="aboutMedTitle">ما هي خدمة التوسط في الاستقدام؟</span>
+                    </h2>
+                    <p class="text-gray-700 dark:text-gray-300 leading-relaxed text-lg mb-6 font-semibold" data-i18n="aboutMedDesc1">
+                        هي خدمة تهدف إلى توفير العمالة اللازمة والمؤهلة لقطاعي الأفراد والأعمال بعد الحصول على تأشيرات صاحب العمل.
+                    </p>
+                    <p class="text-gray-700 dark:text-gray-300 leading-relaxed text-lg" data-i18n="aboutMedDesc2">
+                        نلتزم في مكتب "تمام" بتعليمات وزارة الموارد البشرية والتنمية الاجتماعية في المملكة العربية السعودية، ونقوم باستكمال كافة إجراءات الاستقدام، مع ضمان استمرارية التواصل ومتابعة النتائج خطوة بخطوة مع عملائنا الكرام لضمان أعلى درجات الرضا والاطمئنان.
+                    </p>
+                </div>
+                <div class="lg:w-1/2 w-full">
+                    <div class="relative rounded-3xl p-1 bg-white dark:bg-slate-800 shadow-xl ring-2 ring-primary/10 dark:ring-secondary/20 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="عقود وتوثيق" class="w-full h-80 object-cover rounded-2xl transform hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent flex items-end p-6 rounded-2xl">
+                            <p class="text-white font-bold text-xl" data-i18n="medImageCaption">توثيق رسمي ومتابعة مستمرة لنتائج الاستقدام</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-16 bg-white dark:bg-slate-950 border-t border-slate-100 dark:border-slate-800 transition-colors duration-300">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-primary dark:text-white mb-4" data-i18n="whyMedTitle">لماذا تختار "تمام" لتخليص إجراءاتك؟</h2>
+                    <div class="w-20 h-1 bg-secondary mx-auto rounded-full"></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="med-card flex items-start gap-4 bg-slate-50 dark:bg-slate-900 p-6 rounded-2xl shadow-sm">
+                        <div class="flex-shrink-0 w-14 h-14 bg-blue-100 dark:bg-blue-900/30 text-primary dark:text-blue-400 rounded-xl flex items-center justify-center text-2xl"><i class="fa-solid fa-gauge-high"></i></div>
+                        <div>
+                            <h3 class="text-xl font-bold text-primary dark:text-white mb-2" data-i18n="medFeat1Title">سرعة الإنجاز والتوفير</h3>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed" data-i18n="medFeat1Desc">نمتلك شبكة علاقات لإنهاء المعاملات، وتوفير العمالة اللازمة لك في وقت قياسي بعد إصدار التأشيرة.</p>
+                        </div>
+                    </div>
+
+                    <div class="med-card flex items-start gap-4 bg-slate-50 dark:bg-slate-900 p-6 rounded-2xl shadow-sm">
+                        <div class="flex-shrink-0 w-14 h-14 bg-green-100 dark:bg-green-900/30 text-whatsapp rounded-xl flex items-center justify-center text-2xl"><i class="fa-solid fa-file-shield"></i></div>
+                        <div>
+                            <h3 class="text-xl font-bold text-primary dark:text-white mb-2" data-i18n="medFeat2Title">الالتزام بالأنظمة الرسمية</h3>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed" data-i18n="medFeat2Desc">جميع إجراءات الاستقدام تتم وفق تعليمات وقوانين وزارة الموارد البشرية لضمان سلامة العملية القانونية.</p>
+                        </div>
+                    </div>
+
+                    <div class="med-card flex items-start gap-4 bg-slate-50 dark:bg-slate-900 p-6 rounded-2xl shadow-sm">
+                        <div class="flex-shrink-0 w-14 h-14 bg-yellow-100 dark:bg-yellow-900/30 text-secondary rounded-xl flex items-center justify-center text-2xl"><i class="fa-solid fa-comments"></i></div>
+                        <div>
+                            <h3 class="text-xl font-bold text-primary dark:text-white mb-2" data-i18n="medFeat3Title">استمرارية التواصل والمتابعة</h3>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed" data-i18n="medFeat3Desc">لا ينتهي دورنا عند التعاقد، بل نستمر في التواصل المباشر معك ومتابعة النتائج حتى استلام العمالة.</p>
+                        </div>
+                    </div>
+
+                    <div class="med-card flex items-start gap-4 bg-slate-50 dark:bg-slate-900 p-6 rounded-2xl shadow-sm">
+                        <div class="flex-shrink-0 w-14 h-14 bg-pink-100 dark:bg-pink-900/30 text-pink-500 rounded-xl flex items-center justify-center text-2xl"><i class="fa-solid fa-money-bill-wave"></i></div>
+                        <div>
+                            <h3 class="text-xl font-bold text-primary dark:text-white mb-2" data-i18n="medFeat4Title">أسعار شفافة وتنافسية</h3>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed" data-i18n="medFeat4Desc">نقدم لك تكلفة إجمالية واضحة من البداية لتخليص وتوفير العمالة بدون أي رسوم خفية.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-16 bg-blue-50/50 dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800 transition-colors duration-300">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl font-extrabold text-primary dark:text-white mb-4" data-i18n="medStepsTitle">كيف تتم خدمة التوسط؟</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+                    <div class="hidden md:block absolute top-10 left-1/6 right-1/6 h-1 border-t-2 border-dashed border-primary/20 dark:border-white/20 z-0"></div>
+
+                    <div class="relative z-10 text-center group">
+                        <div class="step-circle w-20 h-20 mx-auto bg-white dark:bg-slate-800 border-2 border-primary dark:border-blue-400 text-primary dark:text-blue-400 rounded-full flex items-center justify-center text-2xl shadow-md mb-4">
+                            <i class="fa-solid fa-file-invoice"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-primary dark:text-white mb-2" data-i18n="medStep1Title">1. تزويدنا بالتأشيرة</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 px-4" data-i18n="medStep1Desc">إرسال التأشيرة الصادرة من قبلكم وتحديد المهن والمواصفات المطلوبة بدقة.</p>
+                    </div>
+
+                    <div class="relative z-10 text-center group">
+                        <div class="step-circle w-20 h-20 mx-auto bg-white dark:bg-slate-800 border-2 border-secondary text-secondary rounded-full flex items-center justify-center text-2xl shadow-md mb-4">
+                            <i class="fa-solid fa-handshake-angle"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-primary dark:text-white mb-2" data-i18n="medStep2Title">2. توفير الكوادر والتعاقد</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 px-4" data-i18n="medStep2Desc">نقوم بتوفير العمالة اللازمة وإتمام الإجراءات وتوثيق العقود رسمياً لك.</p>
+                    </div>
+
+                    <div class="relative z-10 text-center group">
+                        <div class="step-circle w-20 h-20 mx-auto bg-white dark:bg-slate-800 border-2 border-whatsapp text-whatsapp rounded-full flex items-center justify-center text-2xl shadow-md mb-4">
+                            <i class="fa-solid fa-headset"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-primary dark:text-white mb-2" data-i18n="medStep3Title">3. الوصول والمتابعة</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 px-4" data-i18n="medStep3Desc">متابعة الوصول والتواصل المستمر معكم لضمان جودة الخدمة ورضاكم التام.</p>
+                    </div>
+                </div>
+
+                <div class="mt-16 text-center">
+                    <a href="https://wa.me/966545797339?text=السلام عليكم، لدي تأشيرة وأريد طلب خدمة التوسط لتوفير العمالة." target="_blank" class="inline-flex items-center gap-3 bg-secondary text-primary shadow-lg font-extrabold text-sm md:text-base px-10 py-4 rounded-full hover:bg-yellow-400 hover:scale-105 transition-all duration-300 animate-pulse-slow">
+                        <span data-i18n="btnMedStart">اطلب خدمة التوسط الآن</span>
+                        <i class="fa-brands fa-whatsapp text-xl"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-primary dark:bg-slate-950 text-white pt-12 pb-24 md:pb-8 border-t border-slate-800 dark:border-slate-800 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col items-center">
+            <div class="bg-secondary/10 dark:bg-slate-900 border border-secondary/30 dark:border-slate-700 rounded-2xl p-6 mb-8 w-full max-w-md flex flex-col items-center shadow-lg">
+                <p class="text-secondary font-bold text-sm mb-4" data-i18n="footerSocial">تواصل معنا عبر منصات التواصل الإجتماعي</p>
+                <div class="flex gap-3 flex-wrap justify-center">
+                    <a href="https://x.com/tamam_agency" class="w-10 h-10 rounded-full bg-slate-800 dark:bg-slate-950 flex items-center justify-center hover:bg-black transition border border-transparent dark:border-slate-700 hover:border-slate-500"><img src="https://imgg.io/images/2026/03/22/2a4fdf2d713248416595fd4d62d918bc.png" class="h-5 w-5"></a>
+                    <a href="https://instagram.com/tamam_agency" class="w-10 h-10 rounded-full bg-slate-800 dark:bg-slate-950 flex items-center justify-center hover:bg-instagram transition text-white border border-transparent dark:border-slate-700 hover:border-transparent text-xl"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://wa.me/966545797339" class="w-10 h-10 rounded-full bg-slate-800 dark:bg-slate-950 flex items-center justify-center hover:bg-whatsapp transition text-white border border-transparent dark:border-slate-700 hover:border-transparent text-xl"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="https://www.facebook.com/profile.php?id=61550244177125" class="w-10 h-10 rounded-full bg-slate-800 dark:bg-slate-950 flex items-center justify-center hover:bg-facebook transition text-white border border-transparent dark:border-slate-700 hover:border-transparent text-xl"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://www.tiktok.com/@tamam_agency" class="w-10 h-10 rounded-full bg-slate-800 dark:bg-slate-950 flex items-center justify-center hover:bg-tiktok transition hover:text-black text-white border border-transparent dark:border-slate-700 hover:border-transparent text-xl"><i class="fa-brands fa-tiktok"></i></a>
+                </div>
+            </div>
+            
+            <div class="flex flex-col justify-center items-center text-center gap-3">
+                <div class="text-slate-400 text-[11px] font-semibold py-1.5 px-4 rounded-full bg-slate-800/50 dark:bg-slate-900 border border-slate-700/50" dir="auto" data-i18n="footerCopy">
+                    جميع الحقوق محفوظة لدى | مكتب تمام للإستقدام 2027
+                </div>
+                <a href="https://wa.me/966547194788" target="_blank" class="inline-block border border-white/20 dark:border-slate-700 rounded-full py-1 px-3 hover:bg-white/10 dark:hover:bg-slate-800 transition-colors">
+                    <span class="text-[10px] font-semibold text-white tracking-wide" data-i18n="devSignatureFooter">👑 تم التطوير والتصميم بواسطة : م إسلام الشيخ 👑</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <div class="md:hidden fixed bottom-3 left-3 right-3 z-30">
+        <div class="bg-white/95 dark:bg-slate-900/95 backdrop-blur-sm border dark:border-slate-800 rounded-2xl shadow-xl flex justify-around items-center h-14">
+            <a href="index.html" class="flex flex-col items-center text-slate-400 dark:text-slate-500 hover:text-primary dark:hover:text-secondary transition group"><div class="p-1.5 rounded-full group-hover:bg-primary/10 dark:group-hover:bg-secondary/10"><i class="fa-solid fa-house text-lg"></i></div><span class="text-[8px] font-bold" data-i18n="navHome">الرئيسية</span></a>
+            <a href="cvs.html" class="flex flex-col items-center text-slate-400 dark:text-slate-500 hover:text-primary dark:hover:text-secondary transition group"><div class="p-1.5 rounded-full group-hover:bg-primary/10 dark:group-hover:bg-secondary/10"><i class="fa-solid fa-file-pdf text-lg"></i></div><span class="text-[8px] font-bold" data-i18n="navCVs">السير الذاتية</span></a>
+            <div class="-mt-6">
+                <button class="bg-primary dark:bg-secondary border-4 border-slate-50 dark:border-slate-900 w-12 h-12 rounded-full flex flex-col items-center justify-center text-white dark:text-primary shadow-lg hover:scale-105 transition transform">
+                    <i class="fa-solid fa-handshake text-xl"></i>
+                </button>
+            </div>
+            <a href="countries.html" class="flex flex-col items-center text-slate-400 dark:text-slate-500 hover:text-primary dark:hover:text-secondary transition group"><div class="p-1.5 rounded-full group-hover:bg-primary/10 dark:group-hover:bg-secondary/10"><i class="fa-solid fa-globe text-lg"></i></div><span class="text-[8px] font-bold" data-i18n="navCountries">الدول</span></a>
+            <a href="contact.html" class="flex flex-col items-center text-slate-400 dark:text-slate-500 hover:text-primary dark:hover:text-secondary transition group"><div class="p-1.5 rounded-full group-hover:bg-primary/10 dark:group-hover:bg-secondary/10"><i class="fa-solid fa-phone text-lg"></i></div><span class="text-[8px] font-bold" data-i18n="navContact">تواصل</span></a>
+        </div>
+    </div>
+
+    <script>
+        const translations = {
+            ar: {
+                mediationTitlePage: "التوسط في الاستقدام | مكتب تمام للاستقدام",
+                splashTitle: "مكتب تمام للإستقدام",
+                loadingText: "جاري تحميل الصفحة",
+                devSignatureFooter: "👑 تم التطوير والتصميم بواسطة : م إسلام الشيخ 👑",
+                menuTitle: "القائمة",
+                navHome: "الرئيسية",
+                navServicesBtn: "خدماتنا",
+                navServices: "خدماتنا",
+                navIndiv: "خدمات الأفراد",
+                navBusiness: "خدمات الأعمال",
+                navMediation: "التوسط في الاستقدام",
+                navWorkers: "العمالة المستهدفة",
+                navCVs: "السير الذاتية",
+                navCountries: "الدول المتاحة",
+                navAbout: "من نحن",
+                navContact: "اتصل بنا",
+                topBar: "مكتب معتمد من منصة مساند | ترخيص رقم: 3701262",
+                
+                heroMedTitle: "التوسط في الاستقدام",
+                heroMedDesc: "نوفر العمالة اللازمة لقطاعي الأفراد والأعمال بعد حصولكم على التأشيرات، مع الالتزام التام بتعليمات وزارة الموارد البشرية وإتمام كافة الإجراءات باحترافية عالية.",
+                
+                aboutMedTitle: "ما هي خدمة التوسط في الاستقدام؟",
+                aboutMedDesc1: "هي خدمة تهدف إلى توفير العمالة اللازمة والمؤهلة لقطاعي الأفراد والأعمال بعد الحصول على تأشيرات صاحب العمل.",
+                aboutMedDesc2: "نلتزم في مكتب \"تمام\" بتعليمات وزارة الموارد البشرية والتنمية الاجتماعية في المملكة العربية السعودية، ونقوم باستكمال كافة إجراءات الاستقدام، مع ضمان استمرارية التواصل ومتابعة النتائج خطوة بخطوة مع عملائنا الكرام لضمان أعلى درجات الرضا والاطمئنان.",
+                medImageCaption: "توثيق رسمي ومتابعة مستمرة لنتائج الاستقدام",
+                
+                whyMedTitle: "لماذا تختار \"تمام\" لتخليص إجراءاتك؟",
+                medFeat1Title: "سرعة الإنجاز والتوفير",
+                medFeat1Desc: "نمتلك شبكة علاقات لإنهاء المعاملات، وتوفير العمالة اللازمة لك في وقت قياسي بعد إصدار التأشيرة.",
+                medFeat2Title: "الالتزام بالأنظمة الرسمية",
+                medFeat2Desc: "جميع إجراءات الاستقدام تتم وفق تعليمات وقوانين وزارة الموارد البشرية لضمان سلامة العملية القانونية.",
+                medFeat3Title: "استمرارية التواصل والمتابعة",
+                medFeat3Desc: "لا ينتهي دورنا عند التعاقد، بل نستمر في التواصل المباشر معك ومتابعة النتائج حتى استلام العمالة.",
+                medFeat4Title: "أسعار شفافة وتنافسية",
+                medFeat4Desc: "نقدم لك تكلفة إجمالية واضحة من البداية لتخليص وتوفير العمالة بدون أي رسوم خفية.",
+                
+                medStepsTitle: "كيف تتم خدمة التوسط؟",
+                medStep1Title: "1. تزويدنا بالتأشيرة",
+                medStep1Desc: "إرسال التأشيرة الصادرة من قبلكم وتحديد المهن والمواصفات المطلوبة بدقة.",
+                medStep2Title: "2. توفير الكوادر والتعاقد",
+                medStep2Desc: "نقوم بتوفير العمالة اللازمة وإتمام الإجراءات وتوثيق العقود رسمياً لك.",
+                medStep3Title: "3. الوصول والمتابعة",
+                medStep3Desc: "متابعة الوصول والتواصل المستمر معكم لضمان جودة الخدمة ورضاكم التام.",
+                btnMedStart: "اطلب خدمة التوسط الآن",
+                
+                footerSocial: "تواصل معنا عبر منصات التواصل الإجتماعي",
+                footerCopy: "جميع الحقوق محفوظة لدى | مكتب تمام للإستقدام 2027"
+            },
+            en: {
+                mediationTitlePage: "Recruitment Mediation | Tamam Recruitment",
+                splashTitle: "Tamam Recruitment Agency",
+                loadingText: "Loading Page",
+                devSignatureFooter: "👑 Developed & Designed by: Eng. Islam Elsheikh 👑",
+                menuTitle: "Menu",
+                navHome: "Home",
+                navServicesBtn: "Services",
+                navServices: "Services",
+                navIndiv: "Individual Services",
+                navBusiness: "Business Services",
+                navMediation: "Recruitment Mediation",
+                navWorkers: "Targeted Workers",
+                navCVs: "CVs",
+                navCountries: "Available Countries",
+                navAbout: "About Us",
+                navContact: "Contact Us",
+                topBar: "Certified by Musaned | License No: 3701262",
+                
+                heroMedTitle: "Recruitment Mediation",
+                heroMedDesc: "We provide the necessary labor for both individual and business sectors after you obtain the visas, strictly adhering to the Ministry of Human Resources regulations and completing all procedures professionally.",
+                
+                aboutMedTitle: "What is Recruitment Mediation?",
+                aboutMedDesc1: "A service aimed at providing the necessary and qualified labor for individuals and businesses after the employer obtains the visas.",
+                aboutMedDesc2: "At 'Tamam', we strictly adhere to the regulations of the Saudi Ministry of Human Resources and Social Development. We complete all recruitment procedures while maintaining continuous communication and following up on results step-by-step with our valued clients to ensure the highest levels of satisfaction.",
+                medImageCaption: "Official Documentation & Continuous Result Follow-up",
+                
+                whyMedTitle: "Why choose 'Tamam' for your procedures?",
+                medFeat1Title: "Speed & Cost-Effectiveness",
+                medFeat1Desc: "We have a strong network to finalize transactions and provide you with the required labor in record time after visa issuance.",
+                medFeat2Title: "Compliance with Regulations",
+                medFeat2Desc: "All procedures are processed strictly according to the Ministry's laws to ensure complete legal safety.",
+                medFeat3Title: "Continuous Follow-up",
+                medFeat3Desc: "Our role does not end at contracting; we maintain direct communication and follow up until you receive your workers.",
+                medFeat4Title: "Transparent Pricing",
+                medFeat4Desc: "We offer a clear total cost from the beginning for processing and providing labor with no hidden fees.",
+                
+                medStepsTitle: "How Does It Work?",
+                medStep1Title: "1. Provide the Visa",
+                medStep1Desc: "Send us your issued visa and clearly specify the required professions and qualifications.",
+                medStep2Title: "2. Sourcing & Contracting",
+                medStep2Desc: "We provide the requested labor, complete the procedures, and officially authenticate the contracts for you.",
+                medStep3Title: "3. Arrival & Follow-up",
+                medStep3Desc: "We follow up on the arrival process and maintain constant communication to ensure your absolute satisfaction.",
+                btnMedStart: "Request Mediation Service Now",
+                
+                footerSocial: "Connect with us on social media",
+                footerCopy: "All Rights Reserved | Tamam Recruitment Agency 2027"
+            }
+        };
+
+        let currentLang = localStorage.getItem('siteLang') || 'ar';
+        
+        function initDarkMode() {
+            const isDark = localStorage.getItem('darkMode') === 'true';
+            const htmlRoot = document.documentElement;
+            const icon = document.querySelector('#darkModeBtn i');
+            if(isDark) {
+                htmlRoot.classList.add('dark');
+                if(icon) { icon.classList.remove('fa-moon'); icon.classList.add('fa-sun'); }
+            } else {
+                htmlRoot.classList.remove('dark');
+                if(icon) { icon.classList.remove('fa-sun'); icon.classList.add('fa-moon'); }
+            }
+        }
+
+        window.toggleDarkMode = function() {
+            const htmlRoot = document.documentElement;
+            const isDark = htmlRoot.classList.toggle('dark');
+            localStorage.setItem('darkMode', isDark);
+            const icon = document.querySelector('#darkModeBtn i');
+            if(isDark) { icon.classList.remove('fa-moon'); icon.classList.add('fa-sun'); } 
+            else { icon.classList.remove('fa-sun'); icon.classList.add('fa-moon'); }
+        }
+
+        function applyLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('siteLang', lang);
+            const htmlRoot = document.documentElement;
+            if (lang === 'ar') {
+                htmlRoot.setAttribute('dir', 'rtl');
+                htmlRoot.setAttribute('lang', 'ar');
+                const sidebar = document.getElementById('sidebar');
+                if(sidebar) sidebar.classList.replace('-translate-x-full', 'translate-x-full');
+            } else {
+                htmlRoot.setAttribute('dir', 'ltr');
+                htmlRoot.setAttribute('lang', 'en');
+                const sidebar = document.getElementById('sidebar');
+                if(sidebar) {
+                    sidebar.classList.remove('right-0', 'translate-x-full');
+                    sidebar.classList.add('left-0', '-translate-x-full');
+                }
+            }
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) { 
+                    element.innerHTML = translations[lang][key]; 
+                }
+            });
+            if(translations[lang] && translations[lang]['mediationTitlePage']) {
+                document.title = translations[lang]['mediationTitlePage'];
+            }
+        }
+
+        window.switchLanguage = function() { applyLanguage(currentLang === 'ar' ? 'en' : 'ar'); }
+        window.toggleSidebar = function() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebar-overlay');
+            if(!sidebar || !overlay) return;
+            if (currentLang === 'ar') { sidebar.classList.toggle('translate-x-full'); } 
+            else { sidebar.classList.toggle('-translate-x-full'); }
+            overlay.classList.toggle('hidden');
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            initDarkMode();
+            applyLanguage(currentLang);
+        });
+
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const splash = document.getElementById('splash-screen');
+                if(splash) splash.classList.add('opacity-0');
+                setTimeout(() => {
+                    if(splash) splash.classList.add('hidden');
+                    document.getElementById('body-content').classList.remove('overflow-hidden');
+                }, 700);
+            }, 1500);
+        });
+    </script>
+</body>
+</html>
