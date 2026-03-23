@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl" id="html-root">
+<html lang="ar" dir="rtl" id="html-root" class="">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -13,66 +13,78 @@
     
     <script>
         tailwind.config = {
+            darkMode: 'class', // تفعيل الدارك مود بالكلاس
             theme: {
                 extend: {
                     colors: { primary: '#112240', secondary: '#eab308', whatsapp: '#25D366' },
-                    animation: { 'spin-slow': 'spin 3s linear infinite', 'bounce-slight': 'bounce 2s infinite', 'pulse-slow': 'pulse 3s infinite' }
+                    animation: { 'spin-slow': 'spin 3s linear infinite', 'bounce-slight': 'bounce 2s infinite', 'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite' }
                 }
             }
         }
     </script>
     <style>
-        body { font-family: 'Cairo', sans-serif; overflow-x: hidden; width: 100%; }
+        body { font-family: 'Cairo', sans-serif; overflow-x: hidden; width: 100%; transition: background-color 0.3s, color 0.3s; }
         .loading-dots::after { content: '.'; animation: dots 1.5s steps(5, end) infinite; }
         @keyframes dots { 0%, 20% { content: '.'; } 40% { content: '..'; } 60%, 100% { content: '...'; } }
         .floating-btn { transition: transform 0.3s ease, box-shadow 0.3s ease; }
         .floating-btn:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
         .map-container { transition: all 0.4s ease; }
         .map-container:hover { transform: translateY(-5px); box-shadow: 0 15px 30px -5px rgba(17, 34, 64, 0.15); }
+        
+        /* تأثير كروت القيم متوافقة مع الدارك مود */
+        .value-card { transition: all 0.4s ease; border: 1px solid transparent; }
+        .value-card:hover { transform: translateY(-8px); border-color: rgba(234, 179, 8, 0.5); box-shadow: 0 20px 25px -5px rgba(17, 34, 64, 0.2); }
+        .value-icon-wrapper { transition: all 0.4s ease; }
+        .value-card:hover .value-icon-wrapper { background-color: #eab308; color: #112240; transform: scale(1.1) rotate(5deg); }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 overflow-hidden" id="body-content">
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 overflow-hidden" id="body-content">
 
-    <div id="splash-screen" class="fixed inset-0 bg-white z-[100] flex flex-col justify-center items-center transition-opacity duration-700">
+    <div id="splash-screen" class="fixed inset-0 bg-white dark:bg-slate-900 z-[100] flex flex-col justify-center items-center transition-opacity duration-700">
         <div class="flex flex-col items-center">
             <div class="relative w-36 h-36 flex justify-center items-center mb-6">
-                <div class="absolute inset-0 rounded-full border-4 border-slate-100 border-t-primary animate-spin-slow"></div>
+                <div class="absolute inset-0 rounded-full border-4 border-slate-100 dark:border-slate-800 border-t-primary dark:border-t-secondary animate-spin-slow"></div>
                 <img src="https://imgg.io/images/2026/03/22/3905f931b0fa4f5e93531423df3036d8.png" class="h-16 object-contain">
             </div>
-            <h2 class="text-xs font-bold text-primary mb-2">مكتب تمام للإستقدام</h2>
-            <div class="text-slate-400 text-[10px]">جاري تحميل الصفحة<span class="loading-dots"></span></div>
+            <h2 class="text-xs font-bold text-primary dark:text-white mb-2" data-i18n="splashTitle">مكتب تمام للإستقدام</h2>
+            <div class="text-slate-400 text-[10px]"><span data-i18n="loadingText">جاري تحميل الصفحة</span><span class="loading-dots"></span></div>
         </div>
     </div>
 
     <div id="sidebar-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden transition-opacity" onclick="toggleSidebar()"></div>
-    <div id="sidebar" class="fixed top-0 bottom-0 right-0 w-64 bg-white shadow-2xl z-50 transform translate-x-full transition-transform duration-300 flex flex-col">
-        <div class="p-4 border-b border-gray-100 flex justify-between items-center bg-primary text-white">
+    <div id="sidebar" class="fixed top-0 bottom-0 right-0 w-64 bg-white dark:bg-slate-800 shadow-2xl z-50 transform translate-x-full transition-transform duration-300 flex flex-col">
+        <div class="p-4 border-b border-gray-100 dark:border-slate-700 flex justify-between items-center bg-primary text-white">
             <div class="flex items-center gap-2">
                 <img src="https://imgg.io/images/2026/03/22/ce7f90873f720d041ffcdb63cfe66b05.png" class="h-8 brightness-0 invert">
-                <span class="font-extrabold text-lg">القائمة</span>
+                <span class="font-extrabold text-lg" data-i18n="menuTitle">القائمة</span>
             </div>
             <button onclick="toggleSidebar()" class="text-white"><i class="fa-solid fa-xmark text-2xl"></i></button>
         </div>
         <nav class="flex-1 px-4 py-6 space-y-4">
-            <a href="index.html" class="block px-4 py-3 rounded-lg text-gray-600 font-bold hover:bg-primary hover:text-white transition">الرئيسية</a>
-            <a href="about.html" class="block px-4 py-3 rounded-lg bg-slate-50 text-primary font-bold">من نحن</a>
-            <a href="prices.html" class="block px-4 py-3 rounded-lg text-gray-600 font-bold hover:bg-primary hover:text-white transition">الجنسيات والأسعار</a>
-            <a href="contact.html" class="block px-4 py-3 rounded-lg text-gray-600 font-bold hover:bg-primary hover:text-white transition">تواصل معنا</a>
+            <a href="index.html" class="block px-4 py-3 rounded-lg text-gray-600 dark:text-gray-300 font-bold hover:bg-primary hover:text-white dark:hover:bg-primary transition" data-i18n="navHome">الرئيسية</a>
+            <a href="about.html" class="block px-4 py-3 rounded-lg bg-slate-50 dark:bg-slate-700 text-primary dark:text-secondary font-bold" data-i18n="navAbout">من نحن</a>
+            <a href="prices.html" class="block px-4 py-3 rounded-lg text-gray-600 dark:text-gray-300 font-bold hover:bg-primary hover:text-white transition" data-i18n="navPrices">الجنسيات والأسعار</a>
+            <a href="contact.html" class="block px-4 py-3 rounded-lg text-gray-600 dark:text-gray-300 font-bold hover:bg-primary hover:text-white transition" data-i18n="navContact">تواصل معنا</a>
         </nav>
     </div>
 
-    <header class="bg-white/90 backdrop-blur-md sticky top-0 z-30 border-b border-slate-100">
+    <header class="bg-white/90 dark:bg-slate-900/90 backdrop-blur-md sticky top-0 z-30 border-b border-slate-100 dark:border-slate-800 transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-4 h-20 flex justify-between items-center">
-            <img src="https://imgg.io/images/2026/03/22/ce7f90873f720d041ffcdb63cfe66b05.png" class="h-14 object-contain">
-            <nav class="hidden md:flex space-x-6 space-x-reverse font-bold text-primary">
-                <a href="index.html" class="hover:text-secondary transition">الرئيسية</a>
-                <a href="about.html" class="text-secondary border-b-2 border-secondary pb-1">من نحن</a>
-                <a href="prices.html" class="hover:text-secondary transition">الجنسيات والأسعار</a>
-                <a href="contact.html" class="hover:text-secondary transition">تواصل معنا</a>
+            <img src="https://imgg.io/images/2026/03/22/ce7f90873f720d041ffcdb63cfe66b05.png" class="h-14 object-contain dark:brightness-0 dark:invert transition-all">
+            
+            <nav class="hidden md:flex space-x-6 space-x-reverse font-bold text-primary dark:text-white">
+                <a href="index.html" class="hover:text-secondary transition" data-i18n="navHome">الرئيسية</a>
+                <a href="about.html" class="text-secondary border-b-2 border-secondary pb-1" data-i18n="navAbout">من نحن</a>
+                <a href="prices.html" class="hover:text-secondary transition" data-i18n="navPrices">الجنسيات والأسعار</a>
+                <a href="contact.html" class="hover:text-secondary transition" data-i18n="navContact">تواصل معنا</a>
             </nav>
+            
             <div class="flex items-center gap-3">
-                <button onclick="switchLanguage()" class="text-[10px] border border-primary/20 px-2 py-1 rounded bg-slate-50 font-bold">EN/AR</button>
-                <button onclick="toggleSidebar()" class="md:hidden text-primary"><i class="fa-solid fa-bars text-3xl"></i></button>
+                <button onclick="toggleDarkMode()" class="text-primary dark:text-secondary text-lg hover:scale-110 transition-transform focus:outline-none" id="darkModeBtn">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+                <button onclick="switchLanguage()" class="text-[10px] border border-primary/20 dark:border-secondary/30 px-2 py-1 rounded bg-slate-50 dark:bg-slate-800 text-primary dark:text-white font-bold hover:bg-primary hover:text-white dark:hover:bg-secondary dark:hover:text-primary transition-colors">EN/AR</button>
+                <button onclick="toggleSidebar()" class="md:hidden text-primary dark:text-white"><i class="fa-solid fa-bars text-3xl"></i></button>
             </div>
         </div>
     </header>
@@ -84,94 +96,130 @@
 
     <main class="flex-grow">
         
-        <section class="relative bg-primary py-16 lg:py-24 overflow-hidden">
-            <div class="absolute inset-0 opacity-10">
+        <section class="relative bg-primary dark:bg-slate-950 py-16 lg:py-24 overflow-hidden text-center border-b-4 border-secondary transition-colors duration-300">
+            <div class="absolute inset-0 opacity-10 dark:opacity-20">
                 <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" class="w-full h-full object-cover">
             </div>
-            <div class="relative max-w-7xl mx-auto px-4 text-center">
-                <h1 class="text-4xl lg:text-6xl font-extrabold text-white mb-4">من نحن</h1>
-                <p class="text-secondary font-bold text-lg lg:text-xl">مكتب تمام للاستقدام.. ثقة تبنى، وخدمة ترقى</p>
+            <div class="relative max-w-7xl mx-auto px-4">
+                <h1 class="text-4xl lg:text-6xl font-extrabold text-white mb-4" data-i18n="heroTitle">من نحن</h1>
+                <p class="text-secondary font-bold text-lg lg:text-xl" data-i18n="heroSubtitle">مكتب تمام للإستقدام ، راحتكم همنا ورضاكم غايتنا</p>
             </div>
         </section>
 
-        <section class="py-16 px-4">
-            <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
-                <div class="order-2 lg:order-1">
-                    <h2 class="text-3xl font-extrabold text-primary mb-6 flex items-center gap-3">
-                        <span class="w-2 h-10 bg-secondary rounded-full"></span>
-                        ريادة في خدمات الاستقدام
-                    </h2>
-                    <p class="text-gray-700 leading-relaxed text-lg mb-6">
-                        يعمل **مكتب تمام للاستقدام** (ترخيص رقم 3701262) تحت مظلة وزارة الموارد البشرية والتنمية الاجتماعية، ومن خلال منصة **مساند**، لنكون الجسر الموثوق بينكم وبين أفضل الكفاءات والعمالة المنزلية من مختلف الجنسيات المعتمدة.
-                    </p>
-                    <p class="text-gray-700 leading-relaxed text-lg mb-6">
-                        نحن لا نقدم مجرد خدمة استقدام، بل نسعى جاهدين لتوفير حلول متكاملة تضمن راحة البال لكل بيت سعودي، من خلال اختيار دقيق، وتدريب احترافي، ومتابعة مستمرة تضمن استدامة الخدمة وجودتها.
-                    </p>
-                    <div class="bg-blue-50 p-6 rounded-2xl border-r-4 border-primary">
-                        <p class="text-primary font-bold italic">"رؤيتنا أن نكون الاسم الأول والأكثر موثوقية في قطاع الاستقدام بالمملكة، مساهمين في تحقيق جودة الحياة وفق تطلعات رؤية 2030."</p>
+        <section class="py-16 px-4 dark:bg-slate-900 transition-colors duration-300">
+            <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-start">
+                
+                <div class="order-2 lg:order-1 space-y-8">
+                    <div>
+                        <h2 class="text-2xl md:text-3xl font-extrabold text-primary dark:text-white mb-4 flex items-center gap-3">
+                            <span class="w-2 h-8 bg-secondary rounded-full"></span>
+                            <span data-i18n="sectionTitle1">خدمات إستقدام إحترافية وموثوقة</span>
+                        </h2>
+                        <p class="text-gray-600 dark:text-gray-300 leading-relaxed text-base md:text-lg" data-i18n="sectionDesc1">
+                            يعمل مكتب تمام للإستقدام تحت مظلة وزارة الموارد البشرية والتنمية الإجتماعية السعودية وذالك وفق انظمة وقوانين الوزارة لضمان تقديم أفضل الخدمات وضمان تقديم كوادر بشرية مدربة ومهنية ونطمح أن نكون الجسر الموثوق بينكم وبيت أفضل الكفاءات والعمالة المنزلية في مختلف المهن المطلوبة ومن مختلف الجنسيات المستهدفة.
+                        </p>
+                    </div>
+
+                    <div class="bg-slate-50 dark:bg-slate-800 p-6 rounded-2xl border-s-4 border-secondary shadow-sm transition-colors duration-300">
+                        <h3 class="text-xl font-bold text-primary dark:text-white mb-3 flex items-center gap-2">
+                            <i class="fa-solid fa-bullseye text-secondary"></i>
+                            <span data-i18n="missionTitle">غايتنا</span>
+                        </h3>
+                        <p class="text-gray-600 dark:text-gray-300 leading-relaxed text-sm md:text-base" data-i18n="missionDesc">
+                            نحن لا نريد أن نكون مجرد مكتب يقدم خدمات الإستقدام بل نسعى جاهدين وفق منظومة وفريق عمل مميز لتوفير حلول متنوعة ومتكاملة تضمن إستقرار وراحة كل عملائنا الكرام في كل بيت داخل المملكة العربية السعودية وذالك من خلال فرز وإختيار دقيق وتدريب إحترافي ومتقن ومتابعة مستمرة للعمالة المقدمة.
+                        </p>
+                    </div>
+
+                    <div class="bg-primary/5 dark:bg-primary/20 p-6 rounded-2xl border-s-4 border-primary dark:border-blue-400 shadow-sm transition-colors duration-300">
+                        <h3 class="text-xl font-bold text-primary dark:text-blue-400 mb-3 flex items-center gap-2">
+                            <i class="fa-solid fa-eye"></i>
+                            <span data-i18n="visionTitle">رؤيتنا</span>
+                        </h3>
+                        <p class="text-gray-700 dark:text-gray-200 leading-relaxed text-sm md:text-base font-semibold" data-i18n="visionDesc">
+                            نسعى ونأمل أن نكون الإسم الأول والأكثر موثوقية في قطاع الإستقدام في المملكة ، وأن نكون أحد المساهمين في تحقيق خدمات مميزة وفق تطلعات رؤية 2030.
+                        </p>
                     </div>
                 </div>
-                <div class="order-1 lg:order-2">
-                    <div class="relative">
-                        <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="rounded-3xl shadow-2xl border-4 border-white">
-                        <div class="absolute -bottom-6 -right-6 bg-secondary p-6 rounded-2xl shadow-xl hidden md:block animate-bounce-slight">
-                            <p class="text-primary font-black text-2xl">تراخيص رسمية</p>
-                            <p class="text-primary/80 font-bold text-sm">معتمد 100% من مساند</p>
+
+                <div class="order-1 lg:order-2 mt-4 lg:mt-0 relative">
+                    <div class="rounded-3xl p-1 bg-white dark:bg-slate-800 shadow-xl ring-2 ring-primary/10 dark:ring-secondary/20 overflow-hidden relative z-0 transition-colors">
+                        <img src="https://i.ibb.co/sdPMpbqr/IMG.jpg" class="rounded-2xl w-full h-[400px] md:h-[500px] object-cover transform hover:scale-105 transition-transform duration-700">
+                    </div>
+                    
+                    <div class="absolute -bottom-5 right-2 md:-right-4 bg-white dark:bg-slate-800 p-3 md:p-4 rounded-xl shadow-xl flex items-center gap-3 border-b-4 border-secondary z-10 animate-bounce-slight" style="animation-delay: 1s;">
+                        <div class="bg-slate-50 dark:bg-slate-700 p-2 md:p-3 rounded-full flex items-center justify-center border border-slate-100 dark:border-slate-600 transition-colors">
+                            <img src="https://imgg.io/images/2026/03/22/2e0495bbca3a713e1faaa89b05e90316.png" alt="مساند" class="h-6 md:h-8 w-auto object-contain dark:brightness-0 dark:invert">
+                        </div>
+                        <div>
+                            <p class="text-xs md:text-sm font-bold text-primary dark:text-white" data-i18n="guaranteeDays">90 يوماً</p>
+                            <p class="font-semibold text-gray-500 dark:text-gray-400 text-[10px] md:text-xs" data-i18n="viaMusaned">عبر منصة مساند</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="py-16 bg-slate-100">
+        <section class="py-16 bg-slate-50 dark:bg-slate-800 border-t border-slate-100 dark:border-slate-700 transition-colors duration-300">
             <div class="max-w-7xl mx-auto px-4">
                 <div class="text-center mb-12">
-                    <h2 class="text-3xl font-extrabold text-primary">القيم التي تحركنا</h2>
-                    <div class="w-20 h-1 bg-secondary mx-auto mt-2"></div>
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-primary dark:text-white" data-i18n="valuesTitle">قيمنا</h2>
+                    <div class="w-20 h-1 bg-secondary mx-auto mt-4 rounded-full"></div>
                 </div>
-                <div class="grid md:grid-cols-3 gap-8">
-                    <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-md transition text-center">
-                        <div class="w-16 h-16 bg-blue-50 text-primary rounded-2xl flex items-center justify-center mx-auto mb-6 text-3xl"><i class="fa-solid fa-shield-check"></i></div>
-                        <h3 class="text-xl font-bold text-primary mb-4">الأمانة والشفافية</h3>
-                        <p class="text-gray-600">نلتزم بالصدق التام في كل إجراءاتنا وتكاليفنا، لضمان علاقة مستدامة مبنية على الثقة مع عملائنا.</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="value-card bg-white dark:bg-slate-900 p-8 rounded-3xl text-center shadow-sm relative overflow-hidden group transition-colors">
+                        <div class="absolute top-0 inset-x-0 w-full h-1 bg-primary dark:bg-blue-500 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
+                        <div class="value-icon-wrapper w-20 h-20 bg-blue-50 dark:bg-slate-800 text-primary dark:text-blue-400 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl shadow-inner">
+                            <i class="fa-solid fa-handshake"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-primary dark:text-white mb-4" data-i18n="val1Title">الأمانة والشفافية</h3>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm leading-relaxed" data-i18n="val1Desc">نلتزم بالصدق التام في كل إجراءاتنا وتكاليفنا، لضمان علاقة مستدامة مبنية على الثقة مع عملائنا.</p>
                     </div>
-                    <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-md transition text-center">
-                        <div class="w-16 h-16 bg-blue-50 text-primary rounded-2xl flex items-center justify-center mx-auto mb-6 text-3xl"><i class="fa-solid fa-star"></i></div>
-                        <h3 class="text-xl font-bold text-primary mb-4">الجودة والاتقان</h3>
-                        <p class="text-gray-600">نختار العمالة المنزلية بعناية فائقة، ونخضعهم لاختبارات دقيقة لضمان مهاراتهم وسلوكياتهم المهنية.</p>
+                    
+                    <div class="value-card bg-white dark:bg-slate-900 p-8 rounded-3xl text-center shadow-sm relative overflow-hidden group transition-colors">
+                        <div class="absolute top-0 inset-x-0 w-full h-1 bg-secondary transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
+                        <div class="value-icon-wrapper w-20 h-20 bg-yellow-50 dark:bg-slate-800 text-secondary rounded-full flex items-center justify-center mx-auto mb-6 text-3xl shadow-inner">
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-primary dark:text-white mb-4" data-i18n="val2Title">الجودة والإتقان</h3>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm leading-relaxed" data-i18n="val2Desc">نختار العمالة المنزلية بعناية فائقة، ونخضعهم لاختبارات دقيقة لضمان مهاراتهم وسلوكياتهم المهنية.</p>
                     </div>
-                    <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-md transition text-center">
-                        <div class="w-16 h-16 bg-blue-50 text-primary rounded-2xl flex items-center justify-center mx-auto mb-6 text-3xl"><i class="fa-solid fa-bolt"></i></div>
-                        <h3 class="text-xl font-bold text-primary mb-4">السرعة في الإنجاز</h3>
-                        <p class="text-gray-600">نحن نقدر وقتكم، لذلك طورنا أنظمة إلكترونية متطورة لتقليص مدة الاستقدام إلى أقصى حد ممكن.</p>
+                    
+                    <div class="value-card bg-white dark:bg-slate-900 p-8 rounded-3xl text-center shadow-sm relative overflow-hidden group transition-colors">
+                        <div class="absolute top-0 inset-x-0 w-full h-1 bg-whatsapp transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
+                        <div class="value-icon-wrapper w-20 h-20 bg-green-50 dark:bg-slate-800 text-whatsapp rounded-full flex items-center justify-center mx-auto mb-6 text-3xl shadow-inner">
+                            <i class="fa-solid fa-bolt"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-primary dark:text-white mb-4" data-i18n="val3Title">السرعة في الإنجاز</h3>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm leading-relaxed" data-i18n="val3Desc">نحن نقدر وقتكم، لذلك طورنا أنظمة إلكترونية متطورة لتقليص مدة الاستقدام إلى أقصى حد ممكن.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="contact" class="py-16 bg-white">
+        <section id="contact" class="py-16 bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800 transition-colors duration-300">
             <div class="max-w-7xl mx-auto px-4">
                 <div class="flex items-center gap-6 mb-12">
-                    <div class="flex-grow h-px bg-primary/20 rounded-full"></div>
-                    <h2 class="text-3xl md:text-4xl font-extrabold text-primary flex-shrink-0">تواصل معنا</h2>
-                    <div class="flex-grow h-px bg-primary/20 rounded-full"></div>
+                    <div class="flex-grow h-px bg-primary/20 dark:bg-white/20 rounded-full"></div>
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-primary dark:text-white flex-shrink-0" data-i18n="contactTitle">تواصل معنا</h2>
+                    <div class="flex-grow h-px bg-primary/20 dark:bg-white/20 rounded-full"></div>
                 </div>
                 <div class="flex flex-col items-center">
-                    <p class="text-gray-600 mb-10 text-center max-w-2xl">
-                        نسعد بإستقبال إستفساراتكم و مقترحاتكم والشكاوى على مدار الساعة
-                        <span class="inline-flex items-center justify-center font-extrabold text-xs bg-primary text-white rounded-full w-14 h-6 gap-0.5 mx-1" dir="ltr"><span>7</span><span class="text-[10px] text-slate-300">/</span><span>24</span></span>
+                    <p class="text-gray-600 dark:text-gray-300 mb-10 leading-relaxed text-center max-w-2xl">
+                        <span data-i18n="contactDesc">نسعد بإستقبال إستفساراتكم و مقترحاتكم والشكاوى على مدار الساعة</span>
+                        <span class="inline-flex items-center justify-center font-extrabold text-xs bg-primary dark:bg-secondary text-white dark:text-primary rounded-full w-14 h-6 gap-0.5 mx-1" dir="ltr"><span>7</span><span class="text-[10px] opacity-70">/</span><span>24</span></span>
                     </p>
-                    <div class="map-container w-full max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border-2 border-primary ring-4 ring-primary/10 h-[350px] mb-12">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2985.3323457552956!2d46.700056700000005!3d24.7949536!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2f040d0d90ea3d%3A0xb666fa5d155f4ebc!2z2YXZg9iq2Kgg2KrZhdin2YUg2YTZhNin2LPYqtmC2K_Yp9mF!5e1!3m2!1sar!2ssa!4v1774102493345!5m2!1sar!2ssa" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    <div class="map-container w-full max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border-2 border-primary dark:border-slate-700 ring-4 ring-primary/10 dark:ring-secondary/10 h-[350px] mb-12">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2985.3323457552956!2d46.700056700000005!3d24.7949536!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2f040d0d90ea3d%3A0xb666fa5d155f4ebc!2z2YXZg9iq2Kgg2KrZhdin2YUg2YTZhNin2LPYqtmC2K_Yp9mF!5e1!3m2!1sar!2ssa!4v1774102493345!5m2!1sar!2ssa" width="100%" height="100%" style="border:0; filter: contrast(1.1);" allowfullscreen="" loading="lazy" id="map-iframe"></iframe>
                     </div>
                     <div class="w-full max-w-3xl mx-auto flex flex-col md:flex-row justify-around items-center gap-8">
-                        <div class="flex items-center gap-4">
-                            <div class="w-14 h-14 rounded-full border-2 border-primary flex items-center justify-center bg-slate-50 shadow-md text-primary text-2xl"><i class="fa-solid fa-location-dot animate-pulse-slow"></i></div>
-                            <div><p class="text-[10px] text-gray-500 mb-1">العنوان</p><p class="text-xs font-bold text-primary leading-tight">طريق عثمان بن عفان الفرعي | حي الفلاح<br>الرياض | المملكة العربية السعودية</p></div>
+                        <div class="flex items-center gap-4 w-full md:w-1/2 justify-start md:justify-center">
+                            <div class="flex-shrink-0 w-14 h-14 rounded-full border-2 border-primary dark:border-secondary flex items-center justify-center bg-slate-50 dark:bg-slate-800 shadow-md text-primary dark:text-secondary text-2xl"><i class="fa-solid fa-location-dot animate-pulse-slow"></i></div>
+                            <div><p class="text-[10px] text-gray-500 dark:text-gray-400 mb-1" data-i18n="addressLabel">العنوان</p><p class="text-xs font-bold text-primary dark:text-white leading-tight" data-i18n="addressValue">طريق عثمان بن عفان الفرعي | حي الفلاح<br>الرياض | المملكة العربية السعودية</p></div>
                         </div>
-                        <div class="flex items-center gap-4">
-                            <div class="w-14 h-14 rounded-full border-2 border-primary flex items-center justify-center bg-slate-50 shadow-md text-primary text-2xl"><i class="fa-brands fa-whatsapp animate-pulse-slow"></i></div>
-                            <div><p class="text-[10px] text-gray-500 mb-1">رقم التواصل / واتساب</p><a href="https://wa.me/966545797339" class="text-lg font-bold text-primary hover:text-secondary transition" dir="ltr">+966 54 579 7339</a></div>
+                        <div class="flex items-center gap-4 w-full md:w-1/2 justify-start md:justify-center">
+                            <div class="flex-shrink-0 w-14 h-14 rounded-full border-2 border-primary dark:border-secondary flex items-center justify-center bg-slate-50 dark:bg-slate-800 shadow-md text-primary dark:text-secondary text-2xl"><i class="fa-brands fa-whatsapp animate-pulse-slow"></i></div>
+                            <div><p class="text-[10px] text-gray-500 dark:text-gray-400 mb-1" data-i18n="whatsappLabel">رقم التواصل / واتساب</p><a href="https://wa.me/966545797339" class="text-lg font-bold text-primary dark:text-white hover:text-secondary dark:hover:text-secondary transition" dir="ltr">+966 54 579 7339</a></div>
                         </div>
                     </div>
                 </div>
@@ -179,35 +227,205 @@
         </section>
     </main>
 
-    <footer class="bg-primary text-white pt-12 pb-24 border-t border-slate-800">
+    <footer class="bg-primary dark:bg-slate-950 text-white pt-12 pb-24 border-t border-slate-800 dark:border-slate-800 transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-4 flex flex-col items-center">
-            <div class="bg-secondary/10 border border-secondary/30 rounded-2xl p-6 mb-8 w-full max-w-md flex flex-col items-center">
-                <p class="text-secondary font-bold text-sm mb-4">تواصل معنا عبر المنصات الاجتماعية</p>
-                <div class="flex gap-4">
-                    <a href="https://x.com/tamam_agency" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:scale-110 transition"><img src="https://imgg.io/images/2026/03/22/2a4fdf2d713248416595fd4d62d918bc.png" class="h-5 w-5"></a>
-                    <a href="https://instagram.com/tamam_agency" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:scale-110 transition text-pink-500 text-xl"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="https://wa.me/966545797339" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:scale-110 transition text-whatsapp text-xl"><i class="fa-brands fa-whatsapp"></i></a>
-                </div>
-                <div class="mt-6 flex items-center gap-3 animate-pulse-slow">
-                    <span class="text-white font-bold text-sm">تواصل معنا:</span>
-                    <a href="tel:0545797339" class="text-secondary font-extrabold text-lg" dir="ltr">+966 54 579 7339</a>
+            <div class="bg-secondary/10 dark:bg-slate-900 border border-secondary/30 dark:border-slate-700 rounded-2xl p-6 mb-8 w-full max-w-md flex flex-col items-center shadow-lg">
+                <p class="text-secondary font-bold text-sm mb-4" data-i18n="footerSocial">تواصل معنا عبر منصات التواصل الإجتماعي</p>
+                <div class="flex gap-3 flex-wrap justify-center">
+                    <a href="https://x.com/tamam_agency" class="w-10 h-10 rounded-full bg-slate-800 dark:bg-slate-950 flex items-center justify-center hover:bg-black transition border border-transparent dark:border-slate-700 hover:border-slate-500"><img src="https://imgg.io/images/2026/03/22/2a4fdf2d713248416595fd4d62d918bc.png" class="h-5 w-5"></a>
+                    <a href="https://instagram.com/tamam_agency" class="w-10 h-10 rounded-full bg-slate-800 dark:bg-slate-950 flex items-center justify-center hover:bg-instagram transition text-white border border-transparent dark:border-slate-700 hover:border-transparent text-xl"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://wa.me/966545797339" class="w-10 h-10 rounded-full bg-slate-800 dark:bg-slate-950 flex items-center justify-center hover:bg-whatsapp transition text-white border border-transparent dark:border-slate-700 hover:border-transparent text-xl"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="https://www.facebook.com/profile.php?id=61550244177125" class="w-10 h-10 rounded-full bg-slate-800 dark:bg-slate-950 flex items-center justify-center hover:bg-facebook transition text-white border border-transparent dark:border-slate-700 hover:border-transparent text-xl"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://www.tiktok.com/@tamam_agency" class="w-10 h-10 rounded-full bg-slate-800 dark:bg-slate-950 flex items-center justify-center hover:bg-tiktok transition hover:text-black text-white border border-transparent dark:border-slate-700 hover:border-transparent text-xl"><i class="fa-brands fa-tiktok"></i></a>
                 </div>
             </div>
-            <p class="text-slate-400 text-[10px] mb-4">جميع الحقوق محفوظة لدى | مكتب تمام للإستقدام 2027</p>
-            <a href="https://wa.me/966547194788" target="_blank" class="text-[9px] text-white/60 border border-white/10 px-3 py-1 rounded-full">👑 تم التطوير والتصميم بواسطة : م إسلام الشيخ 👑</a>
+            
+            <div class="flex flex-col justify-center items-center text-center gap-3">
+                <div class="text-slate-400 text-[11px] font-semibold py-1.5 px-4 rounded-full bg-slate-800/50 dark:bg-slate-900 border border-slate-700/50" dir="auto" data-i18n="footerCopy">
+                    جميع الحقوق محفوظة لدى | مكتب تمام للإستقدام 2027
+                </div>
+                <a href="https://wa.me/966547194788" target="_blank" class="inline-block border border-white/20 dark:border-slate-700 rounded-full py-1 px-3 hover:bg-white/10 dark:hover:bg-slate-800 transition-colors">
+                    <span class="text-[10px] font-semibold text-white tracking-wide" data-i18n="devSignatureFooter">👑 تم التطوير والتصميم بواسطة : م إسلام الشيخ 👑</span>
+                </a>
+            </div>
         </div>
     </footer>
 
     <div class="md:hidden fixed bottom-3 left-3 right-3 z-30">
-        <div class="bg-white/95 backdrop-blur-sm border rounded-2xl shadow-xl flex justify-around items-center h-14">
-            <a href="index.html" class="flex flex-col items-center text-slate-400"><i class="fa-solid fa-house text-lg"></i><span class="text-[8px] font-bold">الرئيسية</span></a>
-            <a href="prices.html" class="flex flex-col items-center text-slate-400"><i class="fa-solid fa-tags text-lg"></i><span class="text-[8px] font-bold">الأسعار</span></a>
-            <a href="about.html" class="flex flex-col items-center text-primary"><i class="fa-solid fa-users text-lg"></i><span class="text-[8px] font-bold">من نحن</span></a>
-            <a href="contact.html" class="flex flex-col items-center text-slate-400"><i class="fa-solid fa-phone text-lg"></i><span class="text-[8px] font-bold">تواصل</span></a>
+        <div class="bg-white/95 dark:bg-slate-900/95 backdrop-blur-sm border dark:border-slate-800 rounded-2xl shadow-xl flex justify-around items-center h-14">
+            <a href="index.html" class="flex flex-col items-center text-slate-400 dark:text-slate-500 hover:text-primary dark:hover:text-secondary transition group"><div class="p-1.5 rounded-full group-hover:bg-primary/10 dark:group-hover:bg-secondary/10"><i class="fa-solid fa-house text-lg"></i></div><span class="text-[8px] font-bold" data-i18n="navHome">الرئيسية</span></a>
+            <a href="prices.html" class="flex flex-col items-center text-slate-400 dark:text-slate-500 hover:text-primary dark:hover:text-secondary transition group"><div class="p-1.5 rounded-full group-hover:bg-primary/10 dark:group-hover:bg-secondary/10"><i class="fa-solid fa-tags text-lg"></i></div><span class="text-[8px] font-bold" data-i18n="navPrices">الأسعار</span></a>
+            <div class="-mt-6">
+                <a href="about.html" class="bg-primary dark:bg-secondary border-4 border-slate-50 dark:border-slate-900 w-12 h-12 rounded-full flex flex-col items-center justify-center text-white dark:text-primary shadow-lg hover:scale-105 transition transform">
+                    <i class="fa-solid fa-users text-xl"></i>
+                </a>
+            </div>
+            <a href="index.html#mediation" class="flex flex-col items-center text-slate-400 dark:text-slate-500 hover:text-primary dark:hover:text-secondary transition group"><div class="p-1.5 rounded-full group-hover:bg-primary/10 dark:group-hover:bg-secondary/10"><i class="fa-solid fa-handshake text-lg"></i></div><span class="text-[8px] font-bold" data-i18n="navServices">خدماتنا</span></a>
+            <a href="contact.html" class="flex flex-col items-center text-slate-400 dark:text-slate-500 hover:text-primary dark:hover:text-secondary transition group"><div class="p-1.5 rounded-full group-hover:bg-primary/10 dark:group-hover:bg-secondary/10"><i class="fa-solid fa-phone text-lg"></i></div><span class="text-[8px] font-bold" data-i18n="navContact">تواصل</span></a>
         </div>
     </div>
 
     <script>
+        // قاموس الترجمة
+        const translations = {
+            ar: {
+                aboutTitlePage: "من نحن | مكتب تمام للاستقدام",
+                splashTitle: "مكتب تمام للإستقدام",
+                loadingText: "جاري تحميل الصفحة",
+                devSignatureFooter: "👑 تم التطوير والتصميم بواسطة : م إسلام الشيخ 👑",
+                menuTitle: "القائمة",
+                navHome: "الرئيسية",
+                navAbout: "من نحن",
+                navPrices: "الجنسيات والأسعار",
+                navContact: "تواصل معنا",
+                navServices: "خدماتنا",
+                heroTitle: "من نحن",
+                heroSubtitle: "مكتب تمام للإستقدام ، راحتكم همنا ورضاكم غايتنا",
+                sectionTitle1: "خدمات إستقدام إحترافية وموثوقة",
+                sectionDesc1: "يعمل مكتب تمام للإستقدام تحت مظلة وزارة الموارد البشرية والتنمية الإجتماعية السعودية وذالك وفق انظمة وقوانين الوزارة لضمان تقديم أفضل الخدمات وضمان تقديم كوادر بشرية مدربة ومهنية ونطمح أن نكون الجسر الموثوق بينكم وبيت أفضل الكفاءات والعمالة المنزلية في مختلف المهن المطلوبة ومن مختلف الجنسيات المستهدفة.",
+                missionTitle: "غايتنا",
+                missionDesc: "نحن لا نريد أن نكون مجرد مكتب يقدم خدمات الإستقدام بل نسعى جاهدين وفق منظومة وفريق عمل مميز لتوفير حلول متنوعة ومتكاملة تضمن إستقرار وراحة كل عملائنا الكرام في كل بيت داخل المملكة العربية السعودية وذالك من خلال فرز وإختيار دقيق وتدريب إحترافي ومتقن ومتابعة مستمرة للعمالة المقدمة.",
+                visionTitle: "رؤيتنا",
+                visionDesc: "نسعى ونأمل أن نكون الإسم الأول والأكثر موثوقية في قطاع الإستقدام في المملكة ، وأن نكون أحد المساهمين في تحقيق خدمات مميزة وفق تطلعات رؤية 2030.",
+                guaranteeDays: "90 يوماً",
+                viaMusaned: "عبر منصة مساند",
+                valuesTitle: "قيمنا",
+                val1Title: "الأمانة والشفافية",
+                val1Desc: "نلتزم بالصدق التام في كل إجراءاتنا وتكاليفنا، لضمان علاقة مستدامة مبنية على الثقة مع عملائنا.",
+                val2Title: "الجودة والإتقان",
+                val2Desc: "نختار العمالة المنزلية بعناية فائقة، ونخضعهم لاختبارات دقيقة لضمان مهاراتهم وسلوكياتهم المهنية.",
+                val3Title: "السرعة في الإنجاز",
+                val3Desc: "نحن نقدر وقتكم، لذلك طورنا أنظمة إلكترونية متطورة لتقليص مدة الاستقدام إلى أقصى حد ممكن.",
+                contactTitle: "تواصل معنا",
+                contactDesc: "نسعد بإستقبال إستفساراتكم و مقترحاتكم والشكاوى على مدار الساعة",
+                addressLabel: "العنوان",
+                addressValue: "طريق عثمان بن عفان الفرعي | حي الفلاح<br>الرياض | المملكة العربية السعودية",
+                whatsappLabel: "رقم التواصل / واتساب",
+                footerSocial: "تواصل معنا عبر منصات التواصل الإجتماعي",
+                footerCopy: "جميع الحقوق محفوظة لدى | مكتب تمام للإستقدام 2027"
+            },
+            en: {
+                aboutTitlePage: "About Us | Tamam Recruitment",
+                splashTitle: "Tamam Recruitment Agency",
+                loadingText: "Loading Page",
+                devSignatureFooter: "👑 Developed & Designed by: Eng. Islam Elsheikh 👑",
+                menuTitle: "Menu",
+                navHome: "Home",
+                navAbout: "About Us",
+                navPrices: "Nationalities & Prices",
+                navContact: "Contact Us",
+                navServices: "Services",
+                heroTitle: "About Us",
+                heroSubtitle: "Tamam Recruitment Agency, Your Comfort is Our Priority",
+                sectionTitle1: "Professional & Reliable Recruitment Services",
+                sectionDesc1: "Tamam Recruitment operates under the Saudi Ministry of Human Resources and Social Development, strictly following its regulations to ensure the best services. We provide trained and professional human resources, aiming to be the trusted bridge between you and the best talents from our targeted nationalities.",
+                missionTitle: "Our Mission",
+                missionDesc: "We don't just want to be a standard recruitment office; we strive, with a distinguished team, to provide comprehensive solutions that ensure stability and peace of mind for our clients in Saudi Arabia. We achieve this through careful selection, professional training, and continuous follow-up.",
+                visionTitle: "Our Vision",
+                visionDesc: "We aspire to be the first and most trusted name in the recruitment sector in the Kingdom, and to contribute to achieving distinguished services in line with Vision 2030.",
+                guaranteeDays: "90 Days",
+                viaMusaned: "via Musaned platform",
+                valuesTitle: "Our Values",
+                val1Title: "Honesty & Transparency",
+                val1Desc: "We commit to complete honesty in all our procedures and costs, ensuring a sustainable relationship built on trust with our clients.",
+                val2Title: "Quality & Perfection",
+                val2Desc: "We carefully select domestic workers and subject them to rigorous tests to ensure their skills and professional behavior.",
+                val3Title: "Speed of Execution",
+                val3Desc: "We value your time, so we have developed advanced electronic systems to reduce recruitment time as much as possible.",
+                contactTitle: "Contact Us",
+                contactDesc: "We welcome your inquiries, suggestions, and complaints around the clock",
+                addressLabel: "Address",
+                addressValue: "Othman Bin Affan Branch Rd | Al Falah<br>Riyadh | Saudi Arabia",
+                whatsappLabel: "Contact Number / WhatsApp",
+                footerSocial: "Connect with us on social media",
+                footerCopy: "All Rights Reserved | Tamam Recruitment Agency 2027"
+            }
+        };
+
+        let currentLang = localStorage.getItem('siteLang') || 'ar';
+        
+        // نظام الدارك مود
+        function initDarkMode() {
+            const isDark = localStorage.getItem('darkMode') === 'true';
+            const htmlRoot = document.documentElement;
+            const icon = document.querySelector('#darkModeBtn i');
+            
+            if(isDark) {
+                htmlRoot.classList.add('dark');
+                if(icon) { icon.classList.remove('fa-moon'); icon.classList.add('fa-sun'); }
+            } else {
+                htmlRoot.classList.remove('dark');
+                if(icon) { icon.classList.remove('fa-sun'); icon.classList.add('fa-moon'); }
+            }
+        }
+
+        window.toggleDarkMode = function() {
+            const htmlRoot = document.documentElement;
+            const isDark = htmlRoot.classList.toggle('dark');
+            localStorage.setItem('darkMode', isDark);
+            
+            const icon = document.querySelector('#darkModeBtn i');
+            if(isDark) {
+                icon.classList.remove('fa-moon'); icon.classList.add('fa-sun');
+            } else {
+                icon.classList.remove('fa-sun'); icon.classList.add('fa-moon');
+            }
+        }
+
+        // نظام اللغات والتوجيه
+        function applyLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('siteLang', lang);
+            const htmlRoot = document.documentElement;
+            
+            if (lang === 'ar') {
+                htmlRoot.setAttribute('dir', 'rtl');
+                htmlRoot.setAttribute('lang', 'ar');
+                const sidebar = document.getElementById('sidebar');
+                if(sidebar) sidebar.classList.replace('-translate-x-full', 'translate-x-full');
+            } else {
+                htmlRoot.setAttribute('dir', 'ltr');
+                htmlRoot.setAttribute('lang', 'en');
+                const sidebar = document.getElementById('sidebar');
+                if(sidebar) {
+                    sidebar.classList.remove('right-0', 'translate-x-full');
+                    sidebar.classList.add('left-0', '-translate-x-full');
+                }
+            }
+
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) { 
+                    element.innerHTML = translations[lang][key]; 
+                }
+            });
+            
+            // تغيير عنوان الصفحة الفعلي
+            if(translations[lang] && translations[lang]['aboutTitlePage']) {
+                document.title = translations[lang]['aboutTitlePage'];
+            }
+        }
+
+        window.switchLanguage = function() {
+            applyLanguage(currentLang === 'ar' ? 'en' : 'ar');
+        }
+
+        window.toggleSidebar = function() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebar-overlay');
+            if(!sidebar || !overlay) return;
+            
+            if (currentLang === 'ar') { sidebar.classList.toggle('translate-x-full'); } 
+            else { sidebar.classList.toggle('-translate-x-full'); }
+            overlay.classList.toggle('hidden');
+        }
+
+        // التشغيل عند تحميل الصفحة
+        window.addEventListener('DOMContentLoaded', () => {
+            initDarkMode();
+            applyLanguage(currentLang);
+        });
+
         window.addEventListener('load', () => {
             setTimeout(() => {
                 const splash = document.getElementById('splash-screen');
@@ -216,19 +434,8 @@
                     if(splash) splash.classList.add('hidden');
                     document.getElementById('body-content').classList.remove('overflow-hidden');
                 }, 700);
-            }, 2500);
+            }, 1500);
         });
-
-        function toggleSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            const overlay = document.getElementById('sidebar-overlay');
-            sidebar.classList.toggle('translate-x-full');
-            overlay.classList.toggle('hidden');
-        }
-
-        function switchLanguage() {
-            alert('سيتم إضافة الترجمة قريباً لهذه الصفحة');
-        }
     </script>
 </body>
 </html>
