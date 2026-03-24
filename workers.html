@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title data-i18n="workersTitlePage">العمالة المستهدفة | مكتب تمام للاستقدام</title>
+    <title data-i18n="cvsTitlePage">السير الذاتية المتاحة | مكتب تمام للاستقدام</title>
     
     <link rel="icon" type="image/png" href="https://imgg.io/images/2026/03/22/3905f931b0fa4f5e93531423df3036d8.png">
 
@@ -24,7 +24,13 @@
                     animation: {
                         'spin-slow': 'spin 3s linear infinite',
                         'bounce-slight': 'bounce 2s infinite',
-                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite'
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'fade-in': 'fadeIn 0.3s ease-out forwards',
+                        'scale-in': 'scaleIn 0.3s ease-out forwards'
+                    },
+                    keyframes: {
+                        fadeIn: { '0%': { opacity: '0' }, '100%': { opacity: '1' } },
+                        scaleIn: { '0%': { transform: 'translate(-50%, -50%) scale(0.9)', opacity: '0' }, '100%': { transform: 'translate(-50%, -50%) scale(1)', opacity: '1' } }
                     }
                 }
             }
@@ -38,14 +44,22 @@
         .floating-btn { transition: transform 0.3s ease, box-shadow 0.3s ease; }
         .floating-btn:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
         
-        /* تصميم كروت المهن الجديدة */
-        .profession-card { transition: all 0.4s ease; border: 1px solid transparent; }
-        .profession-card:hover { transform: translateY(-10px); border-color: rgba(234, 179, 8, 0.4); box-shadow: 0 25px 30px -5px rgba(17, 34, 64, 0.15); }
-        .profession-card img { transition: transform 0.7s ease; }
-        .profession-card:hover img { transform: scale(1.08); }
+        .cv-card { transition: all 0.3s ease; border: 1px solid transparent; }
+        .cv-card:hover { transform: translateY(-5px); border-color: rgba(234, 179, 8, 0.4); box-shadow: 0 20px 25px -5px rgba(17, 34, 64, 0.15); }
+        
+        .filter-btn { transition: all 0.2s ease; border-width: 2px; }
+        .filter-btn.active { background-color: #112240; color: white; border-color: #112240; }
+        html.dark .filter-btn.active { background-color: #eab308; color: #112240; border-color: #eab308; }
+        
+        .search-input { transition: all 0.3s ease; }
+        .search-input:focus { border-color: #eab308; box-shadow: 0 0 0 3px rgba(234, 179, 8, 0.2); outline: none; }
+        
+        #lightbox-overlay { display: none; }
+        #lightbox-overlay.show { display: block; animation: fadeIn 0.3s ease forwards; }
+        #lightbox-image { animation: scaleIn 0.3s ease-out forwards; transform-origin: center; }
     </style>
 </head>
-<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 overflow-hidden" id="body-content">
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100" id="body-content">
 
     <div id="splash-screen" class="fixed inset-0 bg-white dark:bg-slate-900 z-[100] flex flex-col justify-center items-center transition-opacity duration-700">
         <div class="flex flex-col items-center">
@@ -84,8 +98,8 @@
                 <a href="mediation.html" class="block px-4 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-semibold hover:bg-slate-50 dark:hover:bg-slate-700 transition" data-i18n="navMediation">التوسط في الاستقدام</a>
             </div>
 
-            <a href="workers.html" class="block px-4 py-2.5 rounded-lg bg-primary/10 dark:bg-secondary/10 text-primary dark:text-secondary font-bold transition" data-i18n="navWorkers">العمالة المستهدفة</a>
-            <a href="cvs.html" class="block px-4 py-2.5 rounded-lg text-gray-600 dark:text-gray-300 font-bold hover:bg-slate-50 dark:hover:bg-slate-700 transition" data-i18n="navCVs">السير الذاتية</a>
+            <a href="workers.html" class="block px-4 py-2.5 rounded-lg text-gray-600 dark:text-gray-300 font-bold hover:bg-slate-50 dark:hover:bg-slate-700 transition" data-i18n="navWorkers">العمالة المستهدفة</a>
+            <a href="cvs.html" class="block px-4 py-2.5 rounded-lg bg-primary/10 dark:bg-secondary/10 text-primary dark:text-secondary font-bold transition" data-i18n="navCVs">السير الذاتية</a>
             <a href="countries.html" class="block px-4 py-2.5 rounded-lg text-gray-600 dark:text-gray-300 font-bold hover:bg-slate-50 dark:hover:bg-slate-700 transition" data-i18n="navCountries">الدول المتاحة</a>
             <a href="about.html" class="block px-4 py-2.5 rounded-lg text-gray-600 dark:text-gray-300 font-bold hover:bg-slate-50 dark:hover:bg-slate-700 transition" data-i18n="navAbout">من نحن</a>
             <a href="contact.html" class="block px-4 py-2.5 rounded-lg text-gray-600 dark:text-gray-300 font-bold hover:bg-slate-50 dark:hover:bg-slate-700 transition" data-i18n="navContact">اتصل بنا</a>
@@ -116,8 +130,8 @@
                     </div>
                 </div>
 
-                <a href="workers.html" class="text-secondary border-b-2 border-secondary pb-1" data-i18n="navWorkers">العمالة المستهدفة</a>
-                <a href="cvs.html" class="hover:text-secondary transition" data-i18n="navCVs">السير الذاتية</a>
+                <a href="workers.html" class="hover:text-secondary transition" data-i18n="navWorkers">العمالة المستهدفة</a>
+                <a href="cvs.html" class="text-secondary border-b-2 border-secondary pb-1" data-i18n="navCVs">السير الذاتية</a>
                 <a href="countries.html" class="hover:text-secondary transition" data-i18n="navCountries">الدول المتاحة</a>
                 <a href="about.html" class="hover:text-secondary transition" data-i18n="navAbout">من نحن</a>
                 <a href="contact.html" class="hover:text-secondary transition" data-i18n="navContact">اتصل بنا</a>
@@ -138,149 +152,55 @@
 
     <main class="flex-grow pb-20 md:pb-0">
         
-        <section class="relative bg-primary dark:bg-slate-950 py-16 lg:py-24 overflow-hidden text-center border-b-4 border-secondary transition-colors duration-300">
-            <div class="absolute inset-0">
-                <img src="https://i.ibb.co/prkHGXVm/IMG.jpg" class="w-full h-full object-cover">
-            </div>
-            <div class="absolute inset-0 bg-primary/80 dark:bg-slate-950/85"></div>
-            
-            <div class="relative max-w-7xl mx-auto px-4 z-10">
-                <h1 class="text-4xl lg:text-5xl font-extrabold text-white mb-6" data-i18n="heroWorkersTitle">العمالة المستهدفة والمِهن المتوفرة</h1>
-                <p class="text-secondary font-bold text-lg max-w-3xl mx-auto leading-relaxed" data-i18n="heroWorkersDesc">
-                    نوفر لك ولعائلتك نخبة من الكوادر البشرية المدربة والمؤهلة بعناية فائقة لتلبية كافة احتياجاتك المنزلية والمهنية، مع ضمان الجودة والاحترافية في الأداء.
-                </p>
+        <section class="bg-primary dark:bg-slate-950 py-12 lg:py-16 text-center border-b-4 border-secondary transition-colors duration-300">
+            <div class="max-w-7xl mx-auto px-4">
+                <h1 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white mb-4" data-i18n="heroCVsTitle">السير الذاتية المتاحة</h1>
+                <p class="text-gray-300 text-lg max-w-2xl mx-auto" data-i18n="heroCVsDesc">تصفح السير الذاتية لأمهر الكوادر البشرية الجاهزة للعمل، واختر الأنسب لاحتياجات عائلتك بكل ثقة وشفافية.</p>
             </div>
         </section>
 
-        <section class="py-16 px-4 bg-slate-50 dark:bg-slate-900 transition-colors duration-300">
-            <div class="max-w-7xl mx-auto">
+        <section class="py-8 bg-white dark:bg-slate-900 border-b border-slate-100 dark:border-slate-800 transition-colors shadow-sm sticky top-20 z-20">
+            <div class="max-w-7xl mx-auto px-4 space-y-6">
                 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-                    
-                    <div class="profession-card bg-white dark:bg-slate-800 rounded-3xl overflow-hidden shadow-lg flex flex-col transition-colors">
-                        <div class="h-56 overflow-hidden relative">
-                            <img src="https://imgg.io/images/2026/03/22/a682bbaacd69dc9b52087a8e42537391.png" alt="عاملة منزلية" class="w-full h-full object-cover">
-                            <div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent"></div>
-                            <h3 class="absolute bottom-4 right-4 text-2xl font-extrabold text-white drop-shadow-md" data-i18n="profMaid">عاملة منزلية</h3>
-                        </div>
-                        <div class="p-6 flex flex-col flex-grow">
-                            <p class="text-gray-600 dark:text-gray-300 text-sm leading-relaxed mb-6 flex-grow" data-i18n="descMaid">
-                                خبرة وكفاءة في إدارة شؤون المنزل، لنضمن لك بيئة نظيفة ومريحة لك ولعائلتك.
-                            </p>
-                            <a href="https://wa.me/966545797339?text=أريد طلب عاملة منزلية" target="_blank" class="w-full text-center bg-primary/10 dark:bg-slate-700 text-primary dark:text-white font-bold py-3 rounded-xl hover:bg-secondary hover:text-primary transition-colors flex justify-center items-center gap-2">
-                                <span data-i18n="btnRequestJob">طلب هذه المهنة</span> <i class="fa-brands fa-whatsapp text-lg"></i>
-                            </a>
+                <div class="max-w-2xl mx-auto relative">
+                    <input type="text" id="searchInput" class="search-input w-full bg-slate-50 dark:bg-slate-800 border-2 border-slate-200 dark:border-slate-700 text-primary dark:text-white rounded-full py-3 px-12 focus:border-secondary dark:focus:border-secondary transition-all" placeholder="ابحث برقم المعرف (ID)...">
+                    <i class="fa-solid fa-magnifying-glass absolute top-1/2 right-5 -translate-y-1/2 text-gray-400 rtl:right-5 ltr:left-5 rtl:left-auto"></i>
+                </div>
+
+                <div class="flex flex-col md:flex-row justify-center items-center gap-6">
+                    <div class="w-full md:w-auto text-center">
+                        <h3 class="text-xs font-bold text-gray-400 mb-2 uppercase tracking-wider" data-i18n="filterCountryTitle">اختيار البلد</h3>
+                        <div class="flex flex-wrap justify-center gap-2" id="filter-country">
+                            <button class="filter-btn active px-4 py-1.5 rounded-full border-2 border-gray-200 dark:border-slate-700 text-sm font-bold text-gray-600 dark:text-gray-300 hover:border-primary dark:hover:border-secondary" data-filter="all" data-i18n="filterAll">الكل</button>
+                            <button class="filter-btn px-4 py-1.5 rounded-full border-2 border-gray-200 dark:border-slate-700 text-sm font-bold text-gray-600 dark:text-gray-300 hover:border-primary dark:hover:border-secondary" data-filter="Philippines" data-i18n="countryPh">الفلبين</button>
+                            <button class="filter-btn px-4 py-1.5 rounded-full border-2 border-gray-200 dark:border-slate-700 text-sm font-bold text-gray-600 dark:text-gray-300 hover:border-primary dark:hover:border-secondary" data-filter="Kenya" data-i18n="countryKe">كينيا</button>
+                            <button class="filter-btn px-4 py-1.5 rounded-full border-2 border-gray-200 dark:border-slate-700 text-sm font-bold text-gray-600 dark:text-gray-300 hover:border-primary dark:hover:border-secondary" data-filter="Ethiopia" data-i18n="countryEt">إثيوبيا</button>
                         </div>
                     </div>
 
-                    <div class="profession-card bg-white dark:bg-slate-800 rounded-3xl overflow-hidden shadow-lg flex flex-col transition-colors">
-                        <div class="h-56 overflow-hidden relative">
-                            <img src="https://imgg.io/images/2026/03/22/7fb4f06f3f88933645fa19c69202eb06.png" alt="سائق خاص" class="w-full h-full object-cover object-top">
-                            <div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent"></div>
-                            <h3 class="absolute bottom-4 right-4 text-2xl font-extrabold text-white drop-shadow-md" data-i18n="profDriver">سائق خاص</h3>
-                        </div>
-                        <div class="p-6 flex flex-col flex-grow">
-                            <p class="text-gray-600 dark:text-gray-300 text-sm leading-relaxed mb-6 flex-grow" data-i18n="descDriver">
-                                قيادة آمنة، التزام بالمواعيد، ومعرفة تامة بالطرق لتأمين تنقلاتك بكل يسر وسهولة.
-                            </p>
-                            <a href="https://wa.me/966545797339?text=أريد طلب سائق خاص" target="_blank" class="w-full text-center bg-primary/10 dark:bg-slate-700 text-primary dark:text-white font-bold py-3 rounded-xl hover:bg-secondary hover:text-primary transition-colors flex justify-center items-center gap-2">
-                                <span data-i18n="btnRequestJob">طلب هذه المهنة</span> <i class="fa-brands fa-whatsapp text-lg"></i>
-                            </a>
+                    <div class="hidden md:block w-px h-12 bg-gray-200 dark:bg-slate-700"></div>
+
+                    <div class="w-full md:w-auto text-center">
+                        <h3 class="text-xs font-bold text-gray-400 mb-2 uppercase tracking-wider" data-i18n="filterJobTitle">المهن المستهدفة</h3>
+                        <div class="flex flex-wrap justify-center gap-2" id="filter-job">
+                            <button class="filter-btn active px-4 py-1.5 rounded-full border-2 border-gray-200 dark:border-slate-700 text-sm font-bold text-gray-600 dark:text-gray-300 hover:border-primary dark:hover:border-secondary" data-filter="all" data-i18n="filterAll">الكل</button>
+                            <button class="filter-btn px-4 py-1.5 rounded-full border-2 border-gray-200 dark:border-slate-700 text-sm font-bold text-gray-600 dark:text-gray-300 hover:border-primary dark:hover:border-secondary" data-filter="Housemaid" data-i18n="profMaid">عاملة منزلية</button>
+                            <button class="filter-btn px-4 py-1.5 rounded-full border-2 border-gray-200 dark:border-slate-700 text-sm font-bold text-gray-600 dark:text-gray-300 hover:border-primary dark:hover:border-secondary" data-filter="Driver" data-i18n="profDriver">سائق خاص</button>
                         </div>
                     </div>
-
-                    <div class="profession-card bg-white dark:bg-slate-800 rounded-3xl overflow-hidden shadow-lg flex flex-col transition-colors">
-                        <div class="h-56 overflow-hidden relative">
-                            <img src="https://imgg.io/images/2026/03/22/16a043b67c508e33a9f0992ceb1ecd02.png" alt="ممرضة" class="w-full h-full object-cover">
-                            <div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent"></div>
-                            <h3 class="absolute bottom-4 right-4 text-2xl font-extrabold text-white drop-shadow-md" data-i18n="profNurse">ممرضة</h3>
-                        </div>
-                        <div class="p-6 flex flex-col flex-grow">
-                            <p class="text-gray-600 dark:text-gray-300 text-sm leading-relaxed mb-6 flex-grow" data-i18n="descNurse">
-                                رعاية صحية متخصصة ومتابعة دقيقة لحالة مرضاكم وكبار السن بأيادي أمينة ومؤهلة.
-                            </p>
-                            <a href="https://wa.me/966545797339?text=أريد طلب ممرضة" target="_blank" class="w-full text-center bg-primary/10 dark:bg-slate-700 text-primary dark:text-white font-bold py-3 rounded-xl hover:bg-secondary hover:text-primary transition-colors flex justify-center items-center gap-2">
-                                <span data-i18n="btnRequestJob">طلب هذه المهنة</span> <i class="fa-brands fa-whatsapp text-lg"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="profession-card bg-white dark:bg-slate-800 rounded-3xl overflow-hidden shadow-lg flex flex-col transition-colors">
-                        <div class="h-56 overflow-hidden relative">
-                            <img src="https://imgg.io/images/2026/03/22/3249a18d098033e56701ebbde29f9f4c.png" alt="جليسة أطفال" class="w-full h-full object-cover">
-                            <div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent"></div>
-                            <h3 class="absolute bottom-4 right-4 text-2xl font-extrabold text-white drop-shadow-md" data-i18n="profBabysitter">جليسة أطفال</h3>
-                        </div>
-                        <div class="p-6 flex flex-col flex-grow">
-                            <p class="text-gray-600 dark:text-gray-300 text-sm leading-relaxed mb-6 flex-grow" data-i18n="descBabysitter">
-                                رعاية حانية، واهتمام فائق بأطفالك، لنوفر لهم بيئة آمنة ونمنحك راحة البال.
-                            </p>
-                            <a href="https://wa.me/966545797339?text=أريد طلب جليسة أطفال" target="_blank" class="w-full text-center bg-primary/10 dark:bg-slate-700 text-primary dark:text-white font-bold py-3 rounded-xl hover:bg-secondary hover:text-primary transition-colors flex justify-center items-center gap-2">
-                                <span data-i18n="btnRequestJob">طلب هذه المهنة</span> <i class="fa-brands fa-whatsapp text-lg"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="profession-card bg-white dark:bg-slate-800 rounded-3xl overflow-hidden shadow-lg flex flex-col transition-colors">
-                        <div class="h-56 overflow-hidden relative">
-                            <img src="https://imgg.io/images/2026/03/22/0b3570ab1547de9d5e09b32689461e96.png" alt="بستاني" class="w-full h-full object-cover">
-                            <div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent"></div>
-                            <h3 class="absolute bottom-4 right-4 text-2xl font-extrabold text-white drop-shadow-md" data-i18n="profGardener">بستاني</h3>
-                        </div>
-                        <div class="p-6 flex flex-col flex-grow">
-                            <p class="text-gray-600 dark:text-gray-300 text-sm leading-relaxed mb-6 flex-grow" data-i18n="descGardener">
-                                لمسة جمالية لحديقتك، وعناية فائقة بالنباتات لتستمتع بمساحات خضراء تسر الناظرين.
-                            </p>
-                            <a href="https://wa.me/966545797339?text=أريد طلب بستاني" target="_blank" class="w-full text-center bg-primary/10 dark:bg-slate-700 text-primary dark:text-white font-bold py-3 rounded-xl hover:bg-secondary hover:text-primary transition-colors flex justify-center items-center gap-2">
-                                <span data-i18n="btnRequestJob">طلب هذه المهنة</span> <i class="fa-brands fa-whatsapp text-lg"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="profession-card bg-white dark:bg-slate-800 rounded-3xl overflow-hidden shadow-lg flex flex-col transition-colors">
-                        <div class="h-56 overflow-hidden relative">
-                            <img src="https://imgg.io/images/2026/03/22/41eb670f79d51d92df3be8c737a440d9.png" alt="طباخ" class="w-full h-full object-cover object-bottom">
-                            <div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent"></div>
-                            <h3 class="absolute bottom-4 right-4 text-2xl font-extrabold text-white drop-shadow-md" data-i18n="profCook">طباخ</h3>
-                        </div>
-                        <div class="p-6 flex flex-col flex-grow">
-                            <p class="text-gray-600 dark:text-gray-300 text-sm leading-relaxed mb-6 flex-grow" data-i18n="descCook">
-                                مهارة في إعداد أشهى الأطباق المحلية والعالمية لتلبية ذائقتكم وتقديم سفرة مميزة.
-                            </p>
-                            <a href="https://wa.me/966545797339?text=أريد طلب طباخ" target="_blank" class="w-full text-center bg-primary/10 dark:bg-slate-700 text-primary dark:text-white font-bold py-3 rounded-xl hover:bg-secondary hover:text-primary transition-colors flex justify-center items-center gap-2">
-                                <span data-i18n="btnRequestJob">طلب هذه المهنة</span> <i class="fa-brands fa-whatsapp text-lg"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="profession-card bg-white dark:bg-slate-800 rounded-3xl overflow-hidden shadow-lg flex flex-col transition-colors">
-                        <div class="h-56 overflow-hidden relative">
-                            <img src="https://imgg.io/images/2026/03/22/16ae8c098dbe35e569acd0a684189582.png" alt="حارس عقار" class="w-full h-full object-cover">
-                            <div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent"></div>
-                            <h3 class="absolute bottom-4 right-4 text-2xl font-extrabold text-white drop-shadow-md" data-i18n="profGuard">حارس عقار</h3>
-                        </div>
-                        <div class="p-6 flex flex-col flex-grow">
-                            <p class="text-gray-600 dark:text-gray-300 text-sm leading-relaxed mb-6 flex-grow" data-i18n="descGuard">
-                                حماية ويقظة على مدار الساعة لتأمين ممتلكاتك وتوفير أقصى درجات الأمان والسكينة.
-                            </p>
-                            <a href="https://wa.me/966545797339?text=أريد طلب حارس عقار" target="_blank" class="w-full text-center bg-primary/10 dark:bg-slate-700 text-primary dark:text-white font-bold py-3 rounded-xl hover:bg-secondary hover:text-primary transition-colors flex justify-center items-center gap-2">
-                                <span data-i18n="btnRequestJob">طلب هذه المهنة</span> <i class="fa-brands fa-whatsapp text-lg"></i>
-                            </a>
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </section>
 
-        <section class="py-12 bg-primary dark:bg-slate-950 text-center transition-colors">
-            <div class="max-w-4xl mx-auto px-4">
-                <i class="fa-solid fa-user-magnifying-glass text-4xl text-secondary mb-4"></i>
-                <h2 class="text-2xl md:text-3xl font-bold text-white mb-4" data-i18n="ctaMissProfessionTitle">لم تجد المهنة المطلوبة؟</h2>
-                <p class="text-gray-300 mb-8" data-i18n="ctaMissProfessionDesc">لا تقلق، تواصل معنا الآن واخبرنا باحتياجاتك، وسنقوم بتوفير الكادر المناسب لك بأسرع وقت.</p>
-                <a href="contact.html" class="inline-flex items-center gap-2 bg-secondary text-primary font-extrabold px-8 py-3 rounded-full hover:bg-white transition-colors animate-pulse-slow shadow-[0_0_15px_rgba(234,179,8,0.3)]">
-                    <span data-i18n="navContact">تواصل معنا</span> <i class="fa-solid fa-headset"></i>
-                </a>
+        <section class="py-12 px-4 bg-slate-50 dark:bg-slate-900 transition-colors min-h-[500px]">
+            <div class="max-w-7xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8" id="cv-grid">
+                    </div>
+                
+                <div id="no-results" class="hidden text-center py-20 text-gray-500 dark:text-gray-400">
+                    <i class="fa-solid fa-folder-open text-6xl text-gray-300 dark:text-gray-600 mb-4"></i>
+                    <p class="font-bold text-lg" data-i18n="noResults">لا توجد سير ذاتية مطابقة لخيارات البحث الحالية.</p>
+                </div>
             </div>
         </section>
 
@@ -288,87 +208,138 @@
 
     <footer class="bg-primary dark:bg-slate-950 text-white pt-12 pb-24 md:pb-8 border-t border-slate-800 dark:border-slate-800 transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-4 flex flex-col items-center">
-            <div class="bg-secondary/10 dark:bg-slate-900 border border-secondary/30 dark:border-slate-700 rounded-2xl p-6 mb-8 w-full max-w-md flex flex-col items-center shadow-lg">
-                <p class="text-secondary font-bold text-sm mb-4" data-i18n="footerSocial">تواصل معنا عبر منصات التواصل الإجتماعي</p>
-                <div class="flex gap-3 flex-wrap justify-center">
-                    <a href="https://x.com/tamam_agency" class="w-10 h-10 rounded-full bg-slate-800 dark:bg-slate-950 flex items-center justify-center hover:bg-black transition border border-transparent dark:border-slate-700 hover:border-slate-500"><img src="https://imgg.io/images/2026/03/22/2a4fdf2d713248416595fd4d62d918bc.png" class="h-5 w-5"></a>
-                    <a href="https://instagram.com/tamam_agency" class="w-10 h-10 rounded-full bg-slate-800 dark:bg-slate-950 flex items-center justify-center hover:bg-instagram transition text-white border border-transparent dark:border-slate-700 hover:border-transparent text-xl"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="https://wa.me/966545797339" class="w-10 h-10 rounded-full bg-slate-800 dark:bg-slate-950 flex items-center justify-center hover:bg-whatsapp transition text-white border border-transparent dark:border-slate-700 hover:border-transparent text-xl"><i class="fa-brands fa-whatsapp"></i></a>
-                    <a href="https://www.facebook.com/profile.php?id=61550244177125" class="w-10 h-10 rounded-full bg-slate-800 dark:bg-slate-950 flex items-center justify-center hover:bg-facebook transition text-white border border-transparent dark:border-slate-700 hover:border-transparent text-xl"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="https://www.tiktok.com/@tamam_agency" class="w-10 h-10 rounded-full bg-slate-800 dark:bg-slate-950 flex items-center justify-center hover:bg-tiktok transition hover:text-black text-white border border-transparent dark:border-slate-700 hover:border-transparent text-xl"><i class="fa-brands fa-tiktok"></i></a>
-                </div>
+            <div class="flex gap-3 flex-wrap justify-center mb-6">
+                <a href="https://x.com/tamam_agency" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-black transition border border-transparent hover:border-slate-500"><img src="https://imgg.io/images/2026/03/22/2a4fdf2d713248416595fd4d62d918bc.png" class="h-5 w-5"></a>
+                <a href="https://instagram.com/tamam_agency" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-instagram transition text-xl"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://wa.me/966545797339" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-whatsapp transition text-xl"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="https://www.facebook.com/profile.php?id=61550244177125" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-facebook transition text-xl"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="https://www.tiktok.com/@tamam_agency" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-tiktok transition hover:text-black text-xl"><i class="fa-brands fa-tiktok"></i></a>
             </div>
-            
-            <div class="flex flex-col justify-center items-center text-center gap-3">
-                <div class="text-slate-400 text-[11px] font-semibold py-1.5 px-4 rounded-full bg-slate-800/50 dark:bg-slate-900 border border-slate-700/50" dir="auto" data-i18n="footerCopy">
-                    جميع الحقوق محفوظة لدى | مكتب تمام للإستقدام 2027
-                </div>
-                <a href="https://wa.me/966547194788" target="_blank" class="inline-block border border-white/20 dark:border-slate-700 rounded-full py-1 px-3 hover:bg-white/10 dark:hover:bg-slate-800 transition-colors">
-                    <span class="text-[10px] font-semibold text-white tracking-wide" data-i18n="devSignatureFooter">👑 تم التطوير والتصميم بواسطة : م إسلام الشيخ 👑</span>
-                </a>
-            </div>
+            <div class="text-slate-400 text-[11px] font-semibold py-1.5 px-4 rounded-full bg-slate-800/50 border border-slate-700/50 mb-3" data-i18n="footerCopy">جميع الحقوق محفوظة لدى | مكتب تمام للإستقدام 2027</div>
+            <a href="https://wa.me/966547194788" class="inline-block border border-white/20 rounded-full py-1 px-3 hover:bg-white/10 transition-colors"><span class="text-[10px] font-semibold tracking-wide" data-i18n="devSignatureFooter">👑 تم التطوير والتصميم بواسطة : م إسلام الشيخ 👑</span></a>
         </div>
     </footer>
 
     <div class="md:hidden fixed bottom-3 left-3 right-3 z-30">
         <div class="bg-white/95 dark:bg-slate-900/95 backdrop-blur-sm border dark:border-slate-800 rounded-2xl shadow-xl flex justify-around items-center h-14">
-            <a href="index.html" class="flex flex-col items-center text-slate-400 dark:text-slate-500 hover:text-primary dark:hover:text-secondary transition group"><div class="p-1.5 rounded-full group-hover:bg-primary/10 dark:group-hover:bg-secondary/10"><i class="fa-solid fa-house text-lg"></i></div><span class="text-[8px] font-bold" data-i18n="navHome">الرئيسية</span></a>
-            <a href="cvs.html" class="flex flex-col items-center text-slate-400 dark:text-slate-500 hover:text-primary dark:hover:text-secondary transition group"><div class="p-1.5 rounded-full group-hover:bg-primary/10 dark:group-hover:bg-secondary/10"><i class="fa-solid fa-file-pdf text-lg"></i></div><span class="text-[8px] font-bold" data-i18n="navCVs">السير الذاتية</span></a>
+            <a href="index.html" class="flex flex-col items-center text-slate-400 dark:text-slate-500 hover:text-primary dark:hover:text-secondary transition group"><div class="p-1.5 rounded-full group-hover:bg-primary/10"><i class="fa-solid fa-house text-lg"></i></div><span class="text-[8px] font-bold" data-i18n="navHome">الرئيسية</span></a>
             <div class="-mt-6">
                 <button class="bg-primary dark:bg-secondary border-4 border-slate-50 dark:border-slate-900 w-12 h-12 rounded-full flex flex-col items-center justify-center text-white dark:text-primary shadow-lg hover:scale-105 transition transform">
-                    <i class="fa-solid fa-user-tie text-xl"></i>
+                    <i class="fa-solid fa-file-pdf text-xl"></i>
                 </button>
             </div>
-            <a href="countries.html" class="flex flex-col items-center text-slate-400 dark:text-slate-500 hover:text-primary dark:hover:text-secondary transition group"><div class="p-1.5 rounded-full group-hover:bg-primary/10 dark:group-hover:bg-secondary/10"><i class="fa-solid fa-globe text-lg"></i></div><span class="text-[8px] font-bold" data-i18n="navCountries">الدول</span></a>
-            <a href="contact.html" class="flex flex-col items-center text-slate-400 dark:text-slate-500 hover:text-primary dark:hover:text-secondary transition group"><div class="p-1.5 rounded-full group-hover:bg-primary/10 dark:group-hover:bg-secondary/10"><i class="fa-solid fa-phone text-lg"></i></div><span class="text-[8px] font-bold" data-i18n="navContact">تواصل</span></a>
+            <a href="workers.html" class="flex flex-col items-center text-slate-400 dark:text-slate-500 hover:text-primary dark:hover:text-secondary transition group"><div class="p-1.5 rounded-full group-hover:bg-primary/10"><i class="fa-solid fa-user-tie text-lg"></i></div><span class="text-[8px] font-bold" data-i18n="navWorkers">العمالة</span></a>
+            <a href="countries.html" class="flex flex-col items-center text-slate-400 dark:text-slate-500 hover:text-primary dark:hover:text-secondary transition group"><div class="p-1.5 rounded-full group-hover:bg-primary/10"><i class="fa-solid fa-globe text-lg"></i></div><span class="text-[8px] font-bold" data-i18n="navCountries">الدول</span></a>
+            <a href="contact.html" class="flex flex-col items-center text-slate-400 dark:text-slate-500 hover:text-primary dark:hover:text-secondary transition group"><div class="p-1.5 rounded-full group-hover:bg-primary/10"><i class="fa-solid fa-phone text-lg"></i></div><span class="text-[8px] font-bold" data-i18n="navContact">تواصل</span></a>
         </div>
     </div>
 
+    <div id="lightbox-overlay" class="fixed inset-0 bg-slate-900/95 z-[200] backdrop-blur-md cursor-pointer flex items-center justify-center p-4" onclick="closeLightbox()">
+        <button class="absolute top-6 right-6 text-white/50 hover:text-white text-5xl font-light focus:outline-none transition-colors">&times;</button>
+        <img id="lightbox-image" src="" alt="CV Enlarged" class="max-w-full max-h-[90vh] rounded-xl shadow-2xl border-4 border-white/10 object-contain cursor-default" onclick="event.stopPropagation()">
+    </div>
+
     <script>
+        // 1. قاعدة بيانات السير الذاتية
+        const cvsData = [
+            {
+                id: "17738200850",
+                image: "https://i.ibb.co/4Zm6Sdq0/17738200850.png",
+                nameAr: "أمنيات عبدة سيد", nameEn: "Aminat Abdu Seid",
+                countryAr: "إثيوبيا", countryEn: "Ethiopia", flagCode: "et",
+                jobAr: "عاملة منزلية", jobEn: "Housemaid",
+                salary: "1000", contractLengthAr: "سنتان", contractLengthEn: "2 Years",
+                religionAr: "الإسلام", religionEn: "Islam", age: "25"
+            },
+            {
+                id: "17738208480",
+                image: "https://i.ibb.co/twLNGJzw/17738208480.png",
+                nameAr: "رحيمات يوسف محمد", nameEn: "Rehima Yesuf Mohammed",
+                countryAr: "إثيوبيا", countryEn: "Ethiopia", flagCode: "et",
+                jobAr: "عاملة منزلية", jobEn: "Housemaid",
+                salary: "1000", contractLengthAr: "سنتان", contractLengthEn: "2 Years",
+                religionAr: "الإسلام", religionEn: "Islam", age: "24"
+            },
+            {
+                id: "17738200480",
+                image: "https://i.ibb.co/zhDhGD2t/17738200480.png",
+                nameAr: "سيدة إدريس آدم", nameEn: "Syeda Idris Adam",
+                countryAr: "إثيوبيا", countryEn: "Ethiopia", flagCode: "et",
+                jobAr: "عاملة منزلية", jobEn: "Housemaid",
+                salary: "1000", contractLengthAr: "سنتان", contractLengthEn: "2 Years",
+                religionAr: "الإسلام", religionEn: "Islam", age: "24"
+            },
+            {
+                id: "17694222860",
+                image: "https://i.ibb.co/s9JsXv2Q/17694222860.jpg",
+                nameAr: "فيني كيموما آشيرا", nameEn: "Vinny Kimoma Ashira",
+                countryAr: "كينيا", countryEn: "Kenya", flagCode: "ke",
+                jobAr: "عاملة منزلية", jobEn: "Housemaid",
+                salary: "900", contractLengthAr: "سنتان", contractLengthEn: "2 Years",
+                religionAr: "مسيحية", religionEn: "Christian", age: "24"
+            },
+            {
+                id: "17632811870",
+                image: "https://i.ibb.co/8gBdJXvZ/17632811870.jpg",
+                nameAr: "إديث كوڤازي أزوسا", nameEn: "Edith Kovazy Azusa",
+                countryAr: "كينيا", countryEn: "Kenya", flagCode: "ke",
+                jobAr: "عاملة منزلية", jobEn: "Housemaid",
+                salary: "900", contractLengthAr: "سنتان", contractLengthEn: "2 Years",
+                religionAr: "مسيحية", religionEn: "Christian", age: "40"
+            },
+            {
+                id: "17735144190",
+                image: "https://i.ibb.co/jnn42L7/17735144190.jpg",
+                nameAr: "تاروج روليان", nameEn: "Tarog Roulian",
+                countryAr: "الفلبين", countryEn: "Philippines", flagCode: "ph",
+                jobAr: "عاملة منزلية", jobEn: "Housemaid",
+                salary: "1500", contractLengthAr: "سنتان", contractLengthEn: "2 Years",
+                religionAr: "مسيحية", religionEn: "Christian", age: "42"
+            },
+            {
+                id: "17735144020",
+                image: "https://i.ibb.co/JFH61jHT/17735144020.jpg",
+                nameAr: "نوري جين لوبيز", nameEn: "Nory Jane Lopez",
+                countryAr: "الفلبين", countryEn: "Philippines", flagCode: "ph",
+                jobAr: "عاملة منزلية", jobEn: "Housemaid",
+                salary: "1500", contractLengthAr: "سنتان", contractLengthEn: "2 Years",
+                religionAr: "مسيحية", religionEn: "Christian", age: "34"
+            }
+        ];
+
+        // 2. الترجمة
         const translations = {
             ar: {
-                workersTitlePage: "العمالة المستهدفة والمِهن المتوفرة | مكتب تمام للاستقدام",
-                splashTitle: "مكتب تمام للإستقدام", loadingText: "جاري تحميل الصفحة", devSignatureFooter: "👑 تم التطوير والتصميم بواسطة : م إسلام الشيخ 👑", menuTitle: "القائمة", navHome: "الرئيسية", navServicesBtn: "خدماتنا", navServices: "خدماتنا", navIndiv: "خدمات الأفراد", navBusiness: "خدمات الأعمال", navMediation: "التوسط في الاستقدام", navWorkers: "العمالة المستهدفة", navCVs: "السير الذاتية", navCountries: "الدول المتاحة", navAbout: "من نحن", navContact: "اتصل بنا", topBar: "مكتب معتمد من منصة مساند | ترخيص رقم: 3701262",
-                
-                heroWorkersTitle: "العمالة المستهدفة والمِهن المتوفرة", heroWorkersDesc: "نوفر لك ولعائلتك نخبة من الكوادر البشرية المدربة والمؤهلة بعناية فائقة لتلبية كافة احتياجاتك المنزلية والمهنية، مع ضمان الجودة والاحترافية في الأداء.",
-                
-                profMaid: "عاملة منزلية", descMaid: "خبرة وكفاءة في إدارة شؤون المنزل، لنضمن لك بيئة نظيفة ومريحة لك ولعائلتك.",
-                profDriver: "سائق خاص", descDriver: "قيادة آمنة، التزام بالمواعيد، ومعرفة تامة بالطرق لتأمين تنقلاتك بكل يسر وسهولة.",
-                profNurse: "ممرضة", descNurse: "رعاية صحية متخصصة ومتابعة دقيقة لحالة مرضاكم وكبار السن بأيادي أمينة ومؤهلة.",
-                profBabysitter: "جليسة أطفال", descBabysitter: "رعاية حانية، واهتمام فائق بأطفالك، لنوفر لهم بيئة آمنة ونمنحك راحة البال.",
-                profGardener: "بستاني", descGardener: "لمسة جمالية لحديقتك، وعناية فائقة بالنباتات لتستمتع بمساحات خضراء تسر الناظرين.",
-                profCook: "طباخ", descCook: "مهارة في إعداد أشهى الأطباق المحلية والعالمية لتلبية ذائقتكم وتقديم سفرة مميزة.",
-                profGuard: "حارس عقار", descGuard: "حماية ويقظة على مدار الساعة لتأمين ممتلكاتك وتوفير أقصى درجات الأمان والسكينة.",
-                
-                btnRequestJob: "طلب هذه المهنة",
-                ctaMissProfessionTitle: "لم تجد المهنة المطلوبة؟", ctaMissProfessionDesc: "لا تقلق، تواصل معنا الآن واخبرنا باحتياجاتك، وسنقوم بتوفير الكادر المناسب لك بأسرع وقت.",
-                
-                footerSocial: "تواصل معنا عبر منصات التواصل الإجتماعي", footerCopy: "جميع الحقوق محفوظة لدى | مكتب تمام للإستقدام 2027"
+                cvsTitlePage: "السير الذاتية | مكتب تمام للاستقدام", splashTitle: "مكتب تمام للإستقدام", loadingText: "جاري تحميل الصفحة", devSignatureFooter: "👑 تم التطوير والتصميم بواسطة : م إسلام الشيخ 👑", menuTitle: "القائمة", navHome: "الرئيسية", navServicesBtn: "خدماتنا", navServices: "خدماتنا", navIndiv: "خدمات الأفراد", navBusiness: "خدمات الأعمال", navMediation: "التوسط في الاستقدام", navWorkers: "العمالة المستهدفة", navCVs: "السير الذاتية", navCountries: "الدول المتاحة", navAbout: "من نحن", navContact: "اتصل بنا", topBar: "مكتب معتمد من منصة مساند | ترخيص رقم: 3701262",
+                heroCVsTitle: "السير الذاتية المتاحة", heroCVsDesc: "تصفح السير الذاتية لأمهر الكوادر البشرية الجاهزة للعمل، واختر الأنسب لاحتياجات عائلتك بكل ثقة وشفافية.",
+                filterCountryTitle: "اختيار البلد", filterJobTitle: "المهن المستهدفة", filterAll: "الكل", countryPh: "الفلبين", countryKe: "كينيا", countryEt: "إثيوبيا", profMaid: "عاملة منزلية", profDriver: "سائق خاص", noResults: "لا توجد سير ذاتية مطابقة لخيارات البحث الحالية.", footerCopy: "جميع الحقوق محفوظة لدى | مكتب تمام للإستقدام 2027",
+                cvId: "مُعرف السيرة:", lblName: "الاسم:", lblJob: "المهنة:", lblSalary: "الراتب:", lblReligion: "الديانة:", lblAge: "العمر:", lblContract: "مدة العقد:", btnOrderCV: "اطلب هذه السيرة",
+                whatsappMsg: "السلام عليكم، أرغب في الاستفسار عن السيرة الذاتية رقم: [ID] - التابعة للعاملة: [NAME] من [COUNTRY]"
             },
             en: {
-                workersTitlePage: "Targeted Workers & Professions | Tamam Recruitment",
-                splashTitle: "Tamam Recruitment Agency", loadingText: "Loading Page", devSignatureFooter: "👑 Developed & Designed by: Eng. Islam Elsheikh 👑", menuTitle: "Menu", navHome: "Home", navServicesBtn: "Services", navServices: "Services", navIndiv: "Individual Services", navBusiness: "Business Services", navMediation: "Recruitment Mediation", navWorkers: "Targeted Workers", navCVs: "CVs", navCountries: "Available Countries", navAbout: "About Us", navContact: "Contact Us", topBar: "Certified by Musaned | License No: 3701262",
-                
-                heroWorkersTitle: "Targeted Workers & Available Professions", heroWorkersDesc: "We provide you and your family with an elite group of carefully trained and qualified human resources to meet all your domestic and professional needs, ensuring quality and professionalism.",
-                
-                profMaid: "Housemaid", descMaid: "Expertise and efficiency in managing household affairs, ensuring a clean and comfortable environment for you and your family.",
-                profDriver: "Private Driver", descDriver: "Safe driving, punctuality, and full road knowledge to secure your commutes easily.",
-                profNurse: "Nurse", descNurse: "Specialized healthcare and close monitoring for your patients and elderly with trustworthy, qualified hands.",
-                profBabysitter: "Babysitter", descBabysitter: "Tender care and extreme attention for your children, providing a safe environment and peace of mind.",
-                profGardener: "Gardener", descGardener: "An aesthetic touch for your garden and extreme care for plants to enjoy eye-catching green spaces.",
-                profCook: "Cook", descCook: "Skill in preparing the most delicious local and international dishes to satisfy your taste and present a distinguished spread.",
-                profGuard: "Property Guard", descGuard: "Round-the-clock protection and vigilance to secure your property and provide maximum safety.",
-                
-                btnRequestJob: "Request This Profession",
-                ctaMissProfessionTitle: "Didn't find the required profession?", ctaMissProfessionDesc: "Don't worry, contact us now and tell us your needs, and we will provide the suitable staff for you ASAP.",
-                
-                footerSocial: "Connect with us on social media", footerCopy: "All Rights Reserved | Tamam Recruitment Agency 2027"
+                cvsTitlePage: "CVs | Tamam Recruitment", splashTitle: "Tamam Recruitment Agency", loadingText: "Loading Page", devSignatureFooter: "👑 Developed & Designed by: Eng. Islam Elsheikh 👑", menuTitle: "Menu", navHome: "Home", navServicesBtn: "Services", navServices: "Services", navIndiv: "Individual Services", navBusiness: "Business Services", navMediation: "Recruitment Mediation", navWorkers: "Targeted Workers", navCVs: "CVs", navCountries: "Available Countries", navAbout: "About Us", navContact: "Contact Us", topBar: "Certified by Musaned | License No: 3701262",
+                heroCVsTitle: "Available Resumes", heroCVsDesc: "Browse the CVs of skilled human resources ready for work, and confidently choose the best fit for your family.",
+                filterCountryTitle: "Select Country", filterJobTitle: "Target Professions", filterAll: "All", countryPh: "Philippines", countryKe: "Kenya", countryEt: "Ethiopia", profMaid: "Housemaid", profDriver: "Private Driver", noResults: "No CVs match the current search options.", footerCopy: "All Rights Reserved | Tamam Recruitment Office 2027",
+                cvId: "CV ID:", lblName: "Name:", lblJob: "Job:", lblSalary: "Salary:", lblReligion: "Religion:", lblAge: "Age:", lblContract: "Contract:", btnOrderCV: "Request this CV",
+                whatsappMsg: "Hello, I want to inquire about CV ID: [ID] - Worker Name: [NAME] from [COUNTRY]"
             }
         };
 
-        // دوال الترجمة والدارك مود
         let currentLang = localStorage.getItem('siteLang') || 'ar';
         
+        function applyLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('siteLang', lang);
+            document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+            document.documentElement.lang = lang;
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang][key]) el.textContent = translations[lang][key];
+            });
+            document.getElementById('searchInput').placeholder = (lang === 'ar') ? "ابحث برقم المعرف (ID)..." : "Search by ID...";
+            renderCVs(); 
+        }
+
         function initDarkMode() {
             const isDark = localStorage.getItem('darkMode') === 'true';
             if(isDark) {
@@ -386,37 +357,150 @@
             document.querySelector('#darkModeBtn i').className = isDark ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
         }
 
-        function applyLanguage(lang) {
-            currentLang = lang;
-            localStorage.setItem('siteLang', lang);
-            document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
-            document.documentElement.lang = lang;
+        // 3. نظام الفلترة
+        let activeFilters = { country: 'all', job: 'all', search: '' };
+
+        function renderCVs() {
+            const grid = document.getElementById('cv-grid');
+            const noResults = document.getElementById('no-results');
+            grid.innerHTML = ''; 
             
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if (translations[lang] && translations[lang][key]) el.innerHTML = translations[lang][key];
+            const isAr = (currentLang === 'ar');
+            const t = translations[currentLang];
+
+            const filteredData = cvsData.filter(cv => {
+                const countryMatch = (activeFilters.country === 'all' || cv.countryEn === activeFilters.country);
+                const jobMatch = (activeFilters.job === 'all' || cv.jobEn === activeFilters.job);
+                const searchMatch = cv.id.toLowerCase().includes(activeFilters.search.toLowerCase());
+                return countryMatch && jobMatch && searchMatch;
             });
 
-            if(translations[lang] && translations[lang]['workersTitlePage']) {
-                document.title = translations[lang]['workersTitlePage'];
+            if (filteredData.length === 0) {
+                grid.classList.add('hidden');
+                noResults.classList.remove('hidden');
+                return;
             }
 
-            // فك التداخل بين الترجمة والسايد بار
-            const sidebar = document.getElementById('sidebar');
-            if(sidebar) {
-                if (lang === 'ar') {
-                    sidebar.classList.remove('left-0', '-translate-x-full', 'translate-x-0');
-                    sidebar.classList.add('right-0', 'translate-x-full');
-                } else {
-                    sidebar.classList.remove('right-0', 'translate-x-full', 'translate-x-0');
-                    sidebar.classList.add('left-0', '-translate-x-full');
-                }
-            }
-            const overlay = document.getElementById('sidebar-overlay');
-            if(overlay) overlay.classList.add('hidden');
+            grid.classList.remove('hidden');
+            noResults.classList.add('hidden');
+
+            filteredData.forEach(cv => {
+                const waMsg = t.whatsappMsg.replace('[ID]', cv.id).replace('[NAME]', isAr ? cv.nameAr : cv.nameEn).replace('[COUNTRY]', isAr ? cv.countryAr : cv.countryEn);
+                const waLink = `https://wa.me/966545797339?text=${encodeURIComponent(waMsg)}`;
+                const currency = isAr ? 'ريال' : 'SAR';
+
+                const cardHTML = `
+                    <div class="cv-card bg-white dark:bg-slate-800 rounded-3xl overflow-hidden shadow-md flex flex-col group border border-slate-100 dark:border-slate-700">
+                        <div class="h-72 overflow-hidden relative cursor-zoom-in" onclick="openLightbox('${cv.image}')">
+                            <img src="${cv.image}" alt="CV ${cv.id}" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors"></div>
+                            
+                            <div class="absolute top-4 right-4 bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm text-primary dark:text-white text-xs font-black px-3 py-1.5 rounded-full z-10 shadow-sm flex items-center gap-2">
+                                <i class="fa-solid fa-id-badge text-secondary"></i> ${cv.id}
+                            </div>
+                            <div class="absolute top-4 left-4 z-10">
+                                <img src="https://flagcdn.com/w40/${cv.flagCode}.png" alt="Flag" class="w-8 h-8 rounded-full object-cover border-2 border-white shadow-md">
+                            </div>
+                            <div class="absolute bottom-0 inset-x-0 h-24 bg-gradient-to-t from-black/60 to-transparent"></div>
+                        </div>
+                        
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-xl font-extrabold text-primary dark:text-white mb-4 line-clamp-1">${isAr ? cv.nameAr : cv.nameEn}</h3>
+                            
+                            <div class="space-y-3 mb-6 text-sm flex-grow">
+                                <div class="flex justify-between items-center bg-slate-50 dark:bg-slate-700/50 p-2 rounded-lg">
+                                    <span class="text-gray-500 dark:text-gray-400 font-bold"><i class="fa-solid fa-briefcase ml-1"></i> ${t.lblJob}</span>
+                                    <span class="font-extrabold text-primary dark:text-secondary">${isAr ? cv.jobAr : cv.jobEn}</span>
+                                </div>
+                                <div class="flex justify-between items-center px-2">
+                                    <span class="text-gray-500 dark:text-gray-400 font-bold"><i class="fa-solid fa-money-bill-wave ml-1"></i> ${t.lblSalary}</span>
+                                    <span class="font-black text-secondary" dir="ltr">${cv.salary} <span class="text-xs">${currency}</span></span>
+                                </div>
+                                <div class="flex justify-between items-center px-2">
+                                    <span class="text-gray-500 dark:text-gray-400 font-bold"><i class="fa-solid fa-user ml-1"></i> ${t.lblAge}</span>
+                                    <span class="font-bold text-slate-800 dark:text-white">${cv.age} عام</span>
+                                </div>
+                                <div class="flex justify-between items-center px-2">
+                                    <span class="text-gray-500 dark:text-gray-400 font-bold"><i class="fa-solid fa-hands-praying ml-1"></i> ${t.lblReligion}</span>
+                                    <span class="font-bold text-slate-800 dark:text-white">${isAr ? cv.religionAr : cv.religionEn}</span>
+                                </div>
+                                <div class="flex justify-between items-center px-2">
+                                    <span class="text-gray-500 dark:text-gray-400 font-bold"><i class="fa-solid fa-file-signature ml-1"></i> ${t.lblContract}</span>
+                                    <span class="font-bold text-slate-800 dark:text-white">${isAr ? cv.contractLengthAr : cv.contractLengthEn}</span>
+                                </div>
+                            </div>
+                            
+                            <a href="${waLink}" target="_blank" class="w-full text-center bg-whatsapp text-white font-bold py-3 rounded-xl hover:bg-green-600 transition-colors flex justify-center items-center gap-2 shadow-md">
+                                <span>${t.btnOrderCV}</span> <i class="fa-brands fa-whatsapp text-xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                `;
+                grid.innerHTML += cardHTML;
+            });
         }
 
-        window.switchLanguage = function() { applyLanguage(currentLang === 'ar' ? 'en' : 'ar'); }
+        function setupFilters() {
+            document.querySelectorAll('#filter-country .filter-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('#filter-country .filter-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    activeFilters.country = this.getAttribute('data-filter');
+                    renderCVs();
+                });
+            });
+
+            document.querySelectorAll('#filter-job .filter-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('#filter-job .filter-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    activeFilters.job = this.getAttribute('data-filter');
+                    renderCVs();
+                });
+            });
+
+            document.getElementById('searchInput').addEventListener('input', function(e) {
+                activeFilters.search = e.target.value;
+                renderCVs();
+            });
+        }
+
+        // 4. نظام הLightbox (معدل لمنع قفل السكرول الرئيسي)
+        function openLightbox(imgSrc) {
+            const overlay = document.getElementById('lightbox-overlay');
+            const img = document.getElementById('lightbox-image');
+            img.src = imgSrc;
+            overlay.classList.add('show');
+            document.body.style.overflow = 'hidden'; // قفل سكرول الصفحة أثناء عرض الصورة فقط
+        }
+
+        function closeLightbox() {
+            const overlay = document.getElementById('lightbox-overlay');
+            overlay.classList.remove('show');
+            document.body.style.overflow = ''; // إعادة السكرول بعد قفل الصورة
+        }
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape") closeLightbox();
+        });
+
+        // 5. شاشة التحميل المطورة
+        function hideSplash() {
+            const splash = document.getElementById('splash-screen');
+            if (splash && !splash.classList.contains('hidden')) {
+                splash.classList.add('opacity-0');
+                setTimeout(() => splash.classList.add('hidden'), 700);
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            initDarkMode();
+            applyLanguage(currentLang);
+            setupFilters();
+        });
+
+        window.addEventListener('load', () => { setTimeout(hideSplash, 2000); });
+        setTimeout(hideSplash, 2500); // حماية أكيدة
         
         window.toggleSidebar = function() {
             const sidebar = document.getElementById('sidebar');
@@ -432,28 +516,6 @@
             }
             overlay.classList.toggle('hidden');
         }
-
-        // شاشة التحميل (2 ثانية مع حماية السكرول)
-        function hideSplash() {
-            const splash = document.getElementById('splash-screen');
-            if (splash && !splash.classList.contains('hidden')) {
-                splash.classList.add('opacity-0');
-                setTimeout(() => {
-                    splash.classList.add('hidden');
-                    document.getElementById('body-content').classList.remove('overflow-hidden');
-                }, 700);
-            } else {
-                document.getElementById('body-content').classList.remove('overflow-hidden');
-            }
-        }
-
-        window.addEventListener('DOMContentLoaded', () => {
-            initDarkMode();
-            applyLanguage(currentLang);
-        });
-
-        window.addEventListener('load', () => { setTimeout(hideSplash, 2000); });
-        setTimeout(hideSplash, 2500); // حماية إجبارية
     </script>
 </body>
 </html>
