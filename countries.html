@@ -56,44 +56,51 @@
             <h2 class="text-xs font-bold text-primary dark:text-white mb-2" data-i18n="splashTitle">مكتب تمام للإستقدام</h2>
             <div class="text-slate-400 text-[10px]"><span data-i18n="loadingText">جاري تحميل الصفحة</span><span class="loading-dots"></span></div>
         </div>
+        <div class="absolute bottom-10 px-4 w-full max-w-sm animate-bounce-slight mt-auto">
+            <div class="block w-full bg-white dark:bg-slate-800 border border-primary/10 dark:border-slate-700 rounded-full py-2.5 px-4 shadow-sm text-center">
+                <span class="text-[10px] font-semibold text-primary/70 dark:text-gray-400" data-i18n="devSignatureFooter">
+                    👑 تم التطوير والتصميم بواسطة : م إسلام الشيخ 👑
+                </span>
+            </div>
+        </div>
     </div>
 
-    <div id="sidebar-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden transition-opacity" onclick="toggleSidebar()"></div>
+    <div id="sidebar-overlay" class="fixed inset-0 bg-black/60 z-40 hidden transition-opacity backdrop-blur-sm" onclick="toggleSidebar()"></div>
     <div id="sidebar" class="fixed top-0 bottom-0 right-0 w-64 bg-white dark:bg-slate-800 shadow-2xl z-50 transform translate-x-full transition-transform duration-300 flex flex-col">
-        <div class="p-4 border-b border-gray-100 dark:border-slate-700 flex justify-between items-center bg-primary text-white">
+        <div class="p-4 border-b border-gray-100 dark:border-slate-700 flex justify-between items-center bg-primary dark:bg-slate-950 text-white">
             <div class="flex items-center gap-2">
                 <img src="https://imgg.io/images/2026/03/22/ce7f90873f720d041ffcdb63cfe66b05.png" class="h-8 brightness-0 invert">
                 <span class="font-extrabold text-lg" data-i18n="menuTitle">القائمة</span>
             </div>
-            <button onclick="toggleSidebar()" class="text-white"><i class="fa-solid fa-xmark text-2xl"></i></button>
+            <button onclick="toggleSidebar()" class="text-white hover:text-secondary transition"><i class="fa-solid fa-xmark text-2xl"></i></button>
         </div>
         <nav class="flex-1 px-4 py-6 space-y-2 overflow-y-auto">
-            <a href="index.html" class="block px-4 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-bold hover:bg-primary hover:text-white transition" data-i18n="navHome">الرئيسية</a>
+            <a href="index.html" class="block px-4 py-2.5 rounded-lg text-gray-600 dark:text-gray-300 font-bold hover:bg-slate-50 dark:hover:bg-slate-700 transition" data-i18n="navHome">الرئيسية</a>
             
             <div class="pt-2 pb-1">
-                <span class="block px-4 text-xs font-bold text-gray-400" data-i18n="navServices">خدماتنا</span>
-                <a href="individuals.html" class="block px-4 py-2 mt-1 rounded-lg text-gray-600 dark:text-gray-300 font-semibold hover:bg-primary hover:text-white transition" data-i18n="navIndiv">خدمات الأفراد</a>
-                <a href="business.html" class="block px-4 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-semibold hover:bg-primary hover:text-white transition" data-i18n="navBusiness">خدمات الأعمال</a>
-                <a href="mediation.html" class="block px-4 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-semibold hover:bg-primary hover:text-white transition" data-i18n="navMediation">التوسط في الاستقدام</a>
+                <span class="block px-4 text-xs font-bold text-gray-400 uppercase tracking-wider mb-1" data-i18n="navServices">خدماتنا</span>
+                <a href="individuals.html" class="block px-4 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-semibold hover:bg-slate-50 dark:hover:bg-slate-700 transition" data-i18n="navIndiv">خدمات الأفراد</a>
+                <a href="business.html" class="block px-4 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-semibold hover:bg-slate-50 dark:hover:bg-slate-700 transition" data-i18n="navBusiness">خدمات الأعمال</a>
+                <a href="mediation.html" class="block px-4 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-semibold hover:bg-slate-50 dark:hover:bg-slate-700 transition" data-i18n="navMediation">التوسط في الاستقدام</a>
             </div>
 
-            <a href="workers.html" class="block px-4 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-bold hover:bg-primary hover:text-white transition" data-i18n="navWorkers">العمالة المستهدفة</a>
-            <a href="cvs.html" class="block px-4 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-bold hover:bg-primary hover:text-white transition" data-i18n="navCVs">السير الذاتية</a>
-            <a href="countries.html" class="block px-4 py-2 rounded-lg bg-slate-50 dark:bg-slate-700 text-primary dark:text-secondary font-bold" data-i18n="navCountries">الدول المتاحة</a>
-            <a href="about.html" class="block px-4 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-bold hover:bg-primary hover:text-white transition" data-i18n="navAbout">من نحن</a>
-            <a href="contact.html" class="block px-4 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-bold hover:bg-primary hover:text-white transition" data-i18n="navContact">اتصل بنا</a>
+            <a href="workers.html" class="block px-4 py-2.5 rounded-lg text-gray-600 dark:text-gray-300 font-bold hover:bg-slate-50 dark:hover:bg-slate-700 transition" data-i18n="navWorkers">العمالة المستهدفة</a>
+            <a href="cvs.html" class="block px-4 py-2.5 rounded-lg text-gray-600 dark:text-gray-300 font-bold hover:bg-slate-50 dark:hover:bg-slate-700 transition" data-i18n="navCVs">السير الذاتية</a>
+            <a href="countries.html" class="block px-4 py-2.5 rounded-lg bg-primary/10 dark:bg-secondary/10 text-primary dark:text-secondary font-bold transition" data-i18n="navCountries">الدول المتاحة</a>
+            <a href="about.html" class="block px-4 py-2.5 rounded-lg text-gray-600 dark:text-gray-300 font-bold hover:bg-slate-50 dark:hover:bg-slate-700 transition" data-i18n="navAbout">من نحن</a>
+            <a href="contact.html" class="block px-4 py-2.5 rounded-lg text-gray-600 dark:text-gray-300 font-bold hover:bg-slate-50 dark:hover:bg-slate-700 transition" data-i18n="navContact">اتصل بنا</a>
         </nav>
     </div>
 
-    <div class="bg-primary text-white py-2 text-sm text-center">
+    <div class="bg-primary dark:bg-slate-950 text-white py-2 text-xs md:text-sm text-center border-b border-white/10 transition-colors">
         <p data-i18n="topBar">مكتب معتمد من منصة مساند | ترخيص رقم: 3701262</p>
     </div>
 
-    <header class="bg-white/90 dark:bg-slate-900/90 backdrop-blur-md shadow-sm sticky top-0 z-30 border-b border-slate-100 dark:border-slate-800 transition-colors duration-300">
+    <header class="bg-white/95 dark:bg-slate-900/95 backdrop-blur-md shadow-sm sticky top-0 z-30 border-b border-slate-100 dark:border-slate-800 transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-4 h-20 flex justify-between items-center">
-            <div class="flex-shrink-0 flex items-center h-full py-1">
+            <a href="index.html" class="flex-shrink-0 flex items-center h-full py-1">
                 <img src="https://imgg.io/images/2026/03/22/ce7f90873f720d041ffcdb63cfe66b05.png" alt="مكتب تمام للاستقدام" class="h-14 md:h-16 object-contain dark:brightness-0 dark:invert transition-all">
-            </div>
+            </a>
             
             <nav class="hidden lg:flex space-x-5 space-x-reverse font-bold text-primary dark:text-white items-center text-sm xl:text-base">
                 <a href="index.html" class="hover:text-secondary transition" data-i18n="navHome">الرئيسية</a>
@@ -117,22 +124,16 @@
             </nav>
             
             <div class="flex items-center gap-3">
-                <button onclick="toggleDarkMode()" class="text-primary dark:text-secondary text-lg hover:scale-110 transition-transform focus:outline-none" id="darkModeBtn">
-                    <i class="fa-solid fa-moon"></i>
-                </button>
+                <button onclick="toggleDarkMode()" class="text-primary dark:text-secondary text-lg hover:scale-110 transition-transform focus:outline-none" id="darkModeBtn"><i class="fa-solid fa-moon"></i></button>
                 <button onclick="switchLanguage()" class="text-[10px] border border-primary/20 dark:border-secondary/30 px-2 py-1 rounded bg-slate-50 dark:bg-slate-800 text-primary dark:text-white font-bold hover:bg-primary hover:text-white dark:hover:bg-secondary dark:hover:text-primary transition-colors">EN/AR</button>
-                <button onclick="toggleSidebar()" class="lg:hidden text-primary dark:text-white"><i class="fa-solid fa-bars text-3xl"></i></button>
+                <button onclick="toggleSidebar()" class="lg:hidden text-primary dark:text-white focus:outline-none"><i class="fa-solid fa-bars text-3xl"></i></button>
             </div>
         </div>
     </header>
 
     <div class="fixed left-4 bottom-24 z-40 flex flex-col gap-3">
-        <a href="tel:0545797339" class="floating-btn w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center shadow-lg animate-bounce-slight" style="animation-delay: 0.5s;">
-            <i class="fa-solid fa-phone text-xl"></i>
-        </a>
-        <a href="https://wa.me/966545797339" target="_blank" class="floating-btn w-12 h-12 bg-whatsapp text-white rounded-full flex items-center justify-center shadow-lg animate-bounce-slight">
-            <i class="fa-brands fa-whatsapp text-2xl"></i>
-        </a>
+        <a href="tel:0545797339" class="floating-btn w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center shadow-lg animate-bounce-slight"><i class="fa-solid fa-phone text-xl"></i></a>
+        <a href="https://wa.me/966545797339" target="_blank" class="floating-btn w-12 h-12 bg-whatsapp text-white rounded-full flex items-center justify-center shadow-lg animate-bounce-slight"><i class="fa-brands fa-whatsapp text-2xl"></i></a>
     </div>
 
     <main class="flex-grow pb-20 md:pb-0">
@@ -167,7 +168,7 @@
                             <span class="bg-primary/10 dark:bg-secondary/20 text-primary dark:text-secondary px-4 py-1.5 rounded-full text-sm font-bold" data-i18n="profNurse">ممرضة</span>
                         </div>
                         
-                        <a href="https://wa.me/966545797339?text=أريد الاستفسار عن الاستقدام من الفلبين" target="_blank" class="mt-auto w-full border-2 border-primary dark:border-secondary text-primary dark:text-secondary font-bold py-3 rounded-xl hover:bg-primary dark:hover:bg-secondary hover:text-white dark:hover:text-primary transition-colors flex justify-center items-center gap-2">
+                        <a href="https://wa.me/966545797339?text=أريد الاستفسار عن الاستقدام من الفلبين" target="_blank" class="mt-auto w-full border-2 border-primary dark:border-secondary text-primary dark:text-secondary font-bold py-3 rounded-xl hover:bg-primary dark:hover:bg-secondary hover:text-white dark:hover:text-primary transition-colors flex justify-center items-center gap-2 shadow-sm">
                             <span data-i18n="btnOrderFrom">استقدام من الفلبين</span> <i class="fa-solid fa-paper-plane"></i>
                         </a>
                     </div>
@@ -182,7 +183,7 @@
                             <span class="bg-primary/10 dark:bg-secondary/20 text-primary dark:text-secondary px-4 py-1.5 rounded-full text-sm font-bold" data-i18n="profMaid">عاملة منزلية</span>
                         </div>
                         
-                        <a href="https://wa.me/966545797339?text=أريد الاستفسار عن الاستقدام من إثيوبيا" target="_blank" class="mt-auto w-full border-2 border-primary dark:border-secondary text-primary dark:text-secondary font-bold py-3 rounded-xl hover:bg-primary dark:hover:bg-secondary hover:text-white dark:hover:text-primary transition-colors flex justify-center items-center gap-2">
+                        <a href="https://wa.me/966545797339?text=أريد الاستفسار عن الاستقدام من إثيوبيا" target="_blank" class="mt-auto w-full border-2 border-primary dark:border-secondary text-primary dark:text-secondary font-bold py-3 rounded-xl hover:bg-primary dark:hover:bg-secondary hover:text-white dark:hover:text-primary transition-colors flex justify-center items-center gap-2 shadow-sm">
                             <span data-i18n="btnOrderFromEt">استقدام من إثيوبيا</span> <i class="fa-solid fa-paper-plane"></i>
                         </a>
                     </div>
@@ -197,7 +198,7 @@
                             <span class="bg-primary/10 dark:bg-secondary/20 text-primary dark:text-secondary px-4 py-1.5 rounded-full text-sm font-bold" data-i18n="profMaid">عاملة منزلية</span>
                         </div>
                         
-                        <a href="https://wa.me/966545797339?text=أريد الاستفسار عن الاستقدام من كينيا" target="_blank" class="mt-auto w-full border-2 border-primary dark:border-secondary text-primary dark:text-secondary font-bold py-3 rounded-xl hover:bg-primary dark:hover:bg-secondary hover:text-white dark:hover:text-primary transition-colors flex justify-center items-center gap-2">
+                        <a href="https://wa.me/966545797339?text=أريد الاستفسار عن الاستقدام من كينيا" target="_blank" class="mt-auto w-full border-2 border-primary dark:border-secondary text-primary dark:text-secondary font-bold py-3 rounded-xl hover:bg-primary dark:hover:bg-secondary hover:text-white dark:hover:text-primary transition-colors flex justify-center items-center gap-2 shadow-sm">
                             <span data-i18n="btnOrderFromKe">استقدام من كينيا</span> <i class="fa-solid fa-paper-plane"></i>
                         </a>
                     </div>
@@ -213,7 +214,7 @@
                             <span class="bg-primary/10 dark:bg-secondary/20 text-primary dark:text-secondary px-4 py-1.5 rounded-full text-sm font-bold" data-i18n="profDriver">سائق خاص</span>
                         </div>
                         
-                        <a href="https://wa.me/966545797339?text=أريد الاستفسار عن الاستقدام من بنغلاديش" target="_blank" class="mt-auto w-full border-2 border-primary dark:border-secondary text-primary dark:text-secondary font-bold py-3 rounded-xl hover:bg-primary dark:hover:bg-secondary hover:text-white dark:hover:text-primary transition-colors flex justify-center items-center gap-2">
+                        <a href="https://wa.me/966545797339?text=أريد الاستفسار عن الاستقدام من بنغلاديش" target="_blank" class="mt-auto w-full border-2 border-primary dark:border-secondary text-primary dark:text-secondary font-bold py-3 rounded-xl hover:bg-primary dark:hover:bg-secondary hover:text-white dark:hover:text-primary transition-colors flex justify-center items-center gap-2 shadow-sm">
                             <span data-i18n="btnOrderFromBd">استقدام من بنغلاديش</span> <i class="fa-solid fa-paper-plane"></i>
                         </a>
                     </div>
@@ -228,7 +229,7 @@
                             <span class="bg-primary/10 dark:bg-secondary/20 text-primary dark:text-secondary px-4 py-1.5 rounded-full text-sm font-bold" data-i18n="profDriver">سائق خاص</span>
                         </div>
                         
-                        <a href="https://wa.me/966545797339?text=أريد الاستفسار عن الاستقدام من باكستان" target="_blank" class="mt-auto w-full border-2 border-primary dark:border-secondary text-primary dark:text-secondary font-bold py-3 rounded-xl hover:bg-primary dark:hover:bg-secondary hover:text-white dark:hover:text-primary transition-colors flex justify-center items-center gap-2">
+                        <a href="https://wa.me/966545797339?text=أريد الاستفسار عن الاستقدام من باكستان" target="_blank" class="mt-auto w-full border-2 border-primary dark:border-secondary text-primary dark:text-secondary font-bold py-3 rounded-xl hover:bg-primary dark:hover:bg-secondary hover:text-white dark:hover:text-primary transition-colors flex justify-center items-center gap-2 shadow-sm">
                             <span data-i18n="btnOrderFromPk">استقدام من باكستان</span> <i class="fa-solid fa-paper-plane"></i>
                         </a>
                     </div>
@@ -264,10 +265,10 @@
 
         <section class="py-12 bg-primary/5 dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800 text-center transition-colors">
             <div class="max-w-4xl mx-auto px-4">
-                <h2 class="text-2xl font-bold text-primary dark:text-white mb-6" data-i18n="ctaCountriesTitle">هل تريد معرفة الأسعار التفصيلية لكل دولة؟</h2>
-                <a href="prices.html" class="inline-flex items-center gap-3 bg-secondary text-primary shadow-lg font-extrabold text-sm md:text-base px-10 py-3 rounded-full hover:bg-yellow-400 hover:scale-105 transition-all duration-300">
-                    <span data-i18n="navPrices">الأسعار والجنسيات</span>
-                    <i class="fa-solid fa-tags text-xl"></i>
+                <h2 class="text-2xl font-bold text-primary dark:text-white mb-6" data-i18n="ctaCountriesTitle">هل تريد تصفح العمالة المتاحة فوراً؟</h2>
+                <a href="cvs.html" class="inline-flex items-center gap-3 bg-secondary text-primary shadow-lg font-extrabold text-sm md:text-base px-10 py-3 rounded-full hover:bg-yellow-400 hover:scale-105 transition-all duration-300">
+                    <span data-i18n="navCVs">السير الذاتية</span>
+                    <i class="fa-solid fa-file-pdf text-xl"></i>
                 </a>
             </div>
         </section>
@@ -276,227 +277,157 @@
 
     <footer class="bg-primary dark:bg-slate-950 text-white pt-12 pb-24 md:pb-8 border-t border-slate-800 dark:border-slate-800 transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-4 flex flex-col items-center">
-            <div class="bg-secondary/10 dark:bg-slate-900 border border-secondary/30 dark:border-slate-700 rounded-2xl p-6 mb-8 w-full max-w-md flex flex-col items-center shadow-lg">
-                <p class="text-secondary font-bold text-sm mb-4" data-i18n="footerSocial">تواصل معنا عبر منصات التواصل الإجتماعي</p>
-                <div class="flex gap-3 flex-wrap justify-center">
-                    <a href="https://x.com/tamam_agency" class="w-10 h-10 rounded-full bg-slate-800 dark:bg-slate-950 flex items-center justify-center hover:bg-black transition border border-transparent dark:border-slate-700 hover:border-slate-500"><img src="https://imgg.io/images/2026/03/22/2a4fdf2d713248416595fd4d62d918bc.png" class="h-5 w-5"></a>
-                    <a href="https://instagram.com/tamam_agency" class="w-10 h-10 rounded-full bg-slate-800 dark:bg-slate-950 flex items-center justify-center hover:bg-instagram transition text-white border border-transparent dark:border-slate-700 hover:border-transparent text-xl"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="https://wa.me/966545797339" class="w-10 h-10 rounded-full bg-slate-800 dark:bg-slate-950 flex items-center justify-center hover:bg-whatsapp transition text-white border border-transparent dark:border-slate-700 hover:border-transparent text-xl"><i class="fa-brands fa-whatsapp"></i></a>
-                    <a href="https://www.facebook.com/profile.php?id=61550244177125" class="w-10 h-10 rounded-full bg-slate-800 dark:bg-slate-950 flex items-center justify-center hover:bg-facebook transition text-white border border-transparent dark:border-slate-700 hover:border-transparent text-xl"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="https://www.tiktok.com/@tamam_agency" class="w-10 h-10 rounded-full bg-slate-800 dark:bg-slate-950 flex items-center justify-center hover:bg-tiktok transition hover:text-black text-white border border-transparent dark:border-slate-700 hover:border-transparent text-xl"><i class="fa-brands fa-tiktok"></i></a>
-                </div>
+            <div class="flex gap-3 flex-wrap justify-center mb-6">
+                <a href="https://x.com/tamam_agency" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-black transition border border-transparent hover:border-slate-500"><img src="https://imgg.io/images/2026/03/22/2a4fdf2d713248416595fd4d62d918bc.png" class="h-5 w-5"></a>
+                <a href="https://instagram.com/tamam_agency" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-instagram transition text-xl"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://wa.me/966545797339" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-whatsapp transition text-xl"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="https://www.facebook.com/profile.php?id=61550244177125" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-facebook transition text-xl"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="https://www.tiktok.com/@tamam_agency" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-tiktok transition hover:text-black text-xl"><i class="fa-brands fa-tiktok"></i></a>
             </div>
-            
-            <div class="flex flex-col justify-center items-center text-center gap-3">
-                <div class="text-slate-400 text-[11px] font-semibold py-1.5 px-4 rounded-full bg-slate-800/50 dark:bg-slate-900 border border-slate-700/50" dir="auto" data-i18n="footerCopy">
-                    جميع الحقوق محفوظة لدى | مكتب تمام للإستقدام 2027
-                </div>
-                <a href="https://wa.me/966547194788" target="_blank" class="inline-block border border-white/20 dark:border-slate-700 rounded-full py-1 px-3 hover:bg-white/10 dark:hover:bg-slate-800 transition-colors">
-                    <span class="text-[10px] font-semibold text-white tracking-wide" data-i18n="devSignatureFooter">👑 تم التطوير والتصميم بواسطة : م إسلام الشيخ 👑</span>
-                </a>
-            </div>
+            <div class="text-slate-400 text-[11px] font-semibold py-1.5 px-4 rounded-full bg-slate-800/50 border border-slate-700/50 mb-3" data-i18n="footerCopy">جميع الحقوق محفوظة لدى | مكتب تمام للإستقدام 2027</div>
+            <a href="https://wa.me/966547194788" target="_blank" class="inline-block border border-white/20 rounded-full py-1 px-3 hover:bg-white/10 transition-colors"><span class="text-[10px] font-semibold tracking-wide" data-i18n="devSignatureFooter">👑 تم التطوير والتصميم بواسطة : م إسلام الشيخ 👑</span></a>
         </div>
     </footer>
 
     <div class="md:hidden fixed bottom-3 left-3 right-3 z-30">
         <div class="bg-white/95 dark:bg-slate-900/95 backdrop-blur-sm border dark:border-slate-800 rounded-2xl shadow-xl flex justify-around items-center h-14">
-            <a href="index.html" class="flex flex-col items-center text-slate-400 dark:text-slate-500 hover:text-primary dark:hover:text-secondary transition group"><div class="p-1.5 rounded-full group-hover:bg-primary/10 dark:group-hover:bg-secondary/10"><i class="fa-solid fa-house text-lg"></i></div><span class="text-[8px] font-bold" data-i18n="navHome">الرئيسية</span></a>
-            <a href="cvs.html" class="flex flex-col items-center text-slate-400 dark:text-slate-500 hover:text-primary dark:hover:text-secondary transition group"><div class="p-1.5 rounded-full group-hover:bg-primary/10 dark:group-hover:bg-secondary/10"><i class="fa-solid fa-file-pdf text-lg"></i></div><span class="text-[8px] font-bold" data-i18n="navCVs">السير الذاتية</span></a>
+            <a href="index.html" class="flex flex-col items-center text-slate-400 dark:text-slate-500 hover:text-primary dark:hover:text-secondary transition group"><div class="p-1.5 rounded-full group-hover:bg-primary/10"><i class="fa-solid fa-house text-lg"></i></div><span class="text-[8px] font-bold" data-i18n="navHome">الرئيسية</span></a>
+            <a href="cvs.html" class="flex flex-col items-center text-slate-400 dark:text-slate-500 hover:text-primary dark:hover:text-secondary transition group"><div class="p-1.5 rounded-full group-hover:bg-primary/10"><i class="fa-solid fa-file-pdf text-lg"></i></div><span class="text-[8px] font-bold" data-i18n="navCVs">السير الذاتية</span></a>
+            <a href="workers.html" class="flex flex-col items-center text-slate-400 dark:text-slate-500 hover:text-primary dark:hover:text-secondary transition group"><div class="p-1.5 rounded-full group-hover:bg-primary/10"><i class="fa-solid fa-user-tie text-lg"></i></div><span class="text-[8px] font-bold" data-i18n="navWorkers">العمالة</span></a>
             <div class="-mt-6">
                 <button class="bg-primary dark:bg-secondary border-4 border-slate-50 dark:border-slate-900 w-12 h-12 rounded-full flex flex-col items-center justify-center text-white dark:text-primary shadow-lg hover:scale-105 transition transform">
                     <i class="fa-solid fa-globe text-xl"></i>
                 </button>
             </div>
-            <a href="index.html#mediation" class="flex flex-col items-center text-slate-400 dark:text-slate-500 hover:text-primary dark:hover:text-secondary transition group"><div class="p-1.5 rounded-full group-hover:bg-primary/10 dark:group-hover:bg-secondary/10"><i class="fa-solid fa-handshake text-lg"></i></div><span class="text-[8px] font-bold" data-i18n="navServicesBtn">خدماتنا</span></a>
-            <a href="contact.html" class="flex flex-col items-center text-slate-400 dark:text-slate-500 hover:text-primary dark:hover:text-secondary transition group"><div class="p-1.5 rounded-full group-hover:bg-primary/10 dark:group-hover:bg-secondary/10"><i class="fa-solid fa-phone text-lg"></i></div><span class="text-[8px] font-bold" data-i18n="navContact">تواصل</span></a>
+            <a href="contact.html" class="flex flex-col items-center text-slate-400 dark:text-slate-500 hover:text-primary dark:hover:text-secondary transition group"><div class="p-1.5 rounded-full group-hover:bg-primary/10"><i class="fa-solid fa-phone text-lg"></i></div><span class="text-[8px] font-bold" data-i18n="navContact">تواصل</span></a>
         </div>
     </div>
 
     <script>
         const translations = {
             ar: {
-                countriesTitlePage: "الدول المتاحة | مكتب تمام للاستقدام",
-                splashTitle: "مكتب تمام للإستقدام",
-                loadingText: "جاري تحميل الصفحة",
-                devSignatureFooter: "👑 تم التطوير والتصميم بواسطة : م إسلام الشيخ 👑",
-                menuTitle: "القائمة",
-                navHome: "الرئيسية",
-                navServicesBtn: "خدماتنا",
-                navServices: "خدماتنا",
-                navIndiv: "خدمات الأفراد",
-                navBusiness: "خدمات الأعمال",
-                navMediation: "التوسط في الاستقدام",
-                navWorkers: "العمالة المستهدفة",
-                navCVs: "السير الذاتية",
-                navCountries: "الدول المتاحة",
-                navAbout: "من نحن",
-                navContact: "اتصل بنا",
-                navPrices: "الأسعار والجنسيات",
-                topBar: "مكتب معتمد من منصة مساند | ترخيص رقم: 3701262",
+                countriesTitlePage: "الدول المتاحة | مكتب تمام للاستقدام", splashTitle: "مكتب تمام للإستقدام", loadingText: "جاري تحميل الصفحة", devSignatureFooter: "👑 تم التطوير والتصميم بواسطة : م إسلام الشيخ 👑", menuTitle: "القائمة", navHome: "الرئيسية", navServicesBtn: "خدماتنا", navServices: "خدماتنا", navIndiv: "خدمات الأفراد", navBusiness: "خدمات الأعمال", navMediation: "التوسط في الاستقدام", navWorkers: "العمالة المستهدفة", navCVs: "السير الذاتية", navCountries: "الدول المتاحة", navAbout: "من نحن", navContact: "اتصل بنا", topBar: "مكتب معتمد من منصة مساند | ترخيص رقم: 3701262",
                 
-                heroCountriesTitle: "الدول المتاحة للاستقدام",
-                heroCountriesDesc: "نوفر لك نخبة من الكوادر البشرية من دول مصرحة ومعتمدة لدى منصة مساند، لضمان تلبية كافة احتياجاتك بأعلى معايير الجودة والموثوقية.",
+                heroCountriesTitle: "الدول المتاحة للاستقدام", heroCountriesDesc: "نوفر لك نخبة من الكوادر البشرية من دول مصرحة ومعتمدة لدى منصة مساند، لضمان تلبية كافة احتياجاتك بأعلى معايير الجودة والموثوقية.",
                 
-                countryPh: "الفلبين",
-                countryPhDesc: "عمالة مدربة ومؤهلة بأعلى المعايير",
-                btnOrderFrom: "استقدام من الفلبين",
+                countryPh: "الفلبين", countryPhDesc: "عمالة مدربة ومؤهلة بأعلى المعايير", btnOrderFrom: "استقدام من الفلبين",
+                countryEt: "إثيوبيا", countryEtDesc: "نشاط، التزام، وسرعة في الإنجاز", btnOrderFromEt: "استقدام من إثيوبيا",
+                countryKe: "كينيا", countryKeDesc: "كفاءة عالية وإجادة للغة الإنجليزية", btnOrderFromKe: "استقدام من كينيا",
+                countryBd: "بنغلاديش", countryBdDesc: "إخلاص في العمل وتكلفة مناسبة", btnOrderFromBd: "استقدام من بنغلاديش",
+                countryPk: "باكستان", countryPkDesc: "مهارة عالية في القيادة والمقاولات", btnOrderFromPk: "استقدام من باكستان",
                 
-                countryEt: "إثيوبيا",
-                countryEtDesc: "نشاط، التزام، وسرعة في الإنجاز",
-                btnOrderFromEt: "استقدام من إثيوبيا",
-                
-                countryKe: "كينيا",
-                countryKeDesc: "كفاءة عالية وإجادة للغة الإنجليزية",
-                btnOrderFromKe: "استقدام من كينيا",
-                
-                countryBd: "بنغلاديش",
-                countryBdDesc: "إخلاص في العمل وتكلفة مناسبة",
-                btnOrderFromBd: "استقدام من بنغلاديش",
-                
-                countryPk: "باكستان",
-                countryPkDesc: "مهارة عالية في القيادة والمقاولات",
-                btnOrderFromPk: "استقدام من باكستان",
-                
-                profMaid: "عاملة منزلية",
-                profNurse: "ممرضة",
-                profDriver: "سائق خاص",
+                profMaid: "عاملة منزلية", profNurse: "ممرضة", profDriver: "سائق خاص",
                 
                 whyCountriesTitle: "لماذا نركز على هذه الدول؟",
-                whyReason1: "كفاءة عالية وتدريب مستمر",
-                whyReason1Desc: "نختار الدول التي توفر مراكز تدريب معتمدة لضمان جاهزية العمالة للعمل في المملكة فور وصولهم.",
-                whyReason2: "توافق ثقافي واجتماعي",
-                whyReason2Desc: "نحرص على جلب عمالة تتناسب مع عادات وتقاليد الأسرة السعودية لضمان استقرارهم السريع.",
-                whyReason3: "سرعة في إنهاء الإجراءات",
-                whyReason3Desc: "وجود وكلاء معتمدين لنا في هذه الدول يضمن تخليص الأوراق واستخراج التأشيرات في وقت قياسي.",
+                whyReason1: "كفاءة عالية وتدريب مستمر", whyReason1Desc: "نختار الدول التي توفر مراكز تدريب معتمدة لضمان جاهزية العمالة للعمل في المملكة فور وصولهم.",
+                whyReason2: "توافق ثقافي واجتماعي", whyReason2Desc: "نحرص على جلب عمالة تتناسب مع عادات وتقاليد الأسرة السعودية لضمان استقرارهم السريع.",
+                whyReason3: "سرعة في إنهاء الإجراءات", whyReason3Desc: "وجود وكلاء معتمدين لنا في هذه الدول يضمن تخليص الأوراق واستخراج التأشيرات في وقت قياسي.",
                 
-                ctaCountriesTitle: "هل تريد معرفة الأسعار التفصيلية لكل دولة؟",
-                
-                footerSocial: "تواصل معنا عبر منصات التواصل الإجتماعي",
-                footerCopy: "جميع الحقوق محفوظة لدى | مكتب تمام للإستقدام 2027"
+                ctaCountriesTitle: "هل تريد تصفح العمالة المتاحة فوراً؟",
+                footerSocial: "تواصل معنا عبر منصات التواصل الإجتماعي", footerCopy: "جميع الحقوق محفوظة لدى | مكتب تمام للإستقدام 2027"
             },
             en: {
-                countriesTitlePage: "Available Countries | Tamam Recruitment",
-                splashTitle: "Tamam Recruitment Agency",
-                loadingText: "Loading Page",
-                devSignatureFooter: "👑 Developed & Designed by: Eng. Islam Elsheikh 👑",
-                menuTitle: "Menu",
-                navHome: "Home",
-                navServicesBtn: "Services",
-                navServices: "Services",
-                navIndiv: "Individual Services",
-                navBusiness: "Business Services",
-                navMediation: "Recruitment Mediation",
-                navWorkers: "Targeted Workers",
-                navCVs: "CVs",
-                navCountries: "Available Countries",
-                navAbout: "About Us",
-                navContact: "Contact Us",
-                navPrices: "Prices & Nationalities",
-                topBar: "Certified by Musaned | License No: 3701262",
+                countriesTitlePage: "Available Countries | Tamam Recruitment", splashTitle: "Tamam Recruitment Agency", loadingText: "Loading Page", devSignatureFooter: "👑 Developed & Designed by: Eng. Islam Elsheikh 👑", menuTitle: "Menu", navHome: "Home", navServicesBtn: "Services", navServices: "Services", navIndiv: "Individual Services", navBusiness: "Business Services", navMediation: "Recruitment Mediation", navWorkers: "Targeted Workers", navCVs: "CVs", navCountries: "Available Countries", navAbout: "About Us", navContact: "Contact Us", topBar: "Certified by Musaned | License No: 3701262",
                 
-                heroCountriesTitle: "Available Countries for Recruitment",
-                heroCountriesDesc: "We provide you with elite human resources from authorized countries approved by Musaned, ensuring all your needs are met with the highest standards of quality and reliability.",
+                heroCountriesTitle: "Available Countries for Recruitment", heroCountriesDesc: "We provide you with elite human resources from authorized countries approved by Musaned, ensuring all your needs are met with the highest standards of quality and reliability.",
                 
-                countryPh: "Philippines",
-                countryPhDesc: "Trained & highly qualified labor",
-                btnOrderFrom: "Recruit from Philippines",
+                countryPh: "Philippines", countryPhDesc: "Trained & highly qualified labor", btnOrderFrom: "Recruit from Philippines",
+                countryEt: "Ethiopia", countryEtDesc: "Active, committed, and fast", btnOrderFromEt: "Recruit from Ethiopia",
+                countryKe: "Kenya", countryKeDesc: "High efficiency & English proficiency", btnOrderFromKe: "Recruit from Kenya",
+                countryBd: "Bangladesh", countryBdDesc: "Dedication to work & reasonable cost", btnOrderFromBd: "Recruit from Bangladesh",
+                countryPk: "Pakistan", countryPkDesc: "High skill in driving & contracting", btnOrderFromPk: "Recruit from Pakistan",
                 
-                countryEt: "Ethiopia",
-                countryEtDesc: "Active, committed, and fast",
-                btnOrderFromEt: "Recruit from Ethiopia",
-                
-                countryKe: "Kenya",
-                countryKeDesc: "High efficiency & English proficiency",
-                btnOrderFromKe: "Recruit from Kenya",
-                
-                countryBd: "Bangladesh",
-                countryBdDesc: "Dedication to work & reasonable cost",
-                btnOrderFromBd: "Recruit from Bangladesh",
-                
-                countryPk: "Pakistan",
-                countryPkDesc: "High skill in driving & contracting",
-                btnOrderFromPk: "Recruit from Pakistan",
-                
-                profMaid: "Housemaid",
-                profNurse: "Nurse",
-                profDriver: "Private Driver",
+                profMaid: "Housemaid", profNurse: "Nurse", profDriver: "Private Driver",
                 
                 whyCountriesTitle: "Why do we focus on these countries?",
-                whyReason1: "High Efficiency & Training",
-                whyReason1Desc: "We select countries that provide certified training centers to ensure readiness for work in the Kingdom upon arrival.",
-                whyReason2: "Cultural Compatibility",
-                whyReason2Desc: "We ensure bringing labor that suits the customs and traditions of the Saudi family for fast integration.",
-                whyReason3: "Fast Procedures",
-                whyReason3Desc: "Having authorized agents in these countries ensures clearing paperwork and visas in record time.",
+                whyReason1: "High Efficiency & Training", whyReason1Desc: "We select countries that provide certified training centers to ensure readiness for work in the Kingdom upon arrival.",
+                whyReason2: "Cultural Compatibility", whyReason2Desc: "We ensure bringing labor that suits the customs and traditions of the Saudi family for fast integration.",
+                whyReason3: "Fast Procedures", whyReason3Desc: "Having authorized agents in these countries ensures clearing paperwork and visas in record time.",
                 
-                ctaCountriesTitle: "Do you want to know the detailed prices for each country?",
-                
-                footerSocial: "Connect with us on social media",
-                footerCopy: "All Rights Reserved | Tamam Recruitment Agency 2027"
+                ctaCountriesTitle: "Want to browse available workers right away?",
+                footerSocial: "Connect with us on social media", footerCopy: "All Rights Reserved | Tamam Recruitment Agency 2027"
             }
         };
 
+        // دوال الترجمة والدارك مود
         let currentLang = localStorage.getItem('siteLang') || 'ar';
         
         function initDarkMode() {
             const isDark = localStorage.getItem('darkMode') === 'true';
-            const htmlRoot = document.documentElement;
-            const icon = document.querySelector('#darkModeBtn i');
             if(isDark) {
-                htmlRoot.classList.add('dark');
-                if(icon) { icon.classList.remove('fa-moon'); icon.classList.add('fa-sun'); }
+                document.documentElement.classList.add('dark');
+                document.querySelector('#darkModeBtn i').className = 'fa-solid fa-sun';
             } else {
-                htmlRoot.classList.remove('dark');
-                if(icon) { icon.classList.remove('fa-sun'); icon.classList.add('fa-moon'); }
+                document.documentElement.classList.remove('dark');
+                document.querySelector('#darkModeBtn i').className = 'fa-solid fa-moon';
             }
         }
 
         window.toggleDarkMode = function() {
-            const htmlRoot = document.documentElement;
-            const isDark = htmlRoot.classList.toggle('dark');
+            const isDark = document.documentElement.classList.toggle('dark');
             localStorage.setItem('darkMode', isDark);
-            const icon = document.querySelector('#darkModeBtn i');
-            if(isDark) { icon.classList.remove('fa-moon'); icon.classList.add('fa-sun'); } 
-            else { icon.classList.remove('fa-sun'); icon.classList.add('fa-moon'); }
+            document.querySelector('#darkModeBtn i').className = isDark ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
         }
 
         function applyLanguage(lang) {
             currentLang = lang;
             localStorage.setItem('siteLang', lang);
-            const htmlRoot = document.documentElement;
-            if (lang === 'ar') {
-                htmlRoot.setAttribute('dir', 'rtl');
-                htmlRoot.setAttribute('lang', 'ar');
-                const sidebar = document.getElementById('sidebar');
-                if(sidebar) sidebar.classList.replace('-translate-x-full', 'translate-x-full');
-            } else {
-                htmlRoot.setAttribute('dir', 'ltr');
-                htmlRoot.setAttribute('lang', 'en');
-                const sidebar = document.getElementById('sidebar');
-                if(sidebar) {
-                    sidebar.classList.remove('right-0', 'translate-x-full');
-                    sidebar.classList.add('left-0', '-translate-x-full');
-                }
-            }
-            document.querySelectorAll('[data-i18n]').forEach(element => {
-                const key = element.getAttribute('data-i18n');
-                if (translations[lang] && translations[lang][key]) { 
-                    element.innerHTML = translations[lang][key]; 
-                }
+            document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+            document.documentElement.lang = lang;
+            
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) el.innerHTML = translations[lang][key];
             });
+
             if(translations[lang] && translations[lang]['countriesTitlePage']) {
                 document.title = translations[lang]['countriesTitlePage'];
             }
+
+            // فك التداخل بين الترجمة والسايد بار
+            const sidebar = document.getElementById('sidebar');
+            if(sidebar) {
+                if (lang === 'ar') {
+                    sidebar.classList.remove('left-0', '-translate-x-full', 'translate-x-0');
+                    sidebar.classList.add('right-0', 'translate-x-full');
+                } else {
+                    sidebar.classList.remove('right-0', 'translate-x-full', 'translate-x-0');
+                    sidebar.classList.add('left-0', '-translate-x-full');
+                }
+            }
+            const overlay = document.getElementById('sidebar-overlay');
+            if(overlay) overlay.classList.add('hidden');
         }
 
         window.switchLanguage = function() { applyLanguage(currentLang === 'ar' ? 'en' : 'ar'); }
+        
         window.toggleSidebar = function() {
             const sidebar = document.getElementById('sidebar');
             const overlay = document.getElementById('sidebar-overlay');
             if(!sidebar || !overlay) return;
-            if (currentLang === 'ar') { sidebar.classList.toggle('translate-x-full'); } 
-            else { sidebar.classList.toggle('-translate-x-full'); }
+            
+            if (currentLang === 'ar') { 
+                sidebar.classList.toggle('translate-x-full');
+                sidebar.classList.toggle('translate-x-0');
+            } else { 
+                sidebar.classList.toggle('-translate-x-full');
+                sidebar.classList.toggle('translate-x-0');
+            }
             overlay.classList.toggle('hidden');
+        }
+
+        // شاشة التحميل (2 ثانية مع حماية السكرول)
+        function hideSplash() {
+            const splash = document.getElementById('splash-screen');
+            if (splash && !splash.classList.contains('hidden')) {
+                splash.classList.add('opacity-0');
+                setTimeout(() => {
+                    splash.classList.add('hidden');
+                    document.getElementById('body-content').classList.remove('overflow-hidden');
+                }, 700);
+            } else {
+                document.getElementById('body-content').classList.remove('overflow-hidden');
+            }
         }
 
         window.addEventListener('DOMContentLoaded', () => {
@@ -504,16 +435,8 @@
             applyLanguage(currentLang);
         });
 
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                const splash = document.getElementById('splash-screen');
-                if(splash) splash.classList.add('opacity-0');
-                setTimeout(() => {
-                    if(splash) splash.classList.add('hidden');
-                    document.getElementById('body-content').classList.remove('overflow-hidden');
-                }, 700);
-            }, 1500);
-        });
+        window.addEventListener('load', () => { setTimeout(hideSplash, 2000); });
+        setTimeout(hideSplash, 2500); // حماية إجبارية
     </script>
 </body>
 </html>
