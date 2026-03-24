@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title data-i18n="workersTitlePage">العمالة المستهدفة والمِهن المتوفرة | مكتب تمام للاستقدام</title>
+    <title data-i18n="workersTitlePage">العمالة المستهدفة | مكتب تمام للاستقدام</title>
     
     <link rel="icon" type="image/png" href="https://imgg.io/images/2026/03/22/3905f931b0fa4f5e93531423df3036d8.png">
 
@@ -43,7 +43,6 @@
         .profession-card:hover { transform: translateY(-10px); border-color: rgba(234, 179, 8, 0.4); box-shadow: 0 25px 30px -5px rgba(17, 34, 64, 0.15); }
         .profession-card img { transition: transform 0.7s ease; }
         .profession-card:hover img { transform: scale(1.08); }
-        
     </style>
 </head>
 <body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 overflow-hidden" id="body-content">
@@ -57,47 +56,55 @@
             <h2 class="text-xs font-bold text-primary dark:text-white mb-2" data-i18n="splashTitle">مكتب تمام للإستقدام</h2>
             <div class="text-slate-400 text-[10px]"><span data-i18n="loadingText">جاري تحميل الصفحة</span><span class="loading-dots"></span></div>
         </div>
+        <div class="absolute bottom-10 px-4 w-full max-w-sm animate-bounce-slight mt-auto">
+            <div class="block w-full bg-white dark:bg-slate-800 border border-primary/10 dark:border-slate-700 rounded-full py-2.5 px-4 shadow-sm text-center">
+                <span class="text-[10px] font-semibold text-primary/70 dark:text-gray-400" data-i18n="devSignatureFooter">
+                    👑 تم التطوير والتصميم بواسطة : م إسلام الشيخ 👑
+                </span>
+            </div>
+        </div>
     </div>
 
-    <div id="sidebar-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden transition-opacity" onclick="toggleSidebar()"></div>
+    <div id="sidebar-overlay" class="fixed inset-0 bg-black/60 z-40 hidden transition-opacity backdrop-blur-sm" onclick="toggleSidebar()"></div>
     <div id="sidebar" class="fixed top-0 bottom-0 right-0 w-64 bg-white dark:bg-slate-800 shadow-2xl z-50 transform translate-x-full transition-transform duration-300 flex flex-col">
-        <div class="p-4 border-b border-gray-100 dark:border-slate-700 flex justify-between items-center bg-primary text-white">
+        <div class="p-4 border-b border-gray-100 dark:border-slate-700 flex justify-between items-center bg-primary dark:bg-slate-950 text-white">
             <div class="flex items-center gap-2">
                 <img src="https://imgg.io/images/2026/03/22/ce7f90873f720d041ffcdb63cfe66b05.png" class="h-8 brightness-0 invert">
                 <span class="font-extrabold text-lg" data-i18n="menuTitle">القائمة</span>
             </div>
-            <button onclick="toggleSidebar()" class="text-white"><i class="fa-solid fa-xmark text-2xl"></i></button>
+            <button onclick="toggleSidebar()" class="text-white hover:text-secondary transition"><i class="fa-solid fa-xmark text-2xl"></i></button>
         </div>
         <nav class="flex-1 px-4 py-6 space-y-2 overflow-y-auto">
-            <a href="index.html" class="block px-4 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-bold hover:bg-primary hover:text-white transition" data-i18n="navHome">الرئيسية</a>
+            <a href="index.html" class="block px-4 py-2.5 rounded-lg text-gray-600 dark:text-gray-300 font-bold hover:bg-slate-50 dark:hover:bg-slate-700 transition" data-i18n="navHome">الرئيسية</a>
             
             <div class="pt-2 pb-1">
-                <span class="block px-4 text-xs font-bold text-gray-400" data-i18n="navServices">خدماتنا</span>
-                <a href="individuals.html" class="block px-4 py-2 mt-1 rounded-lg text-gray-600 dark:text-gray-300 font-semibold hover:bg-primary hover:text-white transition" data-i18n="navIndiv">خدمات الأفراد</a>
-                <a href="business.html" class="block px-4 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-semibold hover:bg-primary hover:text-white transition" data-i18n="navBusiness">خدمات الأعمال</a>
-                <a href="mediation.html" class="block px-4 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-semibold hover:bg-primary hover:text-white transition" data-i18n="navMediation">التوسط في الاستقدام</a>
+                <span class="block px-4 text-xs font-bold text-gray-400 uppercase tracking-wider mb-1" data-i18n="navServices">خدماتنا</span>
+                <a href="individuals.html" class="block px-4 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-semibold hover:bg-slate-50 dark:hover:bg-slate-700 transition" data-i18n="navIndiv">خدمات الأفراد</a>
+                <a href="business.html" class="block px-4 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-semibold hover:bg-slate-50 dark:hover:bg-slate-700 transition" data-i18n="navBusiness">خدمات الأعمال</a>
+                <a href="mediation.html" class="block px-4 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-semibold hover:bg-slate-50 dark:hover:bg-slate-700 transition" data-i18n="navMediation">التوسط في الاستقدام</a>
             </div>
 
-            <a href="workers.html" class="block px-4 py-2 rounded-lg bg-slate-50 dark:bg-slate-700 text-primary dark:text-secondary font-bold" data-i18n="navWorkers">العمالة المستهدفة</a>
-            <a href="cvs.html" class="block px-4 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-bold hover:bg-primary hover:text-white transition" data-i18n="navCVs">السير الذاتية</a>
-            <a href="countries.html" class="block px-4 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-bold hover:bg-primary hover:text-white transition" data-i18n="navCountries">الدول المتاحة</a>
-            <a href="about.html" class="block px-4 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-bold hover:bg-primary hover:text-white transition" data-i18n="navAbout">من نحن</a>
-            <a href="contact.html" class="block px-4 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-bold hover:bg-primary hover:text-white transition" data-i18n="navContact">اتصل بنا</a>
+            <a href="workers.html" class="block px-4 py-2.5 rounded-lg bg-primary/10 dark:bg-secondary/10 text-primary dark:text-secondary font-bold transition" data-i18n="navWorkers">العمالة المستهدفة</a>
+            <a href="cvs.html" class="block px-4 py-2.5 rounded-lg text-gray-600 dark:text-gray-300 font-bold hover:bg-slate-50 dark:hover:bg-slate-700 transition" data-i18n="navCVs">السير الذاتية</a>
+            <a href="countries.html" class="block px-4 py-2.5 rounded-lg text-gray-600 dark:text-gray-300 font-bold hover:bg-slate-50 dark:hover:bg-slate-700 transition" data-i18n="navCountries">الدول المتاحة</a>
+            <a href="about.html" class="block px-4 py-2.5 rounded-lg text-gray-600 dark:text-gray-300 font-bold hover:bg-slate-50 dark:hover:bg-slate-700 transition" data-i18n="navAbout">من نحن</a>
+            <a href="contact.html" class="block px-4 py-2.5 rounded-lg text-gray-600 dark:text-gray-300 font-bold hover:bg-slate-50 dark:hover:bg-slate-700 transition" data-i18n="navContact">اتصل بنا</a>
         </nav>
     </div>
 
-    <div class="bg-primary text-white py-2 text-sm text-center">
+    <div class="bg-primary dark:bg-slate-950 text-white py-2 text-xs md:text-sm text-center border-b border-white/10 transition-colors">
         <p data-i18n="topBar">مكتب معتمد من منصة مساند | ترخيص رقم: 3701262</p>
     </div>
 
-    <header class="bg-white/90 dark:bg-slate-900/90 backdrop-blur-md shadow-sm sticky top-0 z-30 border-b border-slate-100 dark:border-slate-800 transition-colors duration-300">
+    <header class="bg-white/95 dark:bg-slate-900/95 backdrop-blur-md shadow-sm sticky top-0 z-30 border-b border-slate-100 dark:border-slate-800 transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-4 h-20 flex justify-between items-center">
-            <div class="flex-shrink-0 flex items-center h-full py-1">
+            <a href="index.html" class="flex-shrink-0 flex items-center h-full py-1">
                 <img src="https://imgg.io/images/2026/03/22/ce7f90873f720d041ffcdb63cfe66b05.png" alt="مكتب تمام للاستقدام" class="h-14 md:h-16 object-contain dark:brightness-0 dark:invert transition-all">
-            </div>
+            </a>
             
             <nav class="hidden lg:flex space-x-5 space-x-reverse font-bold text-primary dark:text-white items-center text-sm xl:text-base">
                 <a href="index.html" class="hover:text-secondary transition" data-i18n="navHome">الرئيسية</a>
+                
                 <div class="relative group">
                     <button class="flex items-center gap-1 hover:text-secondary transition py-2" data-i18n="navServicesBtn">
                         خدماتنا <i class="fa-solid fa-chevron-down text-[10px]"></i>
@@ -108,6 +115,7 @@
                         <a href="mediation.html" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:text-secondary hover:bg-slate-50 dark:hover:bg-slate-700 transition" data-i18n="navMediation">التوسط في الاستقدام</a>
                     </div>
                 </div>
+
                 <a href="workers.html" class="text-secondary border-b-2 border-secondary pb-1" data-i18n="navWorkers">العمالة المستهدفة</a>
                 <a href="cvs.html" class="hover:text-secondary transition" data-i18n="navCVs">السير الذاتية</a>
                 <a href="countries.html" class="hover:text-secondary transition" data-i18n="navCountries">الدول المتاحة</a>
@@ -116,11 +124,9 @@
             </nav>
             
             <div class="flex items-center gap-3">
-                <button onclick="toggleDarkMode()" class="text-primary dark:text-secondary text-lg hover:scale-110 transition-transform focus:outline-none" id="darkModeBtn">
-                    <i class="fa-solid fa-moon"></i>
-                </button>
+                <button onclick="toggleDarkMode()" class="text-primary dark:text-secondary text-lg hover:scale-110 transition-transform focus:outline-none" id="darkModeBtn"><i class="fa-solid fa-moon"></i></button>
                 <button onclick="switchLanguage()" class="text-[10px] border border-primary/20 dark:border-secondary/30 px-2 py-1 rounded bg-slate-50 dark:bg-slate-800 text-primary dark:text-white font-bold hover:bg-primary hover:text-white dark:hover:bg-secondary dark:hover:text-primary transition-colors">EN/AR</button>
-                <button onclick="toggleSidebar()" class="lg:hidden text-primary dark:text-white"><i class="fa-solid fa-bars text-3xl"></i></button>
+                <button onclick="toggleSidebar()" class="lg:hidden text-primary dark:text-white focus:outline-none"><i class="fa-solid fa-bars text-3xl"></i></button>
             </div>
         </div>
     </header>
@@ -133,7 +139,7 @@
     <main class="flex-grow pb-20 md:pb-0">
         
         <section class="relative bg-primary dark:bg-slate-950 py-16 lg:py-24 overflow-hidden text-center border-b-4 border-secondary transition-colors duration-300">
-            <div class="absolute inset-0 opacity-10">
+            <div class="absolute inset-0">
                 <img src="https://i.ibb.co/prkHGXVm/IMG.jpg" class="w-full h-full object-cover">
             </div>
             <div class="absolute inset-0 bg-primary/80 dark:bg-slate-950/85"></div>
@@ -280,7 +286,7 @@
 
     </main>
 
-    <footer class="bg-primary dark:bg-slate-950 text-white pt-12 pb-24 border-t border-slate-800 dark:border-slate-800 transition-colors duration-300">
+    <footer class="bg-primary dark:bg-slate-950 text-white pt-12 pb-24 md:pb-8 border-t border-slate-800 dark:border-slate-800 transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-4 flex flex-col items-center">
             <div class="bg-secondary/10 dark:bg-slate-900 border border-secondary/30 dark:border-slate-700 rounded-2xl p-6 mb-8 w-full max-w-md flex flex-col items-center shadow-lg">
                 <p class="text-secondary font-bold text-sm mb-4" data-i18n="footerSocial">تواصل معنا عبر منصات التواصل الإجتماعي</p>
@@ -309,9 +315,9 @@
             <a href="index.html" class="flex flex-col items-center text-slate-400 dark:text-slate-500 hover:text-primary dark:hover:text-secondary transition group"><div class="p-1.5 rounded-full group-hover:bg-primary/10 dark:group-hover:bg-secondary/10"><i class="fa-solid fa-house text-lg"></i></div><span class="text-[8px] font-bold" data-i18n="navHome">الرئيسية</span></a>
             <a href="cvs.html" class="flex flex-col items-center text-slate-400 dark:text-slate-500 hover:text-primary dark:hover:text-secondary transition group"><div class="p-1.5 rounded-full group-hover:bg-primary/10 dark:group-hover:bg-secondary/10"><i class="fa-solid fa-file-pdf text-lg"></i></div><span class="text-[8px] font-bold" data-i18n="navCVs">السير الذاتية</span></a>
             <div class="-mt-6">
-                <a href="workers.html" class="bg-primary dark:bg-secondary border-4 border-slate-50 dark:border-slate-900 w-12 h-12 rounded-full flex flex-col items-center justify-center text-white dark:text-primary shadow-lg hover:scale-105 transition transform">
+                <button class="bg-primary dark:bg-secondary border-4 border-slate-50 dark:border-slate-900 w-12 h-12 rounded-full flex flex-col items-center justify-center text-white dark:text-primary shadow-lg hover:scale-105 transition transform">
                     <i class="fa-solid fa-user-tie text-xl"></i>
-                </a>
+                </button>
             </div>
             <a href="countries.html" class="flex flex-col items-center text-slate-400 dark:text-slate-500 hover:text-primary dark:hover:text-secondary transition group"><div class="p-1.5 rounded-full group-hover:bg-primary/10 dark:group-hover:bg-secondary/10"><i class="fa-solid fa-globe text-lg"></i></div><span class="text-[8px] font-bold" data-i18n="navCountries">الدول</span></a>
             <a href="contact.html" class="flex flex-col items-center text-slate-400 dark:text-slate-500 hover:text-primary dark:hover:text-secondary transition group"><div class="p-1.5 rounded-full group-hover:bg-primary/10 dark:group-hover:bg-secondary/10"><i class="fa-solid fa-phone text-lg"></i></div><span class="text-[8px] font-bold" data-i18n="navContact">تواصل</span></a>
@@ -319,151 +325,126 @@
     </div>
 
     <script>
-        // قاموس الترجمة المحدث ليشمل النصوص الجديدة والوصف الإنجليزي
         const translations = {
             ar: {
                 workersTitlePage: "العمالة المستهدفة والمِهن المتوفرة | مكتب تمام للاستقدام",
-                splashTitle: "مكتب تمام للإستقدام",
-                loadingText: "جاري تحميل الصفحة",
-                devSignatureFooter: "👑 تم التطوير والتصميم بواسطة : م إسلام الشيخ 👑",
-                menuTitle: "القائمة",
-                navHome: "الرئيسية",
-                navServicesBtn: "خدماتنا",
-                navServices: "خدماتنا",
-                navIndiv: "خدمات الأفراد",
-                navBusiness: "خدمات الأعمال",
-                navMediation: "التوسط في الاستقدام",
-                navWorkers: "العمالة المستهدفة",
-                navCVs: "السير الذاتية",
-                navCountries: "الدول المتاحة",
-                navAbout: "من نحن",
-                navContact: "اتصل بنا",
-                topBar: "مكتب معتمد من منصة مساند | ترخيص رقم: 3701262",
-                heroWorkersTitle: "العمالة المستهدفة والمِهن المتوفرة",
-                heroWorkersDesc: "نوفر لك ولعائلتك نخبة من الكوادر البشرية المدربة والمؤهلة بعناية فائقة لتلبية كافة احتياجاتك المنزلية والمهنية، مع ضمان الجودة والاحترافية في الأداء.",
-                profMaid: "عاملة منزلية",
-                descMaid: "خبرة وكفاءة في إدارة شؤون المنزل، لنضمن لك بيئة نظيفة ومريحة لك ولعائلتك.",
-                profDriver: "سائق خاص",
-                descDriver: "قيادة آمنة، التزام بالمواعيد، ومعرفة تامة بالطرق لتأمين تنقلاتك بكل يسر وسهولة.",
-                profNurse: "ممرضة",
-                descNurse: "رعاية صحية متخصصة ومتابعة دقيقة لحالة مرضاكم وكبار السن بأيادي أمينة ومؤهلة.",
-                profBabysitter: "جليسة أطفال",
-                descBabysitter: "رعاية حانية، واهتمام فائق بأطفالك، لنوفر لهم بيئة آمنة ونمنحك راحة البال.",
-                profGardener: "بستاني",
-                descGardener: "لمسة جمالية لحديقتك، وعناية فائقة بالنباتات لتستمتع بمساحات خضراء تسر الناظرين.",
-                profCook: "طباخ",
-                descCook: "مهارة في إعداد أشهى الأطباق المحلية والعالمية لتلبية ذائقتكم وتقديم سفرة مميزة.",
-                profGuard: "حارس عقار",
-                descGuard: "حماية ويقظة على مدار الساعة لتأمين ممتلكاتك وتوفير أقصى درجات الأمان والسكينة.",
+                splashTitle: "مكتب تمام للإستقدام", loadingText: "جاري تحميل الصفحة", devSignatureFooter: "👑 تم التطوير والتصميم بواسطة : م إسلام الشيخ 👑", menuTitle: "القائمة", navHome: "الرئيسية", navServicesBtn: "خدماتنا", navServices: "خدماتنا", navIndiv: "خدمات الأفراد", navBusiness: "خدمات الأعمال", navMediation: "التوسط في الاستقدام", navWorkers: "العمالة المستهدفة", navCVs: "السير الذاتية", navCountries: "الدول المتاحة", navAbout: "من نحن", navContact: "اتصل بنا", topBar: "مكتب معتمد من منصة مساند | ترخيص رقم: 3701262",
+                
+                heroWorkersTitle: "العمالة المستهدفة والمِهن المتوفرة", heroWorkersDesc: "نوفر لك ولعائلتك نخبة من الكوادر البشرية المدربة والمؤهلة بعناية فائقة لتلبية كافة احتياجاتك المنزلية والمهنية، مع ضمان الجودة والاحترافية في الأداء.",
+                
+                profMaid: "عاملة منزلية", descMaid: "خبرة وكفاءة في إدارة شؤون المنزل، لنضمن لك بيئة نظيفة ومريحة لك ولعائلتك.",
+                profDriver: "سائق خاص", descDriver: "قيادة آمنة، التزام بالمواعيد، ومعرفة تامة بالطرق لتأمين تنقلاتك بكل يسر وسهولة.",
+                profNurse: "ممرضة", descNurse: "رعاية صحية متخصصة ومتابعة دقيقة لحالة مرضاكم وكبار السن بأيادي أمينة ومؤهلة.",
+                profBabysitter: "جليسة أطفال", descBabysitter: "رعاية حانية، واهتمام فائق بأطفالك، لنوفر لهم بيئة آمنة ونمنحك راحة البال.",
+                profGardener: "بستاني", descGardener: "لمسة جمالية لحديقتك، وعناية فائقة بالنباتات لتستمتع بمساحات خضراء تسر الناظرين.",
+                profCook: "طباخ", descCook: "مهارة في إعداد أشهى الأطباق المحلية والعالمية لتلبية ذائقتكم وتقديم سفرة مميزة.",
+                profGuard: "حارس عقار", descGuard: "حماية ويقظة على مدار الساعة لتأمين ممتلكاتك وتوفير أقصى درجات الأمان والسكينة.",
+                
                 btnRequestJob: "طلب هذه المهنة",
-                ctaMissProfessionTitle: "لم تجد المهنة المطلوبة؟",
-                ctaMissProfessionDesc: "لا تقلق، تواصل معنا الآن واخبرنا باحتياجاتك، وسنقوم بتوفير الكادر المناسب لك بأسرع وقت.",
-                footerSocial: "تواصل معنا عبر منصات التواصل الإجتماعي",
-                footerCopy: "جميع الحقوق محفوظة لدى | مكتب تمام للإستقدام 2027"
+                ctaMissProfessionTitle: "لم تجد المهنة المطلوبة؟", ctaMissProfessionDesc: "لا تقلق، تواصل معنا الآن واخبرنا باحتياجاتك، وسنقوم بتوفير الكادر المناسب لك بأسرع وقت.",
+                
+                footerSocial: "تواصل معنا عبر منصات التواصل الإجتماعي", footerCopy: "جميع الحقوق محفوظة لدى | مكتب تمام للإستقدام 2027"
             },
             en: {
-                workersTitlePage: "Targeted Workers & Available Professions | Tamam Recruitment",
-                splashTitle: "Tamam Recruitment Agency",
-                loadingText: "Loading Page",
-                devSignatureFooter: "👑 Developed & Designed by: Eng. Islam Elsheikh 👑",
-                menuTitle: "Menu",
-                navHome: "Home",
-                navServicesBtn: "Services",
-                navServices: "Services",
-                navIndiv: "Individual Services",
-                navBusiness: "Business Services",
-                navMediation: "Recruitment Mediation",
-                navWorkers: "Targeted Workers",
-                navCVs: "CVs",
-                navCountries: "Available Countries",
-                navAbout: "About Us",
-                navContact: "Contact Us",
-                topBar: "Certified by Musaned | License No: 3701262",
-                heroWorkersTitle: "Targeted Workers & Available Professions",
-                heroWorkersDesc: "We provide you and your family with an elite group of carefully trained and qualified human resources to meet all your domestic and professional needs, ensuring quality and professionalism.",
-                profMaid: "Housemaid",
-                descMaid: "Expertise and efficiency in managing household affairs, ensuring a clean and comfortable environment for you and your family.",
-                profDriver: "Private Driver",
-                descDriver: "Safe driving, punctuality, and full road knowledge to secure your commutes easily.",
-                profNurse: "Nurse",
-                descNurse: "Specialized healthcare and close monitoring for your patients and elderly with trustworthy, qualified hands.",
-                profBabysitter: "Babysitter",
-                descBabysitter: "Tender care and extreme attention for your children, providing a safe environment and peace of mind.",
-                profGardener: "Gardener",
-                descGardener: "An aesthetic touch for your garden and extreme care for plants to enjoy eye-catching green spaces.",
-                profCook: "Cook",
-                descCook: "Skill in preparing the most delicious local and international dishes to satisfy your taste and present a distinguished spread.",
-                profGuard: "Property Guard",
-                descGuard: "Round-the-clock protection and vigilance to secure your property and provide maximum safety.",
+                workersTitlePage: "Targeted Workers & Professions | Tamam Recruitment",
+                splashTitle: "Tamam Recruitment Agency", loadingText: "Loading Page", devSignatureFooter: "👑 Developed & Designed by: Eng. Islam Elsheikh 👑", menuTitle: "Menu", navHome: "Home", navServicesBtn: "Services", navServices: "Services", navIndiv: "Individual Services", navBusiness: "Business Services", navMediation: "Recruitment Mediation", navWorkers: "Targeted Workers", navCVs: "CVs", navCountries: "Available Countries", navAbout: "About Us", navContact: "Contact Us", topBar: "Certified by Musaned | License No: 3701262",
+                
+                heroWorkersTitle: "Targeted Workers & Available Professions", heroWorkersDesc: "We provide you and your family with an elite group of carefully trained and qualified human resources to meet all your domestic and professional needs, ensuring quality and professionalism.",
+                
+                profMaid: "Housemaid", descMaid: "Expertise and efficiency in managing household affairs, ensuring a clean and comfortable environment for you and your family.",
+                profDriver: "Private Driver", descDriver: "Safe driving, punctuality, and full road knowledge to secure your commutes easily.",
+                profNurse: "Nurse", descNurse: "Specialized healthcare and close monitoring for your patients and elderly with trustworthy, qualified hands.",
+                profBabysitter: "Babysitter", descBabysitter: "Tender care and extreme attention for your children, providing a safe environment and peace of mind.",
+                profGardener: "Gardener", descGardener: "An aesthetic touch for your garden and extreme care for plants to enjoy eye-catching green spaces.",
+                profCook: "Cook", descCook: "Skill in preparing the most delicious local and international dishes to satisfy your taste and present a distinguished spread.",
+                profGuard: "Property Guard", descGuard: "Round-the-clock protection and vigilance to secure your property and provide maximum safety.",
+                
                 btnRequestJob: "Request This Profession",
-                ctaMissProfessionTitle: "Didn't find the required profession?",
-                ctaMissProfessionDesc: "Don't worry, contact us now and tell us your needs, and we will provide the suitable staff for you ASAP.",
-                footerSocial: "Connect with us on social media",
-                footerCopy: "All Rights Reserved | Tamam Recruitment Agency 2027"
+                ctaMissProfessionTitle: "Didn't find the required profession?", ctaMissProfessionDesc: "Don't worry, contact us now and tell us your needs, and we will provide the suitable staff for you ASAP.",
+                
+                footerSocial: "Connect with us on social media", footerCopy: "All Rights Reserved | Tamam Recruitment Agency 2027"
             }
         };
 
+        // دوال الترجمة والدارك مود
         let currentLang = localStorage.getItem('siteLang') || 'ar';
         
         function initDarkMode() {
             const isDark = localStorage.getItem('darkMode') === 'true';
-            const htmlRoot = document.documentElement;
-            const icon = document.querySelector('#darkModeBtn i');
             if(isDark) {
-                htmlRoot.classList.add('dark');
-                if(icon) { icon.classList.remove('fa-moon'); icon.classList.add('fa-sun'); }
+                document.documentElement.classList.add('dark');
+                document.querySelector('#darkModeBtn i').className = 'fa-solid fa-sun';
             } else {
-                htmlRoot.classList.remove('dark');
-                if(icon) { icon.classList.remove('fa-sun'); icon.classList.add('fa-moon'); }
+                document.documentElement.classList.remove('dark');
+                document.querySelector('#darkModeBtn i').className = 'fa-solid fa-moon';
             }
         }
 
         window.toggleDarkMode = function() {
-            const htmlRoot = document.documentElement;
-            const isDark = htmlRoot.classList.toggle('dark');
+            const isDark = document.documentElement.classList.toggle('dark');
             localStorage.setItem('darkMode', isDark);
-            const icon = document.querySelector('#darkModeBtn i');
-            if(isDark) { icon.classList.remove('fa-moon'); icon.classList.add('fa-sun'); } 
-            else { icon.classList.remove('fa-sun'); icon.classList.add('fa-moon'); }
+            document.querySelector('#darkModeBtn i').className = isDark ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
         }
 
         function applyLanguage(lang) {
             currentLang = lang;
             localStorage.setItem('siteLang', lang);
-            const htmlRoot = document.documentElement;
-            if (lang === 'ar') {
-                htmlRoot.setAttribute('dir', 'rtl');
-                htmlRoot.setAttribute('lang', 'ar');
-                const sidebar = document.getElementById('sidebar');
-                if(sidebar) sidebar.classList.replace('-translate-x-full', 'translate-x-full');
-            } else {
-                htmlRoot.setAttribute('dir', 'ltr');
-                htmlRoot.setAttribute('lang', 'en');
-                const sidebar = document.getElementById('sidebar');
-                if(sidebar) {
-                    sidebar.classList.remove('right-0', 'translate-x-full');
-                    sidebar.classList.add('left-0', '-translate-x-full');
-                }
-            }
-            document.querySelectorAll('[data-i18n]').forEach(element => {
-                const key = element.getAttribute('data-i18n');
-                if (translations[lang] && translations[lang][key]) { 
-                    element.innerHTML = translations[lang][key]; 
-                }
+            document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+            document.documentElement.lang = lang;
+            
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) el.innerHTML = translations[lang][key];
             });
+
             if(translations[lang] && translations[lang]['workersTitlePage']) {
                 document.title = translations[lang]['workersTitlePage'];
             }
+
+            // فك التداخل بين الترجمة والسايد بار
+            const sidebar = document.getElementById('sidebar');
+            if(sidebar) {
+                if (lang === 'ar') {
+                    sidebar.classList.remove('left-0', '-translate-x-full', 'translate-x-0');
+                    sidebar.classList.add('right-0', 'translate-x-full');
+                } else {
+                    sidebar.classList.remove('right-0', 'translate-x-full', 'translate-x-0');
+                    sidebar.classList.add('left-0', '-translate-x-full');
+                }
+            }
+            const overlay = document.getElementById('sidebar-overlay');
+            if(overlay) overlay.classList.add('hidden');
         }
 
         window.switchLanguage = function() { applyLanguage(currentLang === 'ar' ? 'en' : 'ar'); }
+        
         window.toggleSidebar = function() {
             const sidebar = document.getElementById('sidebar');
             const overlay = document.getElementById('sidebar-overlay');
             if(!sidebar || !overlay) return;
-            if (currentLang === 'ar') { sidebar.classList.toggle('translate-x-full'); } 
-            else { sidebar.classList.toggle('-translate-x-full'); }
+            
+            if (currentLang === 'ar') { 
+                sidebar.classList.toggle('translate-x-full');
+                sidebar.classList.toggle('translate-x-0');
+            } else { 
+                sidebar.classList.toggle('-translate-x-full');
+                sidebar.classList.toggle('translate-x-0');
+            }
             overlay.classList.toggle('hidden');
+        }
+
+        // شاشة التحميل (2 ثانية مع حماية السكرول)
+        function hideSplash() {
+            const splash = document.getElementById('splash-screen');
+            if (splash && !splash.classList.contains('hidden')) {
+                splash.classList.add('opacity-0');
+                setTimeout(() => {
+                    splash.classList.add('hidden');
+                    document.getElementById('body-content').classList.remove('overflow-hidden');
+                }, 700);
+            } else {
+                document.getElementById('body-content').classList.remove('overflow-hidden');
+            }
         }
 
         window.addEventListener('DOMContentLoaded', () => {
@@ -471,16 +452,8 @@
             applyLanguage(currentLang);
         });
 
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                const splash = document.getElementById('splash-screen');
-                if(splash) splash.classList.add('opacity-0');
-                setTimeout(() => {
-                    if(splash) splash.classList.add('hidden');
-                    document.getElementById('body-content').classList.remove('overflow-hidden');
-                }, 700);
-            }, 1500);
-        });
+        window.addEventListener('load', () => { setTimeout(hideSplash, 2000); });
+        setTimeout(hideSplash, 2500); // حماية إجبارية
     </script>
 </body>
 </html>
