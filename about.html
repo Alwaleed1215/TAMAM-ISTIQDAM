@@ -13,7 +13,7 @@
     
     <script>
         tailwind.config = {
-            darkMode: 'class', // تفعيل الدارك مود بالكلاس
+            darkMode: 'class',
             theme: {
                 extend: {
                     colors: { primary: '#112240', secondary: '#eab308', whatsapp: '#25D366' },
@@ -31,7 +31,6 @@
         .map-container { transition: all 0.4s ease; }
         .map-container:hover { transform: translateY(-5px); box-shadow: 0 15px 30px -5px rgba(17, 34, 64, 0.15); }
         
-        /* تأثير كروت القيم متوافقة مع الدارك مود */
         .value-card { transition: all 0.4s ease; border: 1px solid transparent; }
         .value-card:hover { transform: translateY(-8px); border-color: rgba(234, 179, 8, 0.5); box-shadow: 0 20px 25px -5px rgba(17, 34, 64, 0.2); }
         .value-icon-wrapper { transition: all 0.4s ease; }
@@ -49,42 +48,77 @@
             <h2 class="text-xs font-bold text-primary dark:text-white mb-2" data-i18n="splashTitle">مكتب تمام للإستقدام</h2>
             <div class="text-slate-400 text-[10px]"><span data-i18n="loadingText">جاري تحميل الصفحة</span><span class="loading-dots"></span></div>
         </div>
+        <div class="absolute bottom-10 px-4 w-full max-w-sm animate-bounce-slight mt-auto">
+            <div class="block w-full bg-white dark:bg-slate-800 border border-primary/10 dark:border-slate-700 rounded-full py-2.5 px-4 shadow-sm text-center">
+                <span class="text-[10px] font-semibold text-primary/70 dark:text-gray-400" data-i18n="devSignatureFooter">
+                    👑 تم التطوير والتصميم بواسطة : م إسلام الشيخ 👑
+                </span>
+            </div>
+        </div>
     </div>
 
-    <div id="sidebar-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden transition-opacity" onclick="toggleSidebar()"></div>
+    <div id="sidebar-overlay" class="fixed inset-0 bg-black/60 z-40 hidden transition-opacity backdrop-blur-sm" onclick="toggleSidebar()"></div>
     <div id="sidebar" class="fixed top-0 bottom-0 right-0 w-64 bg-white dark:bg-slate-800 shadow-2xl z-50 transform translate-x-full transition-transform duration-300 flex flex-col">
-        <div class="p-4 border-b border-gray-100 dark:border-slate-700 flex justify-between items-center bg-primary text-white">
+        <div class="p-4 border-b border-gray-100 dark:border-slate-700 flex justify-between items-center bg-primary dark:bg-slate-950 text-white">
             <div class="flex items-center gap-2">
                 <img src="https://imgg.io/images/2026/03/22/ce7f90873f720d041ffcdb63cfe66b05.png" class="h-8 brightness-0 invert">
                 <span class="font-extrabold text-lg" data-i18n="menuTitle">القائمة</span>
             </div>
-            <button onclick="toggleSidebar()" class="text-white"><i class="fa-solid fa-xmark text-2xl"></i></button>
+            <button onclick="toggleSidebar()" class="text-white hover:text-secondary transition"><i class="fa-solid fa-xmark text-2xl"></i></button>
         </div>
-        <nav class="flex-1 px-4 py-6 space-y-4">
-            <a href="index.html" class="block px-4 py-3 rounded-lg text-gray-600 dark:text-gray-300 font-bold hover:bg-primary hover:text-white dark:hover:bg-primary transition" data-i18n="navHome">الرئيسية</a>
-            <a href="about.html" class="block px-4 py-3 rounded-lg bg-slate-50 dark:bg-slate-700 text-primary dark:text-secondary font-bold" data-i18n="navAbout">من نحن</a>
-            <a href="prices.html" class="block px-4 py-3 rounded-lg text-gray-600 dark:text-gray-300 font-bold hover:bg-primary hover:text-white transition" data-i18n="navPrices">الجنسيات والأسعار</a>
-            <a href="contact.html" class="block px-4 py-3 rounded-lg text-gray-600 dark:text-gray-300 font-bold hover:bg-primary hover:text-white transition" data-i18n="navContact">تواصل معنا</a>
+        <nav class="flex-1 px-4 py-6 space-y-2 overflow-y-auto">
+            <a href="index.html" class="block px-4 py-2.5 rounded-lg text-gray-600 dark:text-gray-300 font-bold hover:bg-slate-50 dark:hover:bg-slate-700 transition" data-i18n="navHome">الرئيسية</a>
+            
+            <div class="pt-2 pb-1">
+                <span class="block px-4 text-xs font-bold text-gray-400 uppercase tracking-wider mb-1" data-i18n="navServices">خدماتنا</span>
+                <a href="individuals.html" class="block px-4 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-semibold hover:bg-slate-50 dark:hover:bg-slate-700 transition" data-i18n="navIndiv">خدمات الأفراد</a>
+                <a href="business.html" class="block px-4 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-semibold hover:bg-slate-50 dark:hover:bg-slate-700 transition" data-i18n="navBusiness">خدمات الأعمال</a>
+                <a href="mediation.html" class="block px-4 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-semibold hover:bg-slate-50 dark:hover:bg-slate-700 transition" data-i18n="navMediation">التوسط في الاستقدام</a>
+            </div>
+
+            <a href="workers.html" class="block px-4 py-2.5 rounded-lg text-gray-600 dark:text-gray-300 font-bold hover:bg-slate-50 dark:hover:bg-slate-700 transition" data-i18n="navWorkers">العمالة المستهدفة</a>
+            <a href="cvs.html" class="block px-4 py-2.5 rounded-lg text-gray-600 dark:text-gray-300 font-bold hover:bg-slate-50 dark:hover:bg-slate-700 transition" data-i18n="navCVs">السير الذاتية</a>
+            <a href="countries.html" class="block px-4 py-2.5 rounded-lg text-gray-600 dark:text-gray-300 font-bold hover:bg-slate-50 dark:hover:bg-slate-700 transition" data-i18n="navCountries">الدول المتاحة</a>
+            <a href="about.html" class="block px-4 py-2.5 rounded-lg bg-primary/10 dark:bg-secondary/10 text-primary dark:text-secondary font-bold transition" data-i18n="navAbout">من نحن</a>
+            <a href="contact.html" class="block px-4 py-2.5 rounded-lg text-gray-600 dark:text-gray-300 font-bold hover:bg-slate-50 dark:hover:bg-slate-700 transition" data-i18n="navContact">اتصل بنا</a>
         </nav>
     </div>
 
-    <header class="bg-white/90 dark:bg-slate-900/90 backdrop-blur-md sticky top-0 z-30 border-b border-slate-100 dark:border-slate-800 transition-colors duration-300">
+    <div class="bg-primary dark:bg-slate-950 text-white py-2 text-xs md:text-sm text-center border-b border-white/10 transition-colors">
+        <p data-i18n="topBar">مكتب معتمد من منصة مساند | ترخيص رقم: 3701262</p>
+    </div>
+
+    <header class="bg-white/95 dark:bg-slate-900/95 backdrop-blur-md shadow-sm sticky top-0 z-30 border-b border-slate-100 dark:border-slate-800 transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-4 h-20 flex justify-between items-center">
-            <img src="https://imgg.io/images/2026/03/22/ce7f90873f720d041ffcdb63cfe66b05.png" class="h-14 object-contain dark:brightness-0 dark:invert transition-all">
+            <a href="index.html" class="flex-shrink-0 flex items-center h-full py-1">
+                <img src="https://imgg.io/images/2026/03/22/ce7f90873f720d041ffcdb63cfe66b05.png" class="h-14 md:h-16 object-contain dark:brightness-0 dark:invert transition-all">
+            </a>
             
-            <nav class="hidden md:flex space-x-6 space-x-reverse font-bold text-primary dark:text-white">
+            <nav class="hidden lg:flex space-x-5 space-x-reverse font-bold text-primary dark:text-white items-center text-sm xl:text-base">
                 <a href="index.html" class="hover:text-secondary transition" data-i18n="navHome">الرئيسية</a>
+                
+                <div class="relative group">
+                    <button class="flex items-center gap-1 hover:text-secondary transition py-2" data-i18n="navServicesBtn">
+                        خدماتنا <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                    </button>
+                    <div class="absolute right-0 mt-0 w-48 bg-white dark:bg-slate-800 rounded-xl shadow-xl py-2 hidden group-hover:block border border-slate-100 dark:border-slate-700 transition-all z-50">
+                        <a href="individuals.html" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:text-secondary hover:bg-slate-50 dark:hover:bg-slate-700 transition" data-i18n="navIndiv">خدمات الأفراد</a>
+                        <a href="business.html" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:text-secondary hover:bg-slate-50 dark:hover:bg-slate-700 transition" data-i18n="navBusiness">خدمات الأعمال</a>
+                        <a href="mediation.html" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:text-secondary hover:bg-slate-50 dark:hover:bg-slate-700 transition" data-i18n="navMediation">التوسط في الاستقدام</a>
+                    </div>
+                </div>
+
+                <a href="workers.html" class="hover:text-secondary transition" data-i18n="navWorkers">العمالة المستهدفة</a>
+                <a href="cvs.html" class="hover:text-secondary transition" data-i18n="navCVs">السير الذاتية</a>
+                <a href="countries.html" class="hover:text-secondary transition" data-i18n="navCountries">الدول المتاحة</a>
                 <a href="about.html" class="text-secondary border-b-2 border-secondary pb-1" data-i18n="navAbout">من نحن</a>
-                <a href="prices.html" class="hover:text-secondary transition" data-i18n="navPrices">الجنسيات والأسعار</a>
-                <a href="contact.html" class="hover:text-secondary transition" data-i18n="navContact">تواصل معنا</a>
+                <a href="contact.html" class="hover:text-secondary transition" data-i18n="navContact">اتصل بنا</a>
             </nav>
             
             <div class="flex items-center gap-3">
-                <button onclick="toggleDarkMode()" class="text-primary dark:text-secondary text-lg hover:scale-110 transition-transform focus:outline-none" id="darkModeBtn">
-                    <i class="fa-solid fa-moon"></i>
-                </button>
+                <button onclick="toggleDarkMode()" class="text-primary dark:text-secondary text-lg hover:scale-110 transition-transform focus:outline-none" id="darkModeBtn"><i class="fa-solid fa-moon"></i></button>
                 <button onclick="switchLanguage()" class="text-[10px] border border-primary/20 dark:border-secondary/30 px-2 py-1 rounded bg-slate-50 dark:bg-slate-800 text-primary dark:text-white font-bold hover:bg-primary hover:text-white dark:hover:bg-secondary dark:hover:text-primary transition-colors">EN/AR</button>
-                <button onclick="toggleSidebar()" class="md:hidden text-primary dark:text-white"><i class="fa-solid fa-bars text-3xl"></i></button>
+                <button onclick="toggleSidebar()" class="lg:hidden text-primary dark:text-white focus:outline-none"><i class="fa-solid fa-bars text-3xl"></i></button>
             </div>
         </div>
     </header>
@@ -210,7 +244,7 @@
                         <span class="inline-flex items-center justify-center font-extrabold text-xs bg-primary dark:bg-secondary text-white dark:text-primary rounded-full w-14 h-6 gap-0.5 mx-1" dir="ltr"><span>7</span><span class="text-[10px] opacity-70">/</span><span>24</span></span>
                     </p>
                     <div class="map-container w-full max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border-2 border-primary dark:border-slate-700 ring-4 ring-primary/10 dark:ring-secondary/10 h-[350px] mb-12">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2985.3323457552956!2d46.700056700000005!3d24.7949536!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2f040d0d90ea3d%3A0xb666fa5d155f4ebc!2z2YXZg9iq2Kgg2KrZhdin2YUg2YTZhNin2LPYqtmC2K_Yp9mF!5e1!3m2!1sar!2ssa!4v1774102493345!5m2!1sar!2ssa" width="100%" height="100%" style="border:0; filter: contrast(1.1);" allowfullscreen="" loading="lazy" id="map-iframe"></iframe>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2985.3323457552956!2d46.700056700000005!3d24.7949536!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2f040d0d90ea3d%3A0xb666fa5d155f4ebc!2z2YXZg9iq2Kgg2KrZhdin2YUg2YTZhNin2LPYqtmC2K_Yp9mF!5e1!3m2!1sar!2ssa!4v1774102493345!5m2!1sar!2ssa" width="100%" height="100%" style="border:0; filter: contrast(1.1);" allowfullscreen="" loading="lazy"></iframe>
                     </div>
                     <div class="w-full max-w-3xl mx-auto flex flex-col md:flex-row justify-around items-center gap-8">
                         <div class="flex items-center gap-4 w-full md:w-1/2 justify-start md:justify-center">
@@ -227,7 +261,7 @@
         </section>
     </main>
 
-    <footer class="bg-primary dark:bg-slate-950 text-white pt-12 pb-24 border-t border-slate-800 dark:border-slate-800 transition-colors duration-300">
+    <footer class="bg-primary dark:bg-slate-950 text-white pt-12 pb-24 md:pb-8 border-t border-slate-800 transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-4 flex flex-col items-center">
             <div class="bg-secondary/10 dark:bg-slate-900 border border-secondary/30 dark:border-slate-700 rounded-2xl p-6 mb-8 w-full max-w-md flex flex-col items-center shadow-lg">
                 <p class="text-secondary font-bold text-sm mb-4" data-i18n="footerSocial">تواصل معنا عبر منصات التواصل الإجتماعي</p>
@@ -266,7 +300,6 @@
     </div>
 
     <script>
-        // قاموس الترجمة
         const translations = {
             ar: {
                 aboutTitlePage: "من نحن | مكتب تمام للاستقدام",
@@ -275,10 +308,18 @@
                 devSignatureFooter: "👑 تم التطوير والتصميم بواسطة : م إسلام الشيخ 👑",
                 menuTitle: "القائمة",
                 navHome: "الرئيسية",
-                navAbout: "من نحن",
-                navPrices: "الجنسيات والأسعار",
-                navContact: "تواصل معنا",
+                navServicesBtn: "خدماتنا",
                 navServices: "خدماتنا",
+                navIndiv: "خدمات الأفراد",
+                navBusiness: "خدمات الأعمال",
+                navMediation: "التوسط في الاستقدام",
+                navWorkers: "العمالة المستهدفة",
+                navCVs: "السير الذاتية",
+                navCountries: "الدول المتاحة",
+                navAbout: "من نحن",
+                navContact: "اتصل بنا",
+                topBar: "مكتب معتمد من منصة مساند | ترخيص رقم: 3701262",
+                
                 heroTitle: "من نحن",
                 heroSubtitle: "مكتب تمام للإستقدام ، راحتكم همنا ورضاكم غايتنا",
                 sectionTitle1: "خدمات إستقدام إحترافية وموثوقة",
@@ -311,15 +352,23 @@
                 devSignatureFooter: "👑 Developed & Designed by: Eng. Islam Elsheikh 👑",
                 menuTitle: "Menu",
                 navHome: "Home",
-                navAbout: "About Us",
-                navPrices: "Nationalities & Prices",
-                navContact: "Contact Us",
+                navServicesBtn: "Services",
                 navServices: "Services",
+                navIndiv: "Individual Services",
+                navBusiness: "Business Services",
+                navMediation: "Recruitment Mediation",
+                navWorkers: "Targeted Workers",
+                navCVs: "CVs",
+                navCountries: "Available Countries",
+                navAbout: "About Us",
+                navContact: "Contact Us",
+                topBar: "Certified by Musaned | License No: 3701262",
+                
                 heroTitle: "About Us",
-                heroSubtitle: "Tamam Recruitment Agency, Your Comfort is Our Priority",
+                heroSubtitle: "Tamam Recruitment Agency, Your Comfort is Our Goal",
                 sectionTitle1: "Professional & Reliable Recruitment Services",
                 sectionDesc1: "Tamam Recruitment operates under the Saudi Ministry of Human Resources and Social Development, strictly following its regulations to ensure the best services. We provide trained and professional human resources, aiming to be the trusted bridge between you and the best talents from our targeted nationalities.",
-                missionTitle: "Our Mission",
+                missionTitle: "Our Goal",
                 missionDesc: "We don't just want to be a standard recruitment office; we strive, with a distinguished team, to provide comprehensive solutions that ensure stability and peace of mind for our clients in Saudi Arabia. We achieve this through careful selection, professional training, and continuous follow-up.",
                 visionTitle: "Our Vision",
                 visionDesc: "We aspire to be the first and most trusted name in the recruitment sector in the Kingdom, and to contribute to achieving distinguished services in line with Vision 2030.",
@@ -342,100 +391,94 @@
             }
         };
 
+        // دوال الترجمة والدارك مود الثابتة
         let currentLang = localStorage.getItem('siteLang') || 'ar';
         
-        // نظام الدارك مود
         function initDarkMode() {
             const isDark = localStorage.getItem('darkMode') === 'true';
-            const htmlRoot = document.documentElement;
-            const icon = document.querySelector('#darkModeBtn i');
-            
             if(isDark) {
-                htmlRoot.classList.add('dark');
-                if(icon) { icon.classList.remove('fa-moon'); icon.classList.add('fa-sun'); }
+                document.documentElement.classList.add('dark');
+                document.querySelector('#darkModeBtn i').className = 'fa-solid fa-sun';
             } else {
-                htmlRoot.classList.remove('dark');
-                if(icon) { icon.classList.remove('fa-sun'); icon.classList.add('fa-moon'); }
+                document.documentElement.classList.remove('dark');
+                document.querySelector('#darkModeBtn i').className = 'fa-solid fa-moon';
             }
         }
 
         window.toggleDarkMode = function() {
-            const htmlRoot = document.documentElement;
-            const isDark = htmlRoot.classList.toggle('dark');
+            const isDark = document.documentElement.classList.toggle('dark');
             localStorage.setItem('darkMode', isDark);
-            
-            const icon = document.querySelector('#darkModeBtn i');
-            if(isDark) {
-                icon.classList.remove('fa-moon'); icon.classList.add('fa-sun');
-            } else {
-                icon.classList.remove('fa-sun'); icon.classList.add('fa-moon');
-            }
+            document.querySelector('#darkModeBtn i').className = isDark ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
         }
 
-        // نظام اللغات والتوجيه
         function applyLanguage(lang) {
             currentLang = lang;
             localStorage.setItem('siteLang', lang);
-            const htmlRoot = document.documentElement;
+            document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+            document.documentElement.lang = lang;
             
-            if (lang === 'ar') {
-                htmlRoot.setAttribute('dir', 'rtl');
-                htmlRoot.setAttribute('lang', 'ar');
-                const sidebar = document.getElementById('sidebar');
-                if(sidebar) sidebar.classList.replace('-translate-x-full', 'translate-x-full');
-            } else {
-                htmlRoot.setAttribute('dir', 'ltr');
-                htmlRoot.setAttribute('lang', 'en');
-                const sidebar = document.getElementById('sidebar');
-                if(sidebar) {
-                    sidebar.classList.remove('right-0', 'translate-x-full');
-                    sidebar.classList.add('left-0', '-translate-x-full');
-                }
-            }
-
-            document.querySelectorAll('[data-i18n]').forEach(element => {
-                const key = element.getAttribute('data-i18n');
-                if (translations[lang] && translations[lang][key]) { 
-                    element.innerHTML = translations[lang][key]; 
-                }
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) el.innerHTML = translations[lang][key];
             });
-            
-            // تغيير عنوان الصفحة الفعلي
+
             if(translations[lang] && translations[lang]['aboutTitlePage']) {
                 document.title = translations[lang]['aboutTitlePage'];
             }
+
+            // فك التداخل بين الترجمة والسايد بار
+            const sidebar = document.getElementById('sidebar');
+            if(sidebar) {
+                if (lang === 'ar') {
+                    sidebar.classList.remove('left-0', '-translate-x-full', 'translate-x-0');
+                    sidebar.classList.add('right-0', 'translate-x-full');
+                } else {
+                    sidebar.classList.remove('right-0', 'translate-x-full', 'translate-x-0');
+                    sidebar.classList.add('left-0', '-translate-x-full');
+                }
+            }
+            const overlay = document.getElementById('sidebar-overlay');
+            if(overlay) overlay.classList.add('hidden');
         }
 
-        window.switchLanguage = function() {
-            applyLanguage(currentLang === 'ar' ? 'en' : 'ar');
-        }
-
+        window.switchLanguage = function() { applyLanguage(currentLang === 'ar' ? 'en' : 'ar'); }
+        
         window.toggleSidebar = function() {
             const sidebar = document.getElementById('sidebar');
             const overlay = document.getElementById('sidebar-overlay');
             if(!sidebar || !overlay) return;
             
-            if (currentLang === 'ar') { sidebar.classList.toggle('translate-x-full'); } 
-            else { sidebar.classList.toggle('-translate-x-full'); }
+            if (currentLang === 'ar') { 
+                sidebar.classList.toggle('translate-x-full');
+                sidebar.classList.toggle('translate-x-0');
+            } else { 
+                sidebar.classList.toggle('-translate-x-full');
+                sidebar.classList.toggle('translate-x-0');
+            }
             overlay.classList.toggle('hidden');
         }
 
-        // التشغيل عند تحميل الصفحة
+        // شاشة التحميل (2 ثانية مع حماية السكرول)
+        function hideSplash() {
+            const splash = document.getElementById('splash-screen');
+            if (splash && !splash.classList.contains('hidden')) {
+                splash.classList.add('opacity-0');
+                setTimeout(() => {
+                    splash.classList.add('hidden');
+                    document.getElementById('body-content').classList.remove('overflow-hidden');
+                }, 700);
+            } else {
+                document.getElementById('body-content').classList.remove('overflow-hidden');
+            }
+        }
+
         window.addEventListener('DOMContentLoaded', () => {
             initDarkMode();
             applyLanguage(currentLang);
         });
 
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                const splash = document.getElementById('splash-screen');
-                if(splash) splash.classList.add('opacity-0');
-                setTimeout(() => {
-                    if(splash) splash.classList.add('hidden');
-                    document.getElementById('body-content').classList.remove('overflow-hidden');
-                }, 700);
-            }, 1500);
-        });
+        window.addEventListener('load', () => { setTimeout(hideSplash, 2000); });
+        setTimeout(hideSplash, 2500); // حماية إجبارية
     </script>
 </body>
 </html>
