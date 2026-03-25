@@ -25,7 +25,17 @@
                     animation: {
                         'spin-slow': 'spin 3s linear infinite',
                         'bounce-slight': 'bounce 2s infinite',
-                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite'
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'fade-in': 'fadeIn 0.3s ease-out forwards',
+                        'scale-in': 'scaleIn 0.3s ease-out forwards',
+                        'slide-in-left': 'slideInLeft 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards',
+                        'slide-out-left': 'slideOutLeft 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards'
+                    },
+                    keyframes: {
+                        fadeIn: { '0%': { opacity: '0' }, '100%': { opacity: '1' } },
+                        scaleIn: { '0%': { transform: 'translate(-50%, -50%) scale(0.9)', opacity: '0' }, '100%': { transform: 'translate(-50%, -50%) scale(1)', opacity: '1' } },
+                        slideInLeft: { '0%': { opacity: '0', transform: 'translateX(-20px)' }, '100%': { opacity: '1', transform: 'translateX(0)' } },
+                        slideOutLeft: { '0%': { opacity: '1', transform: 'translateX(0)' }, '100%': { opacity: '0', transform: 'translateX(-20px)' } }
                     }
                 }
             }
@@ -67,9 +77,31 @@
         .nav-arrow { transition: all 0.2s; }
         .nav-arrow:hover { background: #112240; color: white; }
         html.dark .nav-arrow:hover { background: #eab308; color: #112240; }
+
+        /* أنماط المساعد الذكي "خالد" */
+        .chatbot-btn { transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease; }
+        .chatbot-btn:hover { transform: scale(1.1); box-shadow: 0 15px 25px -5px rgba(234, 179, 8, 0.4); }
+        .chat-tooltip { 
+            position: absolute; right: calc(100% + 15px); top: 50%; transform: translateY(-50%);
+            white-space: nowrap; pointer-events: none; opacity: 0;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+        }
+        .chat-tooltip::after {
+            content: ''; position: absolute; top: 50%; left: 100%; transform: translateY(-50%);
+            border-width: 6px; border-style: solid; border-color: transparent transparent transparent white;
+        }
+        html.dark .chat-tooltip::after { border-color: transparent transparent transparent #1e293b; }
+        
+        html[dir="ltr"] .chat-tooltip { right: auto; left: calc(100% + 15px); }
+        html[dir="ltr"] .chat-tooltip::after { left: auto; right: 100%; border-color: transparent white transparent transparent; }
+        html[dir="ltr"].dark .chat-tooltip::after { border-color: transparent #1e293b transparent transparent; }
+        
+        #chatbot-modal { display: none; }
+        #chatbot-modal.show { display: flex; animation: fadeIn 0.3s ease forwards; }
+        .chatbot-iframe-container { animation: scaleIn 0.3s ease-out forwards; }
     </style>
 </head>
-<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 overflow-hidden" id="body-content">
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100" id="body-content">
 
     <div id="splash-screen" class="fixed inset-0 bg-white dark:bg-slate-900 z-[100] flex flex-col justify-center items-center transition-opacity duration-700">
         <div class="flex flex-col items-center">
@@ -118,11 +150,11 @@
         </nav>
     </div>
 
-    <div class="bg-primary dark:bg-slate-950 text-white py-2 text-xs md:text-sm text-center border-b border-white/10 transition-colors">
+    <div class="bg-primary text-white py-2 text-sm text-center">
         <p data-i18n="topBar">مكتب معتمد من منصة مساند | ترخيص رقم: 3701262</p>
     </div>
 
-    <header class="bg-white/95 dark:bg-slate-900/95 backdrop-blur-md shadow-sm sticky top-0 z-30 border-b border-slate-100 dark:border-slate-800 transition-colors duration-300">
+    <header class="bg-white/90 dark:bg-slate-900/90 backdrop-blur-md shadow-sm sticky top-0 z-30 border-b border-slate-100 dark:border-slate-800 transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-4 h-20 flex justify-between items-center">
             <div class="flex-shrink-0 flex items-center h-full py-1">
                 <img src="https://imgg.io/images/2026/03/22/ce7f90873f720d041ffcdb63cfe66b05.png" alt="مكتب تمام للاستقدام" class="h-14 md:h-16 object-contain dark:brightness-0 dark:invert transition-all">
@@ -159,13 +191,50 @@
         </div>
     </header>
 
-    <div class="fixed left-4 bottom-24 z-40 flex flex-col gap-3">
+    <div class="fixed right-4 bottom-24 md:bottom-8 z-40 flex flex-col gap-3">
         <a href="tel:0545797339" class="floating-btn w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center shadow-lg animate-bounce-slight" style="animation-delay: 0.5s;">
             <i class="fa-solid fa-phone text-xl"></i>
         </a>
         <a href="https://wa.me/966545797339" target="_blank" class="floating-btn w-12 h-12 bg-whatsapp text-white rounded-full flex items-center justify-center shadow-lg animate-bounce-slight">
             <i class="fa-brands fa-whatsapp text-2xl"></i>
         </a>
+    </div>
+
+    <div class="fixed left-4 bottom-24 md:bottom-8 z-50">
+        <div class="relative flex items-center">
+            <div id="chat-greeting" class="chat-tooltip bg-white dark:bg-slate-800 text-primary dark:text-white text-xs font-bold py-2 px-4 rounded-xl shadow-lg border border-gray-100 dark:border-slate-700 ml-3 z-0">
+                <span data-i18n="chatGreeting">يا هلا، معك خالد بالخدمة! 👨‍💼</span>
+            </div>
+            
+            <button onclick="openChatbot()" class="chatbot-btn w-14 h-14 bg-gradient-to-tr from-secondary to-yellow-300 rounded-full flex items-center justify-center shadow-[0_0_15px_rgba(234,179,8,0.5)] border-2 border-white dark:border-slate-800 z-10 relative">
+                <div class="absolute inset-0 rounded-full border-2 border-white/40 animate-ping" style="animation-duration: 2s;"></div>
+                <i class="fa-solid fa-robot text-primary text-2xl"></i>
+                <span class="absolute top-0 right-0 w-3.5 h-3.5 bg-green-500 border-2 border-white dark:border-slate-800 rounded-full"></span>
+            </button>
+        </div>
+    </div>
+
+    <div id="chatbot-modal" class="fixed inset-0 bg-black/60 z-[300] backdrop-blur-sm items-center justify-center p-4 hidden">
+        <div class="chatbot-iframe-container w-full max-w-lg bg-white dark:bg-slate-900 rounded-3xl overflow-hidden shadow-2xl border border-gray-200 dark:border-slate-700 flex flex-col h-[85vh] md:h-[700px]">
+            <div class="bg-primary text-white p-4 flex justify-between items-center border-b-2 border-secondary">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center">
+                        <i class="fa-solid fa-robot text-secondary text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-extrabold text-sm" data-i18n="chatBotName">خالد - مساعد مكتب تمام</h3>
+                        <p class="text-[10px] text-gray-300 flex items-center gap-1"><span class="w-2 h-2 bg-green-500 rounded-full inline-block"></span> متصل الآن</p>
+                    </div>
+                </div>
+                <button onclick="closeChatbot()" class="text-white hover:text-secondary transition text-2xl w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/10 focus:outline-none">&times;</button>
+            </div>
+            <div class="flex-grow w-full bg-slate-50 dark:bg-slate-900 relative overflow-hidden">
+                <div class="absolute inset-0 flex justify-center items-center -z-10">
+                    <div class="animate-spin-slow w-8 h-8 border-4 border-secondary border-t-primary rounded-full"></div>
+                </div>
+                <iframe src="https://udify.app/chatbot/8AUTHhCkynW1g6Ka" class="w-full h-full border-0" allow="microphone"></iframe>
+            </div>
+        </div>
     </div>
 
     <main class="flex-grow pb-20 md:pb-0">
@@ -220,13 +289,13 @@
                             <i class="fa-solid fa-file-contract text-2xl"></i>
                         </div>
                         <h3 class="text-xl font-bold text-primary dark:text-white mb-3" data-i18n="feat1Title">ضمان العمالة</h3>
-                        <p class="text-gray-600 dark:text-gray-300 text-sm leading-relaxed" data-i18n="feat1Desc">راحتك مضمونة مع مكتب تمام، نقدم لك ضمان 90 يوم وفق أنظمة مساند.</p>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm leading-relaxed" data-i18n="feat1Desc">راحتك مضمونة، نقدم لك ضمان 90 يوم وفق أنظمة مساند.</p>
                     </div>
                     <div class="feature-card bg-white dark:bg-slate-800 rounded-2xl p-6 text-center shadow-sm">
                         <div class="w-16 h-16 bg-secondary/20 dark:bg-secondary/20 rounded-full flex items-center justify-center mx-auto mb-4 text-secondary">
                             <i class="fa-solid fa-hand-holding-dollar text-2xl"></i>
                         </div>
-                        <h3 class="text-xl font-bold text-primary dark:text-white mb-3" data-i18n="feat2Title">أسعار إستقدام تنافسية</h3>
+                        <h3 class="text-xl font-bold text-primary dark:text-white mb-3" data-i18n="feat2Title">أسعار تنافسية</h3>
                         <p class="text-gray-600 dark:text-gray-300 text-sm leading-relaxed" data-i18n="feat2Desc">وفر فلوسك مع أقوى باقات الاستقدام في السوق وخيارات دفع ميسرة.</p>
                     </div>
                     <div class="feature-card bg-white dark:bg-slate-800 rounded-2xl p-6 text-center shadow-sm">
@@ -240,8 +309,8 @@
                         <div class="w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mx-auto mb-4 text-blue-600 dark:text-blue-400">
                             <i class="fa-solid fa-headset text-2xl"></i>
                         </div>
-                        <h3 class="text-xl font-bold text-primary dark:text-white mb-3" data-i18n="feat4Title">خدمة عملاء 24/7</h3>
-                        <p class="text-gray-600 dark:text-gray-300 text-sm leading-relaxed" data-i18n="feat4Desc">فريقنا متواجد على مدار الساعة للرد على استفساراتك وحل أي إشكالية.</p>
+                        <h3 class="text-xl font-bold text-primary dark:text-white mb-3" data-i18n="feat4Title">خدمة 24/7</h3>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm leading-relaxed" data-i18n="feat4Desc">فريقنا متواجد للرد على استفساراتك وحل أي إشكالية.</p>
                     </div>
                 </div>
             </div>
@@ -454,7 +523,8 @@
                 countriesTitle: "الدول المتاحة للاستقدام", countryPk: "باكستان", countryBd: "بنغلاديش", countryPh: "الفلبين", countryEt: "إثيوبيا", countryKe: "كينيا", btnViewCVs: "تصفح السير الذاتية المتاحة",
                 aboutTitle: "من نحن؟", aboutText: 'يعمل "مكتب تمام للاستقدام" وفق أنظمة وزارة الموارد البشرية لتقديم نخبة العمالة.',
                 partnersTitle: "شركاء النجاح", partnerGov: "وزارة الموارد البشرية", partnerMusaned: "منصة مساند", partnerTamara: "تمارا",
-                footerSocial: "تواصل معنا عبر منصات التواصل الإجتماعي", footerCopy: "جميع الحقوق محفوظة لدى | مكتب تمام للإستقدام 2027"
+                footerSocial: "تواصل معنا عبر منصات التواصل الإجتماعي", footerCopy: "جميع الحقوق محفوظة لدى | مكتب تمام للإستقدام 2027",
+                chatGreeting: "يا هلا، معك خالد بالخدمة! 👨‍💼", chatBotName: "خالد - مساعد تمام"
             },
             en: {
                 title: "Tamam Recruitment | Your Trusted Choice", splashTitle: "Tamam Recruitment Agency", loadingText: "Loading Website", devSignatureFooter: "👑 Developed & Designed by: Eng. Islam Elsheikh 👑", menuTitle: "Menu", navHome: "Home", navServicesBtn: "Services", navServices: "Services", navIndiv: "Individual Services", navBusiness: "Business Services", navMediation: "Recruitment Mediation", navWorkers: "Targeted Workers", navCVs: "CVs", navCountries: "Available Countries", navAbout: "About Us", navContact: "Contact Us", topBar: "Certified by Musaned | License No: 3701262", btnFreeConsult: "Get a Free Consultation",
@@ -465,7 +535,8 @@
                 countriesTitle: "Available Countries", countryPk: "Pakistan", countryBd: "Bangladesh", countryPh: "Philippines", countryEt: "Ethiopia", countryKe: "Kenya", btnViewCVs: "Browse Available CVs",
                 aboutTitle: "About Us", aboutText: 'Tamam Recruitment operates under the regulations of the Ministry of Human Resources.',
                 partnersTitle: "Success Partners", partnerGov: "Ministry of Human Resources", partnerMusaned: "Musaned Platform", partnerTamara: "Tamara",
-                footerSocial: "Connect with us on social media", footerCopy: "All Rights Reserved | Tamam Recruitment 2027"
+                footerSocial: "Connect with us on social media", footerCopy: "All Rights Reserved | Tamam Recruitment 2027",
+                chatGreeting: "Hello, Khalid at your service! 👨‍💼", chatBotName: "Khalid - Tamam Assistant"
             }
         };
 
@@ -512,23 +583,49 @@
             overlay.classList.toggle('hidden');
         }
 
-        // 3. شاشة التحميل المطورة
+        // 3. أكواد المساعد الذكي "خالد"
+        function openChatbot() {
+            const modal = document.getElementById('chatbot-modal');
+            modal.classList.add('show');
+            document.body.style.overflow = 'hidden';
+            const greeting = document.getElementById('chat-greeting');
+            if(greeting) greeting.style.display = 'none';
+        }
+
+        function closeChatbot() {
+            const modal = document.getElementById('chatbot-modal');
+            modal.classList.remove('show');
+            document.body.style.overflow = '';
+        }
+
+        function triggerChatGreeting() {
+            const greeting = document.getElementById('chat-greeting');
+            if(!greeting) return;
+            
+            setTimeout(() => {
+                greeting.classList.add('animate-slide-in-left');
+                setTimeout(() => {
+                    greeting.classList.remove('animate-slide-in-left');
+                    greeting.classList.add('animate-slide-out-left');
+                }, 6000);
+            }, 4000); // تظهر بعد 4 ثواني من تحميل الصفحة
+        }
+
+        // 4. شاشة التحميل المطورة
         function hideSplash() {
             const splash = document.getElementById('splash-screen');
             if (splash && !splash.classList.contains('hidden')) {
                 splash.classList.add('opacity-0');
                 setTimeout(() => {
                     splash.classList.add('hidden');
-                    document.getElementById('body-content').classList.remove('overflow-hidden');
                     if(typeof window.resumeSlider === 'function') window.resumeSlider();
+                    triggerChatGreeting(); // تشغيل حركة الترحيب لخالد
                 }, 700);
-            } else {
-                document.getElementById('body-content').classList.remove('overflow-hidden');
             }
         }
         
         window.addEventListener('load', () => { setTimeout(hideSplash, 3000); });
-        setTimeout(hideSplash, 3500); // حماية إجبارية في حالة بطء الإنترنت
+        setTimeout(hideSplash, 3500); // حماية إجبارية
     </script>
 </body>
 </html>
