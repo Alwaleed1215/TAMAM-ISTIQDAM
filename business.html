@@ -32,8 +32,9 @@
     </script>
     <style>
         body { font-family: 'Cairo', sans-serif; overflow-x: hidden; width: 100%; transition: background-color 0.3s, color 0.3s; }
-        .loading-dots::after { content: '.'; animation: dots 1.5s steps(5, end) infinite; }
-        @keyframes dots { 0%, 20% { content: '.'; } 40% { content: '..'; } 60%, 100% { content: '...'; } }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-thumb { background: #112240; border-radius: 10px; }
+        html.dark ::-webkit-scrollbar-thumb { background: #eab308; }
         
         .floating-btn { transition: transform 0.3s ease, box-shadow 0.3s ease; }
         .floating-btn:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
@@ -47,35 +48,29 @@
         html[dir="ltr"] .feature-item:hover { transform: translateX(5px); }
     </style>
 </head>
-<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 overflow-hidden" id="body-content">
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100" id="body-content">
 
-    <div id="splash-screen" class="fixed inset-0 bg-white dark:bg-slate-900 z-[100] flex flex-col justify-center items-center transition-opacity duration-700">
-        <div class="flex flex-col items-center">
-            <div class="relative w-36 h-36 flex justify-center items-center mb-6">
-                <div class="absolute inset-0 rounded-full border-4 border-slate-100 dark:border-slate-800 border-t-primary dark:border-t-secondary animate-spin-slow"></div>
-                <img src="https://imgg.io/images/2026/03/22/3905f931b0fa4f5e93531423df3036d8.png" class="h-16 object-contain">
-            </div>
-            <h2 class="text-xs font-bold text-primary dark:text-white mb-2" data-i18n="splashTitle">مكتب تمام للإستقدام</h2>
-            <div class="text-slate-400 text-[10px]"><span data-i18n="loadingText">جاري تحميل الصفحة</span><span class="loading-dots"></span></div>
-        </div>
-    </div>
-
-    <div id="sidebar-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden transition-opacity" onclick="toggleSidebar()"></div>
+    <div id="sidebar-overlay" class="fixed inset-0 bg-black/60 z-40 hidden transition-opacity backdrop-blur-sm" onclick="toggleSidebar()"></div>
     <div id="sidebar" class="fixed top-0 bottom-0 right-0 w-64 bg-white dark:bg-slate-800 shadow-2xl z-50 transform translate-x-full transition-transform duration-300 flex flex-col">
-        <div class="p-4 border-b border-gray-100 dark:border-slate-700 flex justify-between items-center bg-primary text-white">
+        <div class="p-4 border-b border-gray-100 dark:border-slate-700 flex justify-between items-center bg-primary dark:bg-slate-950 text-white">
             <div class="flex items-center gap-2">
                 <img src="https://imgg.io/images/2026/03/22/ce7f90873f720d041ffcdb63cfe66b05.png" class="h-8 brightness-0 invert">
                 <span class="font-extrabold text-lg" data-i18n="menuTitle">القائمة</span>
             </div>
-            <button onclick="toggleSidebar()" class="text-white"><i class="fa-solid fa-xmark text-2xl"></i></button>
+            <button onclick="toggleSidebar()" class="text-white hover:text-secondary transition"><i class="fa-solid fa-xmark text-2xl"></i></button>
         </div>
         <nav class="flex-1 px-4 py-6 space-y-2 overflow-y-auto">
+            <div class="flex gap-2 mb-6 border-b border-gray-100 dark:border-slate-700 pb-6">
+                <a href="login.html" class="flex-1 text-center border-2 border-primary dark:border-secondary text-primary dark:text-secondary font-bold py-2 rounded-lg hover:bg-primary hover:text-white dark:hover:bg-secondary dark:hover:text-primary transition" data-i18n="navLogin">دخول</a>
+                <a href="register.html" class="flex-1 text-center bg-primary dark:bg-secondary text-white dark:text-primary font-bold py-2 rounded-lg hover:bg-opacity-90 transition shadow-md" data-i18n="navRegister">تسجيل</a>
+            </div>
+
             <a href="index.html" class="block px-4 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-bold hover:bg-primary hover:text-white transition" data-i18n="navHome">الرئيسية</a>
             
             <div class="pt-2 pb-1">
                 <span class="block px-4 text-xs font-bold text-gray-400" data-i18n="navServices">خدماتنا</span>
                 <a href="individuals.html" class="block px-4 py-2 mt-1 rounded-lg text-gray-600 dark:text-gray-300 font-semibold hover:bg-primary hover:text-white transition" data-i18n="navIndiv">خدمات الأفراد</a>
-                <a href="business.html" class="block px-4 py-2 rounded-lg bg-slate-50 dark:bg-slate-700 text-primary dark:text-secondary font-semibold" data-i18n="navBusiness">خدمات الأعمال</a>
+                <a href="business.html" class="block px-4 py-2 rounded-lg bg-primary/10 dark:bg-secondary/10 text-primary dark:text-secondary font-semibold" data-i18n="navBusiness">خدمات الأعمال</a>
                 <a href="mediation.html" class="block px-4 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-semibold hover:bg-primary hover:text-white transition" data-i18n="navMediation">التوسط في الاستقدام</a>
             </div>
 
@@ -119,11 +114,16 @@
             </nav>
             
             <div class="flex items-center gap-3">
+                <div class="hidden lg:flex items-center gap-3 mx-2 border-l border-slate-200 dark:border-slate-700 pl-4 rtl:border-l-0 rtl:border-r rtl:pl-0 rtl:pr-4">
+                    <a href="login.html" class="text-primary dark:text-gray-300 font-bold text-sm hover:text-secondary transition" data-i18n="navLogin">تسجيل الدخول</a>
+                    <a href="register.html" class="bg-primary text-white dark:bg-secondary dark:text-primary px-5 py-2 rounded-full font-bold text-sm shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all" data-i18n="navRegister">حساب جديد</a>
+                </div>
+
                 <button onclick="toggleDarkMode()" class="text-primary dark:text-secondary text-lg hover:scale-110 transition-transform focus:outline-none" id="darkModeBtn">
                     <i class="fa-solid fa-moon"></i>
                 </button>
                 <button onclick="switchLanguage()" class="text-[10px] border border-primary/20 dark:border-secondary/30 px-2 py-1 rounded bg-slate-50 dark:bg-slate-800 text-primary dark:text-white font-bold hover:bg-primary hover:text-white dark:hover:bg-secondary dark:hover:text-primary transition-colors">EN/AR</button>
-                <button onclick="toggleSidebar()" class="lg:hidden text-primary dark:text-white"><i class="fa-solid fa-bars text-3xl"></i></button>
+                <button onclick="toggleSidebar()" class="lg:hidden text-primary dark:text-white focus:outline-none"><i class="fa-solid fa-bars text-3xl"></i></button>
             </div>
         </div>
     </header>
@@ -307,105 +307,63 @@
         const translations = {
             ar: {
                 businessTitlePage: "خدمات الأعمال | مكتب تمام للاستقدام",
-                splashTitle: "مكتب تمام للإستقدام",
-                loadingText: "جاري تحميل الصفحة",
-                devSignatureFooter: "👑 تم التطوير والتصميم بواسطة : م إسلام الشيخ 👑",
-                menuTitle: "القائمة",
-                navHome: "الرئيسية",
-                navServicesBtn: "خدماتنا",
-                navServices: "خدماتنا",
-                navIndiv: "خدمات الأفراد",
-                navBusiness: "خدمات الأعمال",
-                navMediation: "التوسط في الاستقدام",
-                navWorkers: "العمالة المستهدفة",
-                navCVs: "السير الذاتية",
-                navCountries: "الدول المتاحة",
-                navAbout: "من نحن",
-                navContact: "اتصل بنا",
+                menuTitle: "القائمة", navHome: "الرئيسية", navServicesBtn: "خدماتنا", navServices: "خدماتنا", navIndiv: "خدمات الأفراد", navBusiness: "خدمات الأعمال", navMediation: "التوسط في الاستقدام", navWorkers: "العمالة المستهدفة", navCVs: "السير الذاتية", navCountries: "الدول المتاحة", navAbout: "من نحن", navContact: "اتصل بنا", navLogin: "دخول", navRegister: "تسجيل",
                 topBar: "مكتب معتمد من منصة مساند | ترخيص رقم: 3701262",
                 
                 heroBizTitle: "حلول الكوادر البشرية لقطاع الأعمال",
                 heroBizDesc: "الشريك الاستراتيجي لنجاح مؤسستك. نوفر لك الكفاءات المهنية والعمالة المتخصصة التي تضمن استمرارية أعمالك ونموها وفق أعلى معايير الجودة والأنظمة الرسمية.",
                 
                 sectorsTitle: "القطاعات التي نخدمها",
-                secConstruction: "قطاع المقاولات والبناء",
-                secConstructionDesc: "توفير عمالة مهنية وفنية متخصصة في البناء، الكهرباء، السباكة، وكافة أعمال المقاولات لضمان إنجاز مشاريعكم بدقة.",
-                secHospitality: "قطاع الضيافة والمطاعم",
-                secHospitalityDesc: "كوادر محترفة من طهاة، مقدمي طعام، وعمال نظافة، مدربين على أعلى معايير الصحة والضيافة الفندقية.",
-                secMedical: "القطاع الطبي والصحي",
-                secMedicalDesc: "استقدام ممرضين، وفنيين صحيين، وكوادر مساعدة مؤهلة بشهادات معتمدة لدعم المراكز الطبية والمستشفيات.",
-                secMaintenance: "الصيانة والتشغيل",
-                secMaintenanceDesc: "فنيين وعمالة مدربة لإدارة عمليات التشغيل والصيانة للمرافق والمجمعات التجارية لضمان استدامة العمل.",
+                secConstruction: "قطاع المقاولات والبناء", secConstructionDesc: "توفير عمالة مهنية وفنية متخصصة في البناء، الكهرباء، السباكة، وكافة أعمال المقاولات لضمان إنجاز مشاريعكم بدقة.",
+                secHospitality: "قطاع الضيافة والمطاعم", secHospitalityDesc: "كوادر محترفة من طهاة، مقدمي طعام، وعمال نظافة، مدربين على أعلى معايير الصحة والضيافة الفندقية.",
+                secMedical: "القطاع الطبي والصحي", secMedicalDesc: "استقدام ممرضين، وفنيين صحيين، وكوادر مساعدة مؤهلة بشهادات معتمدة لدعم المراكز الطبية والمستشفيات.",
+                secMaintenance: "الصيانة والتشغيل", secMaintenanceDesc: "فنيين وعمالة مدربة لإدارة عمليات التشغيل والصيانة للمرافق والمجمعات التجارية لضمان استدامة العمل.",
                 
                 whyBizTitle: "لماذا تعتمد علينا شركتك؟",
-                whyBizDesc: "ندرك في مكتب \"تمام\" أن الوقت والجودة هما عصب العمل التجاري، لذلك صممنا خدماتنا لتكون الداعم الأول لنجاحك وتقليل الأعباء الإدارية والتشغيلية عن مؤسستك.",
-                bizFeat1Title: "توفير الأعداد الكبيرة",
-                bizFeat1Desc: "قدرة عالية على تلبية طلبات الاستقدام للشركات والمشاريع الكبرى في وقت قياسي.",
-                bizFeat2Title: "توافق قانوني 100%",
-                bizFeat2Desc: "جميع إجراءاتنا تتم عبر منصة \"قوى\" والمنصات الحكومية الرسمية لضمان سلامة الموقف القانوني لمؤسستك.",
-                bizFeat3Title: "استشارات وتوجيه",
-                bizFeat3Desc: "فريق متخصص لدراسة احتياجات مشروعك وتقديم أنسب الحلول والكوادر البشرية لك.",
+                whyBizDesc: 'ندرك في مكتب "تمام" أن الوقت والجودة هما عصب العمل التجاري، لذلك صممنا خدماتنا لتكون الداعم الأول لنجاحك وتقليل الأعباء الإدارية والتشغيلية عن مؤسستك.',
+                bizFeat1Title: "توفير الأعداد الكبيرة", bizFeat1Desc: "قدرة عالية على تلبية طلبات الاستقدام للشركات والمشاريع الكبرى في وقت قياسي.",
+                bizFeat2Title: "توافق قانوني 100%", bizFeat2Desc: 'جميع إجراءاتنا تتم عبر منصة "قوى" والمنصات الحكومية الرسمية لضمان سلامة الموقف القانوني لمؤسستك.',
+                bizFeat3Title: "استشارات وتوجيه", bizFeat3Desc: "فريق متخصص لدراسة احتياجات مشروعك وتقديم أنسب الحلول والكوادر البشرية لك.",
                 
-                bizExpTitle: "شريكك الموثوق",
-                bizExpDesc: "لنمو أعمالك واستدامتها",
+                bizExpTitle: "شريكك الموثوق", bizExpDesc: "لنمو أعمالك واستدامتها",
                 
                 ctaBizTitle: "هل تبحث عن كوادر لمشروعك؟",
                 ctaBizDesc: "تواصل مع قسم خدمات الأعمال الآن للحصول على استشارة مجانية وعرض سعر مخصص يلبي تطلعات مؤسستك.",
                 btnRequestQuote: "اطلب عرض سعر لمؤسستك",
                 
                 footerSocial: "تواصل معنا عبر منصات التواصل الإجتماعي",
-                footerCopy: "جميع الحقوق محفوظة لدى | مكتب تمام للإستقدام 2027"
+                footerCopy: "جميع الحقوق محفوظة لدى | مكتب تمام للإستقدام 2027",
+                devSignatureFooter: "👑 تم التطوير والتصميم بواسطة : م إسلام الشيخ 👑"
             },
             en: {
                 businessTitlePage: "Business Services | Tamam Recruitment",
-                splashTitle: "Tamam Recruitment Agency",
-                loadingText: "Loading Page",
-                devSignatureFooter: "👑 Developed & Designed by: Eng. Islam Elsheikh 👑",
-                menuTitle: "Menu",
-                navHome: "Home",
-                navServicesBtn: "Services",
-                navServices: "Services",
-                navIndiv: "Individual Services",
-                navBusiness: "Business Services",
-                navMediation: "Recruitment Mediation",
-                navWorkers: "Targeted Workers",
-                navCVs: "CVs",
-                navCountries: "Available Countries",
-                navAbout: "About Us",
-                navContact: "Contact Us",
+                menuTitle: "Menu", navHome: "Home", navServicesBtn: "Services", navServices: "Services", navIndiv: "Individual Services", navBusiness: "Business Services", navMediation: "Recruitment Mediation", navWorkers: "Targeted Workers", navCVs: "CVs", navCountries: "Available Countries", navAbout: "About Us", navContact: "Contact Us", navLogin: "Login", navRegister: "Sign Up",
                 topBar: "Certified by Musaned | License No: 3701262",
                 
                 heroBizTitle: "Human Resource Solutions for Business",
                 heroBizDesc: "The strategic partner for your organization's success. We provide professional talents and specialized workers ensuring your business continuity and growth under the highest quality standards.",
                 
                 sectorsTitle: "Sectors We Serve",
-                secConstruction: "Construction & Contracting",
-                secConstructionDesc: "Providing specialized technical and professional labor for construction, electricity, plumbing, and all contracting works.",
-                secHospitality: "Hospitality & Restaurants",
-                secHospitalityDesc: "Professional staff including chefs, waiters, and cleaners trained on the highest health and hospitality standards.",
-                secMedical: "Medical & Healthcare",
-                secMedicalDesc: "Recruiting nurses, health technicians, and qualified support staff with certified degrees to support hospitals and clinics.",
-                secMaintenance: "Maintenance & Operations",
-                secMaintenanceDesc: "Trained technicians and workers to manage operation and maintenance for facilities and commercial complexes.",
+                secConstruction: "Construction & Contracting", secConstructionDesc: "Providing specialized technical and professional labor for construction, electricity, plumbing, and all contracting works.",
+                secHospitality: "Hospitality & Restaurants", secHospitalityDesc: "Professional staff including chefs, waiters, and cleaners trained on the highest health and hospitality standards.",
+                secMedical: "Medical & Healthcare", secMedicalDesc: "Recruiting nurses, health technicians, and qualified support staff with certified degrees to support hospitals and clinics.",
+                secMaintenance: "Maintenance & Operations", secMaintenanceDesc: "Trained technicians and workers to manage operation and maintenance for facilities and commercial complexes.",
                 
                 whyBizTitle: "Why Should Your Company Rely On Us?",
                 whyBizDesc: "At Tamam, we realize that time and quality are the core of business. Thus, we designed our services to be your primary supporter and to reduce administrative burdens.",
-                bizFeat1Title: "Large Scale Provision",
-                bizFeat1Desc: "High capacity to meet massive recruitment requests for large companies and projects in record time.",
-                bizFeat2Title: "100% Legal Compliance",
-                bizFeat2Desc: "All procedures are processed via 'Qiwa' and official governmental platforms to ensure your legal safety.",
-                bizFeat3Title: "Consultation & Guidance",
-                bizFeat3Desc: "A specialized team to study your project needs and provide the most suitable human resource solutions.",
+                bizFeat1Title: "Large Scale Provision", bizFeat1Desc: "High capacity to meet massive recruitment requests for large companies and projects in record time.",
+                bizFeat2Title: "100% Legal Compliance", bizFeat2Desc: "All procedures are processed via 'Qiwa' and official governmental platforms to ensure your legal safety.",
+                bizFeat3Title: "Consultation & Guidance", bizFeat3Desc: "A specialized team to study your project needs and provide the most suitable human resource solutions.",
                 
-                bizExpTitle: "Your Trusted Partner",
-                bizExpDesc: "For your business growth",
+                bizExpTitle: "Your Trusted Partner", bizExpDesc: "For your business growth",
                 
                 ctaBizTitle: "Looking for staff for your project?",
                 ctaBizDesc: "Contact our business services department now to get a free consultation and a customized quotation that meets your aspirations.",
                 btnRequestQuote: "Request a Quote for Your Company",
                 
                 footerSocial: "Connect with us on social media",
-                footerCopy: "All Rights Reserved | Tamam Recruitment Agency 2027"
+                footerCopy: "All Rights Reserved | Tamam Recruitment Agency 2027",
+                devSignatureFooter: "👑 Developed & Designed by: Eng. Islam Elsheikh 👑"
             }
         };
 
@@ -463,6 +421,7 @@
         }
 
         window.switchLanguage = function() { applyLanguage(currentLang === 'ar' ? 'en' : 'ar'); }
+        
         window.toggleSidebar = function() {
             const sidebar = document.getElementById('sidebar');
             const overlay = document.getElementById('sidebar-overlay');
@@ -475,17 +434,6 @@
         window.addEventListener('DOMContentLoaded', () => {
             initDarkMode();
             applyLanguage(currentLang);
-        });
-
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                const splash = document.getElementById('splash-screen');
-                if(splash) splash.classList.add('opacity-0');
-                setTimeout(() => {
-                    if(splash) splash.classList.add('hidden');
-                    document.getElementById('body-content').classList.remove('overflow-hidden');
-                }, 700);
-            }, 1500);
         });
     </script>
 </body>
