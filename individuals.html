@@ -32,8 +32,9 @@
     </script>
     <style>
         body { font-family: 'Cairo', sans-serif; overflow-x: hidden; width: 100%; transition: background-color 0.3s, color 0.3s; }
-        .loading-dots::after { content: '.'; animation: dots 1.5s steps(5, end) infinite; }
-        @keyframes dots { 0%, 20% { content: '.'; } 40% { content: '..'; } 60%, 100% { content: '...'; } }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-thumb { background: #112240; border-radius: 10px; }
+        html.dark ::-webkit-scrollbar-thumb { background: #eab308; }
         
         .floating-btn { transition: transform 0.3s ease, box-shadow 0.3s ease; }
         .floating-btn:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
@@ -46,25 +47,7 @@
         .group:hover .step-circle { transform: scale(1.1); background-color: #eab308; color: #112240; }
     </style>
 </head>
-<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 overflow-hidden" id="body-content">
-
-    <div id="splash-screen" class="fixed inset-0 bg-white dark:bg-slate-900 z-[100] flex flex-col justify-center items-center transition-opacity duration-700">
-        <div class="flex flex-col items-center">
-            <div class="relative w-36 h-36 flex justify-center items-center mb-6">
-                <div class="absolute inset-0 rounded-full border-4 border-slate-100 dark:border-slate-800 border-t-primary dark:border-t-secondary animate-spin-slow"></div>
-                <img src="https://imgg.io/images/2026/03/22/3905f931b0fa4f5e93531423df3036d8.png" class="h-16 object-contain">
-            </div>
-            <h2 class="text-xs font-bold text-primary dark:text-white mb-2" data-i18n="splashTitle">مكتب تمام للإستقدام</h2>
-            <div class="text-slate-400 text-[10px]"><span data-i18n="loadingText">جاري تحميل الصفحة</span><span class="loading-dots"></span></div>
-        </div>
-        <div class="absolute bottom-10 px-4 w-full max-w-sm animate-bounce-slight mt-auto">
-            <div class="block w-full bg-white dark:bg-slate-800 border border-primary/10 dark:border-slate-700 rounded-full py-2.5 px-4 shadow-sm text-center">
-                <span class="text-[10px] font-semibold text-primary/70 dark:text-gray-400" data-i18n="devSignatureFooter">
-                    👑 تم التطوير والتصميم بواسطة : م إسلام الشيخ 👑
-                </span>
-            </div>
-        </div>
-    </div>
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100" id="body-content">
 
     <div id="sidebar-overlay" class="fixed inset-0 bg-black/60 z-40 hidden transition-opacity backdrop-blur-sm" onclick="toggleSidebar()"></div>
     <div id="sidebar" class="fixed top-0 bottom-0 right-0 w-64 bg-white dark:bg-slate-800 shadow-2xl z-50 transform translate-x-full transition-transform duration-300 flex flex-col">
@@ -76,6 +59,11 @@
             <button onclick="toggleSidebar()" class="text-white hover:text-secondary transition"><i class="fa-solid fa-xmark text-2xl"></i></button>
         </div>
         <nav class="flex-1 px-4 py-6 space-y-2 overflow-y-auto">
+            <div class="flex gap-2 mb-6 border-b border-gray-100 dark:border-slate-700 pb-6">
+                <a href="login.html" class="flex-1 text-center border-2 border-primary dark:border-secondary text-primary dark:text-secondary font-bold py-2 rounded-lg hover:bg-primary hover:text-white dark:hover:bg-secondary dark:hover:text-primary transition" data-i18n="navLogin">دخول</a>
+                <a href="register.html" class="flex-1 text-center bg-primary dark:bg-secondary text-white dark:text-primary font-bold py-2 rounded-lg hover:bg-opacity-90 transition shadow-md" data-i18n="navRegister">تسجيل</a>
+            </div>
+
             <a href="index.html" class="block px-4 py-2.5 rounded-lg text-gray-600 dark:text-gray-300 font-bold hover:bg-slate-50 dark:hover:bg-slate-700 transition" data-i18n="navHome">الرئيسية</a>
             
             <div class="pt-2 pb-1">
@@ -125,6 +113,11 @@
             </nav>
             
             <div class="flex items-center gap-3">
+                <div class="hidden lg:flex items-center gap-3 mx-2 border-l border-slate-200 dark:border-slate-700 pl-4 rtl:border-l-0 rtl:border-r rtl:pl-0 rtl:pr-4">
+                    <a href="login.html" class="text-primary dark:text-gray-300 font-bold text-sm hover:text-secondary transition" data-i18n="navLogin">تسجيل الدخول</a>
+                    <a href="register.html" class="bg-primary text-white dark:bg-secondary dark:text-primary px-5 py-2 rounded-full font-bold text-sm shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all" data-i18n="navRegister">حساب جديد</a>
+                </div>
+
                 <button onclick="toggleDarkMode()" class="text-primary dark:text-secondary text-lg hover:scale-110 transition-transform focus:outline-none" id="darkModeBtn"><i class="fa-solid fa-moon"></i></button>
                 <button onclick="switchLanguage()" class="text-[10px] border border-primary/20 dark:border-secondary/30 px-2 py-1 rounded bg-slate-50 dark:bg-slate-800 text-primary dark:text-white font-bold hover:bg-primary hover:text-white dark:hover:bg-secondary dark:hover:text-primary transition-colors">EN/AR</button>
                 <button onclick="toggleSidebar()" class="lg:hidden text-primary dark:text-white focus:outline-none"><i class="fa-solid fa-bars text-3xl"></i></button>
@@ -270,11 +263,7 @@
         <div class="bg-white/95 dark:bg-slate-900/95 backdrop-blur-sm border dark:border-slate-800 rounded-2xl shadow-xl flex justify-around items-center h-14">
             <a href="index.html" class="flex flex-col items-center text-slate-400 dark:text-slate-500 hover:text-primary dark:hover:text-secondary transition group"><div class="p-1.5 rounded-full group-hover:bg-primary/10"><i class="fa-solid fa-house text-lg"></i></div><span class="text-[8px] font-bold" data-i18n="navHome">الرئيسية</span></a>
             <a href="cvs.html" class="flex flex-col items-center text-slate-400 dark:text-slate-500 hover:text-primary dark:hover:text-secondary transition group"><div class="p-1.5 rounded-full group-hover:bg-primary/10"><i class="fa-solid fa-file-pdf text-lg"></i></div><span class="text-[8px] font-bold" data-i18n="navCVs">السير الذاتية</span></a>
-            <div class="-mt-6">
-                <button class="bg-primary dark:bg-secondary border-4 border-slate-50 dark:border-slate-900 w-12 h-12 rounded-full flex flex-col items-center justify-center text-white dark:text-primary shadow-lg hover:scale-105 transition transform">
-                    <i class="fa-solid fa-handshake text-xl"></i>
-                </button>
-            </div>
+            <a href="workers.html" class="flex flex-col items-center text-slate-400 dark:text-slate-500 hover:text-primary dark:hover:text-secondary transition group"><div class="p-1.5 rounded-full group-hover:bg-primary/10"><i class="fa-solid fa-user-tie text-lg"></i></div><span class="text-[8px] font-bold" data-i18n="navWorkers">العمالة</span></a>
             <a href="countries.html" class="flex flex-col items-center text-slate-400 dark:text-slate-500 hover:text-primary dark:hover:text-secondary transition group"><div class="p-1.5 rounded-full group-hover:bg-primary/10"><i class="fa-solid fa-globe text-lg"></i></div><span class="text-[8px] font-bold" data-i18n="navCountries">الدول</span></a>
             <a href="contact.html" class="flex flex-col items-center text-slate-400 dark:text-slate-500 hover:text-primary dark:hover:text-secondary transition group"><div class="p-1.5 rounded-full group-hover:bg-primary/10"><i class="fa-solid fa-phone text-lg"></i></div><span class="text-[8px] font-bold" data-i18n="navContact">تواصل</span></a>
         </div>
@@ -283,7 +272,7 @@
     <script>
         const translations = {
             ar: {
-                indivTitlePage: "خدمات الأفراد | مكتب تمام للاستقدام", splashTitle: "مكتب تمام للإستقدام", loadingText: "جاري تحميل الصفحة", devSignatureFooter: "👑 تم التطوير والتصميم بواسطة : م إسلام الشيخ 👑", menuTitle: "القائمة", navHome: "الرئيسية", navServicesBtn: "خدماتنا", navServices: "خدماتنا", navIndiv: "خدمات الأفراد", navBusiness: "خدمات الأعمال", navMediation: "التوسط في الاستقدام", navWorkers: "العمالة المستهدفة", navCVs: "السير الذاتية", navCountries: "الدول المتاحة", navAbout: "من نحن", navContact: "اتصل بنا", topBar: "مكتب معتمد من منصة مساند | ترخيص رقم: 3701262",
+                indivTitlePage: "خدمات الأفراد | مكتب تمام للاستقدام", menuTitle: "القائمة", navHome: "الرئيسية", navServicesBtn: "خدماتنا", navServices: "خدماتنا", navIndiv: "خدمات الأفراد", navBusiness: "خدمات الأعمال", navMediation: "التوسط في الاستقدام", navWorkers: "العمالة المستهدفة", navCVs: "السير الذاتية", navCountries: "الدول المتاحة", navAbout: "من نحن", navContact: "اتصل بنا", navLogin: "تسجيل الدخول", navRegister: "حساب جديد", topBar: "مكتب معتمد من منصة مساند | ترخيص رقم: 3701262",
                 
                 heroIndivTitle: "خدمات الأفراد والعوائل", heroIndivDesc: "راحة بالك تبدأ من هنا. نوفر لك ولعائلتك أمهر الكوادر المنزلية لتخفيف أعباء الحياة اليومية، مع ضمانات شاملة وإجراءات رسمية موثقة.",
                 indivServicesTitle: "كيف نخدم عائلتك؟",
@@ -297,10 +286,11 @@
                 step2Title: "التعاقد عبر مساند", step2Desc: "نقوم بإتمام إجراءات التعاقد رسمياً عبر منصة مساند لضمان كافة حقوقك القانونية.",
                 step3Title: "وصول العمالة", step3Desc: "نتابع إجراءات السفر حتى وصول العمالة إلى المملكة واستلامكم لها بكل يسر.",
                 btnStartNow: "ابدأ الآن وتصفح السير الذاتية",
-                footerCopy: "جميع الحقوق محفوظة لدى | مكتب تمام للإستقدام 2027"
+                
+                footerCopy: "جميع الحقوق محفوظة لدى | مكتب تمام للإستقدام 2027", devSignatureFooter: "👑 تم التطوير والتصميم بواسطة : م إسلام الشيخ 👑"
             },
             en: {
-                indivTitlePage: "Individual Services | Tamam Recruitment", splashTitle: "Tamam Recruitment Agency", loadingText: "Loading Page", devSignatureFooter: "👑 Developed & Designed by: Eng. Islam Elsheikh 👑", menuTitle: "Menu", navHome: "Home", navServicesBtn: "Services", navServices: "Services", navIndiv: "Individual Services", navBusiness: "Business Services", navMediation: "Recruitment Mediation", navWorkers: "Targeted Workers", navCVs: "CVs", navCountries: "Available Countries", navAbout: "About Us", navContact: "Contact Us", topBar: "Certified by Musaned | License No: 3701262",
+                indivTitlePage: "Individual Services | Tamam Recruitment", menuTitle: "Menu", navHome: "Home", navServicesBtn: "Services", navServices: "Services", navIndiv: "Individual Services", navBusiness: "Business Services", navMediation: "Recruitment Mediation", navWorkers: "Targeted Workers", navCVs: "CVs", navCountries: "Available Countries", navAbout: "About Us", navContact: "Contact Us", navLogin: "Login", navRegister: "Sign Up", topBar: "Certified by Musaned | License No: 3701262",
                 
                 heroIndivTitle: "Individual & Family Services", heroIndivDesc: "Your peace of mind starts here. We provide you and your family with the most skilled domestic staff to ease daily burdens.",
                 indivServicesTitle: "How Do We Serve Your Family?",
@@ -314,11 +304,11 @@
                 step2Title: "Contract via Musaned", step2Desc: "We officially complete the contracting procedures via Musaned to guarantee your rights.",
                 step3Title: "Worker Arrival", step3Desc: "We follow up on travel procedures until the worker arrives and you receive them smoothly.",
                 btnStartNow: "Start Now & Browse CVs",
-                footerCopy: "All Rights Reserved | Tamam Recruitment Agency 2027"
+                
+                footerCopy: "All Rights Reserved | Tamam Recruitment Agency 2027", devSignatureFooter: "👑 Developed & Designed by: Eng. Islam Elsheikh 👑"
             }
         };
 
-        // دوال الترجمة والدارك مود
         let currentLang = localStorage.getItem('siteLang') || 'ar';
         
         function initDarkMode() {
@@ -353,7 +343,6 @@
                 document.title = translations[lang]['indivTitlePage'];
             }
 
-            // فك التداخل بين الترجمة والسايد بار
             const sidebar = document.getElementById('sidebar');
             if(sidebar) {
                 if (lang === 'ar') {
@@ -385,27 +374,10 @@
             overlay.classList.toggle('hidden');
         }
 
-        // شاشة التحميل (2 ثانية مع حماية السكرول)
-        function hideSplash() {
-            const splash = document.getElementById('splash-screen');
-            if (splash && !splash.classList.contains('hidden')) {
-                splash.classList.add('opacity-0');
-                setTimeout(() => {
-                    splash.classList.add('hidden');
-                    document.getElementById('body-content').classList.remove('overflow-hidden');
-                }, 700);
-            } else {
-                document.getElementById('body-content').classList.remove('overflow-hidden');
-            }
-        }
-
         window.addEventListener('DOMContentLoaded', () => {
             initDarkMode();
             applyLanguage(currentLang);
         });
-
-        window.addEventListener('load', () => { setTimeout(hideSplash, 2000); });
-        setTimeout(hideSplash, 2500); // حماية إجبارية
     </script>
 </body>
 </html>
