@@ -38,8 +38,9 @@
     </script>
     <style>
         body { font-family: 'Cairo', sans-serif; overflow-x: hidden; width: 100%; transition: background-color 0.3s, color 0.3s; }
-        .loading-dots::after { content: '.'; animation: dots 1.5s steps(5, end) infinite; }
-        @keyframes dots { 0%, 20% { content: '.'; } 40% { content: '..'; } 60%, 100% { content: '...'; } }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-thumb { background: #112240; border-radius: 10px; }
+        html.dark ::-webkit-scrollbar-thumb { background: #eab308; }
         
         .floating-btn { transition: transform 0.3s ease, box-shadow 0.3s ease; }
         .floating-btn:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
@@ -61,24 +62,6 @@
 </head>
 <body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100" id="body-content">
 
-    <div id="splash-screen" class="fixed inset-0 bg-white dark:bg-slate-900 z-[100] flex flex-col justify-center items-center transition-opacity duration-700">
-        <div class="flex flex-col items-center">
-            <div class="relative w-36 h-36 flex justify-center items-center mb-6">
-                <div class="absolute inset-0 rounded-full border-4 border-slate-100 dark:border-slate-800 border-t-primary dark:border-t-secondary animate-spin-slow"></div>
-                <img src="https://imgg.io/images/2026/03/22/3905f931b0fa4f5e93531423df3036d8.png" class="h-16 object-contain">
-            </div>
-            <h2 class="text-xs font-bold text-primary dark:text-white mb-2" data-i18n="splashTitle">مكتب تمام للإستقدام</h2>
-            <div class="text-slate-400 text-[10px]"><span data-i18n="loadingText">جاري تحميل الصفحة</span><span class="loading-dots"></span></div>
-        </div>
-        <div class="absolute bottom-10 px-4 w-full max-w-sm animate-bounce-slight mt-auto">
-            <div class="block w-full bg-white dark:bg-slate-800 border border-primary/10 dark:border-slate-700 rounded-full py-2.5 px-4 shadow-sm text-center">
-                <span class="text-[10px] font-semibold text-primary/70 dark:text-gray-400" data-i18n="devSignatureFooter">
-                    👑 تم التطوير والتصميم بواسطة : م إسلام الشيخ 👑
-                </span>
-            </div>
-        </div>
-    </div>
-
     <div id="sidebar-overlay" class="fixed inset-0 bg-black/60 z-40 hidden transition-opacity backdrop-blur-sm" onclick="toggleSidebar()"></div>
     <div id="sidebar" class="fixed top-0 bottom-0 right-0 w-64 bg-white dark:bg-slate-800 shadow-2xl z-50 transform translate-x-full transition-transform duration-300 flex flex-col">
         <div class="p-4 border-b border-gray-100 dark:border-slate-700 flex justify-between items-center bg-primary dark:bg-slate-950 text-white">
@@ -89,6 +72,11 @@
             <button onclick="toggleSidebar()" class="text-white hover:text-secondary transition"><i class="fa-solid fa-xmark text-2xl"></i></button>
         </div>
         <nav class="flex-1 px-4 py-6 space-y-2 overflow-y-auto">
+            <div class="flex gap-2 mb-6 border-b border-gray-100 dark:border-slate-700 pb-6">
+                <a href="login.html" class="flex-1 text-center border-2 border-primary dark:border-secondary text-primary dark:text-secondary font-bold py-2 rounded-lg hover:bg-primary hover:text-white dark:hover:bg-secondary dark:hover:text-primary transition" data-i18n="navLogin">دخول</a>
+                <a href="register.html" class="flex-1 text-center bg-primary dark:bg-secondary text-white dark:text-primary font-bold py-2 rounded-lg hover:bg-opacity-90 transition shadow-md" data-i18n="navRegister">تسجيل</a>
+            </div>
+
             <a href="index.html" class="block px-4 py-2.5 rounded-lg text-gray-600 dark:text-gray-300 font-bold hover:bg-slate-50 dark:hover:bg-slate-700 transition" data-i18n="navHome">الرئيسية</a>
             
             <div class="pt-2 pb-1">
@@ -138,6 +126,11 @@
             </nav>
             
             <div class="flex items-center gap-3">
+                <div class="hidden lg:flex items-center gap-3 mx-2 border-l border-slate-200 dark:border-slate-700 pl-4 rtl:border-l-0 rtl:border-r rtl:pl-0 rtl:pr-4">
+                    <a href="login.html" class="text-primary dark:text-gray-300 font-bold text-sm hover:text-secondary transition" data-i18n="navLogin">تسجيل الدخول</a>
+                    <a href="register.html" class="bg-primary text-white dark:bg-secondary dark:text-primary px-5 py-2 rounded-full font-bold text-sm shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all" data-i18n="navRegister">حساب جديد</a>
+                </div>
+
                 <button onclick="toggleDarkMode()" class="text-primary dark:text-secondary text-lg hover:scale-110 transition-transform focus:outline-none" id="darkModeBtn"><i class="fa-solid fa-moon"></i></button>
                 <button onclick="switchLanguage()" class="text-[10px] border border-primary/20 dark:border-secondary/30 px-2 py-1 rounded bg-slate-50 dark:bg-slate-800 text-primary dark:text-white font-bold hover:bg-primary hover:text-white dark:hover:bg-secondary dark:hover:text-primary transition-colors">EN/AR</button>
                 <button onclick="toggleSidebar()" class="lg:hidden text-primary dark:text-white focus:outline-none"><i class="fa-solid fa-bars text-3xl"></i></button>
@@ -216,21 +209,21 @@
                 <a href="https://www.tiktok.com/@tamam_agency" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-tiktok transition hover:text-black text-xl"><i class="fa-brands fa-tiktok"></i></a>
             </div>
             <div class="text-slate-400 text-[11px] font-semibold py-1.5 px-4 rounded-full bg-slate-800/50 border border-slate-700/50 mb-3" data-i18n="footerCopy">جميع الحقوق محفوظة لدى | مكتب تمام للإستقدام 2027</div>
-            <a href="https://wa.me/966547194788" class="inline-block border border-white/20 rounded-full py-1 px-3 hover:bg-white/10 transition-colors"><span class="text-[10px] font-semibold tracking-wide" data-i18n="devSignatureFooter">👑 تم التطوير والتصميم بواسطة : م إسلام الشيخ 👑</span></a>
+            <a href="https://wa.me/966547194788" target="_blank" class="inline-block border border-white/20 rounded-full py-1 px-3 hover:bg-white/10 transition-colors"><span class="text-[10px] font-semibold tracking-wide" data-i18n="devSignatureFooter">👑 تم التطوير والتصميم بواسطة : م إسلام الشيخ 👑</span></a>
         </div>
     </footer>
 
     <div class="md:hidden fixed bottom-3 left-3 right-3 z-30">
         <div class="bg-white/95 dark:bg-slate-900/95 backdrop-blur-sm border dark:border-slate-800 rounded-2xl shadow-xl flex justify-around items-center h-14">
-            <a href="index.html" class="flex flex-col items-center text-slate-400 dark:text-slate-500 hover:text-primary dark:hover:text-secondary transition group"><div class="p-1.5 rounded-full group-hover:bg-primary/10"><i class="fa-solid fa-house text-lg"></i></div><span class="text-[8px] font-bold" data-i18n="navHome">الرئيسية</span></a>
+            <a href="index.html" class="flex flex-col items-center text-slate-400 dark:text-slate-500 hover:text-primary dark:hover:text-secondary transition group"><div class="p-1.5 rounded-full group-hover:bg-primary/10 dark:group-hover:bg-secondary/10"><i class="fa-solid fa-house text-lg"></i></div><span class="text-[8px] font-bold" data-i18n="navHome">الرئيسية</span></a>
+            <a href="cvs.html" class="flex flex-col items-center text-slate-400 dark:text-slate-500 hover:text-primary dark:hover:text-secondary transition group"><div class="p-1.5 rounded-full group-hover:bg-primary/10 dark:group-hover:bg-secondary/10"><i class="fa-solid fa-file-pdf text-lg"></i></div><span class="text-[8px] font-bold" data-i18n="navCVs">السير الذاتية</span></a>
             <div class="-mt-6">
                 <button class="bg-primary dark:bg-secondary border-4 border-slate-50 dark:border-slate-900 w-12 h-12 rounded-full flex flex-col items-center justify-center text-white dark:text-primary shadow-lg hover:scale-105 transition transform">
-                    <i class="fa-solid fa-file-pdf text-xl"></i>
+                    <i class="fa-solid fa-user-tie text-xl"></i>
                 </button>
             </div>
-            <a href="workers.html" class="flex flex-col items-center text-slate-400 dark:text-slate-500 hover:text-primary dark:hover:text-secondary transition group"><div class="p-1.5 rounded-full group-hover:bg-primary/10"><i class="fa-solid fa-user-tie text-lg"></i></div><span class="text-[8px] font-bold" data-i18n="navWorkers">العمالة</span></a>
-            <a href="countries.html" class="flex flex-col items-center text-slate-400 dark:text-slate-500 hover:text-primary dark:hover:text-secondary transition group"><div class="p-1.5 rounded-full group-hover:bg-primary/10"><i class="fa-solid fa-globe text-lg"></i></div><span class="text-[8px] font-bold" data-i18n="navCountries">الدول</span></a>
-            <a href="contact.html" class="flex flex-col items-center text-slate-400 dark:text-slate-500 hover:text-primary dark:hover:text-secondary transition group"><div class="p-1.5 rounded-full group-hover:bg-primary/10"><i class="fa-solid fa-phone text-lg"></i></div><span class="text-[8px] font-bold" data-i18n="navContact">تواصل</span></a>
+            <a href="countries.html" class="flex flex-col items-center text-slate-400 dark:text-slate-500 hover:text-primary dark:hover:text-secondary transition group"><div class="p-1.5 rounded-full group-hover:bg-primary/10 dark:group-hover:bg-secondary/10"><i class="fa-solid fa-globe text-lg"></i></div><span class="text-[8px] font-bold" data-i18n="navCountries">الدول</span></a>
+            <a href="contact.html" class="flex flex-col items-center text-slate-400 dark:text-slate-500 hover:text-primary dark:hover:text-secondary transition group"><div class="p-1.5 rounded-full group-hover:bg-primary/10 dark:group-hover:bg-secondary/10"><i class="fa-solid fa-phone text-lg"></i></div><span class="text-[8px] font-bold" data-i18n="navContact">تواصل</span></a>
         </div>
     </div>
 
@@ -240,11 +233,9 @@
     </div>
 
     <script>
-        // 1. قاعدة بيانات السير الذاتية
         const cvsData = [
             {
-                id: "17738200850",
-                image: "https://i.ibb.co/4Zm6Sdq0/17738200850.png",
+                id: "17738200850", image: "https://i.ibb.co/4Zm6Sdq0/17738200850.png",
                 nameAr: "أمنيات عبدة سيد", nameEn: "Aminat Abdu Seid",
                 countryAr: "إثيوبيا", countryEn: "Ethiopia", flagCode: "et",
                 jobAr: "عاملة منزلية", jobEn: "Housemaid",
@@ -252,8 +243,7 @@
                 religionAr: "الإسلام", religionEn: "Islam", age: "25"
             },
             {
-                id: "17738208480",
-                image: "https://i.ibb.co/twLNGJzw/17738208480.png",
+                id: "17738208480", image: "https://i.ibb.co/twLNGJzw/17738208480.png",
                 nameAr: "رحيمات يوسف محمد", nameEn: "Rehima Yesuf Mohammed",
                 countryAr: "إثيوبيا", countryEn: "Ethiopia", flagCode: "et",
                 jobAr: "عاملة منزلية", jobEn: "Housemaid",
@@ -261,8 +251,7 @@
                 religionAr: "الإسلام", religionEn: "Islam", age: "24"
             },
             {
-                id: "17738200480",
-                image: "https://i.ibb.co/zhDhGD2t/17738200480.png",
+                id: "17738200480", image: "https://i.ibb.co/zhDhGD2t/17738200480.png",
                 nameAr: "سيدة إدريس آدم", nameEn: "Syeda Idris Adam",
                 countryAr: "إثيوبيا", countryEn: "Ethiopia", flagCode: "et",
                 jobAr: "عاملة منزلية", jobEn: "Housemaid",
@@ -270,8 +259,7 @@
                 religionAr: "الإسلام", religionEn: "Islam", age: "24"
             },
             {
-                id: "17694222860",
-                image: "https://i.ibb.co/s9JsXv2Q/17694222860.jpg",
+                id: "17694222860", image: "https://i.ibb.co/s9JsXv2Q/17694222860.jpg",
                 nameAr: "فيني كيموما آشيرا", nameEn: "Vinny Kimoma Ashira",
                 countryAr: "كينيا", countryEn: "Kenya", flagCode: "ke",
                 jobAr: "عاملة منزلية", jobEn: "Housemaid",
@@ -279,8 +267,7 @@
                 religionAr: "مسيحية", religionEn: "Christian", age: "24"
             },
             {
-                id: "17632811870",
-                image: "https://i.ibb.co/8gBdJXvZ/17632811870.jpg",
+                id: "17632811870", image: "https://i.ibb.co/8gBdJXvZ/17632811870.jpg",
                 nameAr: "إديث كوڤازي أزوسا", nameEn: "Edith Kovazy Azusa",
                 countryAr: "كينيا", countryEn: "Kenya", flagCode: "ke",
                 jobAr: "عاملة منزلية", jobEn: "Housemaid",
@@ -288,8 +275,7 @@
                 religionAr: "مسيحية", religionEn: "Christian", age: "40"
             },
             {
-                id: "17735144190",
-                image: "https://i.ibb.co/jnn42L7/17735144190.jpg",
+                id: "17735144190", image: "https://i.ibb.co/jnn42L7/17735144190.jpg",
                 nameAr: "تاروج روليان", nameEn: "Tarog Roulian",
                 countryAr: "الفلبين", countryEn: "Philippines", flagCode: "ph",
                 jobAr: "عاملة منزلية", jobEn: "Housemaid",
@@ -297,8 +283,7 @@
                 religionAr: "مسيحية", religionEn: "Christian", age: "42"
             },
             {
-                id: "17735144020",
-                image: "https://i.ibb.co/JFH61jHT/17735144020.jpg",
+                id: "17735144020", image: "https://i.ibb.co/JFH61jHT/17735144020.jpg",
                 nameAr: "نوري جين لوبيز", nameEn: "Nory Jane Lopez",
                 countryAr: "الفلبين", countryEn: "Philippines", flagCode: "ph",
                 jobAr: "عاملة منزلية", jobEn: "Housemaid",
@@ -307,19 +292,18 @@
             }
         ];
 
-        // 2. الترجمة
         const translations = {
             ar: {
-                cvsTitlePage: "السير الذاتية | مكتب تمام للاستقدام", splashTitle: "مكتب تمام للإستقدام", loadingText: "جاري تحميل الصفحة", devSignatureFooter: "👑 تم التطوير والتصميم بواسطة : م إسلام الشيخ 👑", menuTitle: "القائمة", navHome: "الرئيسية", navServicesBtn: "خدماتنا", navServices: "خدماتنا", navIndiv: "خدمات الأفراد", navBusiness: "خدمات الأعمال", navMediation: "التوسط في الاستقدام", navWorkers: "العمالة المستهدفة", navCVs: "السير الذاتية", navCountries: "الدول المتاحة", navAbout: "من نحن", navContact: "اتصل بنا", topBar: "مكتب معتمد من منصة مساند | ترخيص رقم: 3701262",
+                cvsTitlePage: "السير الذاتية | مكتب تمام للاستقدام", menuTitle: "القائمة", navHome: "الرئيسية", navServicesBtn: "خدماتنا", navServices: "خدماتنا", navIndiv: "خدمات الأفراد", navBusiness: "خدمات الأعمال", navMediation: "التوسط في الاستقدام", navWorkers: "العمالة المستهدفة", navCVs: "السير الذاتية", navCountries: "الدول المتاحة", navAbout: "من نحن", navContact: "اتصل بنا", navLogin: "تسجيل الدخول", navRegister: "حساب جديد", topBar: "مكتب معتمد من منصة مساند | ترخيص رقم: 3701262",
                 heroCVsTitle: "السير الذاتية المتاحة", heroCVsDesc: "تصفح السير الذاتية لأمهر الكوادر البشرية الجاهزة للعمل، واختر الأنسب لاحتياجات عائلتك بكل ثقة وشفافية.",
-                filterCountryTitle: "اختيار البلد", filterJobTitle: "المهن المستهدفة", filterAll: "الكل", countryPh: "الفلبين", countryKe: "كينيا", countryEt: "إثيوبيا", profMaid: "عاملة منزلية", profDriver: "سائق خاص", noResults: "لا توجد سير ذاتية مطابقة لخيارات البحث الحالية.", footerCopy: "جميع الحقوق محفوظة لدى | مكتب تمام للإستقدام 2027",
+                filterCountryTitle: "اختيار البلد", filterJobTitle: "المهن المستهدفة", filterAll: "الكل", countryPh: "الفلبين", countryKe: "كينيا", countryEt: "إثيوبيا", profMaid: "عاملة منزلية", profDriver: "سائق خاص", noResults: "لا توجد سير ذاتية مطابقة لخيارات البحث الحالية.", footerCopy: "جميع الحقوق محفوظة لدى | مكتب تمام للإستقدام 2027", devSignatureFooter: "👑 تم التطوير والتصميم بواسطة : م إسلام الشيخ 👑",
                 cvId: "مُعرف السيرة:", lblName: "الاسم:", lblJob: "المهنة:", lblSalary: "الراتب:", lblReligion: "الديانة:", lblAge: "العمر:", lblContract: "مدة العقد:", btnOrderCV: "اطلب هذه السيرة",
                 whatsappMsg: "السلام عليكم، أرغب في الاستفسار عن السيرة الذاتية رقم: [ID] - التابعة للعاملة: [NAME] من [COUNTRY]"
             },
             en: {
-                cvsTitlePage: "CVs | Tamam Recruitment", splashTitle: "Tamam Recruitment Agency", loadingText: "Loading Page", devSignatureFooter: "👑 Developed & Designed by: Eng. Islam Elsheikh 👑", menuTitle: "Menu", navHome: "Home", navServicesBtn: "Services", navServices: "Services", navIndiv: "Individual Services", navBusiness: "Business Services", navMediation: "Recruitment Mediation", navWorkers: "Targeted Workers", navCVs: "CVs", navCountries: "Available Countries", navAbout: "About Us", navContact: "Contact Us", topBar: "Certified by Musaned | License No: 3701262",
+                cvsTitlePage: "CVs | Tamam Recruitment", menuTitle: "Menu", navHome: "Home", navServicesBtn: "Services", navServices: "Services", navIndiv: "Individual Services", navBusiness: "Business Services", navMediation: "Recruitment Mediation", navWorkers: "Targeted Workers", navCVs: "CVs", navCountries: "Available Countries", navAbout: "About Us", navContact: "Contact Us", navLogin: "Login", navRegister: "Sign Up", topBar: "Certified by Musaned | License No: 3701262",
                 heroCVsTitle: "Available Resumes", heroCVsDesc: "Browse the CVs of skilled human resources ready for work, and confidently choose the best fit for your family.",
-                filterCountryTitle: "Select Country", filterJobTitle: "Target Professions", filterAll: "All", countryPh: "Philippines", countryKe: "Kenya", countryEt: "Ethiopia", profMaid: "Housemaid", profDriver: "Private Driver", noResults: "No CVs match the current search options.", footerCopy: "All Rights Reserved | Tamam Recruitment Office 2027",
+                filterCountryTitle: "Select Country", filterJobTitle: "Target Professions", filterAll: "All", countryPh: "Philippines", countryKe: "Kenya", countryEt: "Ethiopia", profMaid: "Housemaid", profDriver: "Private Driver", noResults: "No CVs match the current search options.", footerCopy: "All Rights Reserved | Tamam Recruitment Office 2027", devSignatureFooter: "👑 Developed & Designed by: Eng. Islam Elsheikh 👑",
                 cvId: "CV ID:", lblName: "Name:", lblJob: "Job:", lblSalary: "Salary:", lblReligion: "Religion:", lblAge: "Age:", lblContract: "Contract:", btnOrderCV: "Request this CV",
                 whatsappMsg: "Hello, I want to inquire about CV ID: [ID] - Worker Name: [NAME] from [COUNTRY]"
             }
@@ -337,7 +321,24 @@
                 if (translations[lang][key]) el.textContent = translations[lang][key];
             });
             document.getElementById('searchInput').placeholder = (lang === 'ar') ? "ابحث برقم المعرف (ID)..." : "Search by ID...";
-            renderCVs(); 
+            renderCVs();
+            
+            if(translations[lang] && translations[lang]['cvsTitlePage']) {
+                document.title = translations[lang]['cvsTitlePage'];
+            }
+            
+            const sidebar = document.getElementById('sidebar');
+            if(sidebar) {
+                if (lang === 'ar') {
+                    sidebar.classList.remove('left-0', '-translate-x-full', 'translate-x-0');
+                    sidebar.classList.add('right-0', 'translate-x-full');
+                } else {
+                    sidebar.classList.remove('right-0', 'translate-x-full', 'translate-x-0');
+                    sidebar.classList.add('left-0', '-translate-x-full');
+                }
+            }
+            const overlay = document.getElementById('sidebar-overlay');
+            if(overlay) overlay.classList.add('hidden');
         }
 
         function initDarkMode() {
@@ -351,13 +352,23 @@
             }
         }
 
-        window.toggleDarkMode = function() {
+        function toggleDarkMode() {
             const isDark = document.documentElement.classList.toggle('dark');
             localStorage.setItem('darkMode', isDark);
             document.querySelector('#darkModeBtn i').className = isDark ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
         }
 
-        // 3. نظام الفلترة
+        window.switchLanguage = function() { applyLanguage(currentLang === 'ar' ? 'en' : 'ar'); }
+        
+        window.toggleSidebar = function() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebar-overlay');
+            if(!sidebar || !overlay) return;
+            if (currentLang === 'ar') { sidebar.classList.toggle('translate-x-full'); } 
+            else { sidebar.classList.toggle('-translate-x-full'); }
+            overlay.classList.toggle('hidden');
+        }
+
         let activeFilters = { country: 'all', job: 'all', search: '' };
 
         function renderCVs() {
@@ -418,7 +429,7 @@
                                 </div>
                                 <div class="flex justify-between items-center px-2">
                                     <span class="text-gray-500 dark:text-gray-400 font-bold"><i class="fa-solid fa-user ml-1"></i> ${t.lblAge}</span>
-                                    <span class="font-bold text-slate-800 dark:text-white">${cv.age} عام</span>
+                                    <span class="font-bold text-slate-800 dark:text-white">${cv.age}</span>
                                 </div>
                                 <div class="flex justify-between items-center px-2">
                                     <span class="text-gray-500 dark:text-gray-400 font-bold"><i class="fa-solid fa-hands-praying ml-1"></i> ${t.lblReligion}</span>
@@ -430,7 +441,7 @@
                                 </div>
                             </div>
                             
-                            <a href="${waLink}" target="_blank" class="w-full text-center bg-whatsapp text-white font-bold py-3 rounded-xl hover:bg-green-600 transition-colors flex justify-center items-center gap-2 shadow-md">
+                            <a href="${waLink}" target="_blank" class="w-full bg-primary text-white font-bold py-3 rounded-xl hover:bg-secondary hover:text-primary transition-colors flex justify-center items-center gap-2 shadow-md">
                                 <span>${t.btnOrderCV}</span> <i class="fa-brands fa-whatsapp text-xl"></i>
                             </a>
                         </div>
@@ -465,57 +476,29 @@
             });
         }
 
-        // 4. نظام הLightbox (معدل لمنع قفل السكرول الرئيسي)
         function openLightbox(imgSrc) {
             const overlay = document.getElementById('lightbox-overlay');
             const img = document.getElementById('lightbox-image');
             img.src = imgSrc;
             overlay.classList.add('show');
-            document.body.style.overflow = 'hidden'; // قفل سكرول الصفحة أثناء عرض الصورة فقط
+            document.body.style.overflow = 'hidden'; 
         }
 
         function closeLightbox() {
             const overlay = document.getElementById('lightbox-overlay');
             overlay.classList.remove('show');
-            document.body.style.overflow = ''; // إعادة السكرول بعد قفل الصورة
+            document.body.style.overflow = ''; 
         }
 
         document.addEventListener('keydown', function(event) {
             if (event.key === "Escape") closeLightbox();
         });
 
-        // 5. شاشة التحميل المطورة
-        function hideSplash() {
-            const splash = document.getElementById('splash-screen');
-            if (splash && !splash.classList.contains('hidden')) {
-                splash.classList.add('opacity-0');
-                setTimeout(() => splash.classList.add('hidden'), 700);
-            }
-        }
-
         window.addEventListener('DOMContentLoaded', () => {
             initDarkMode();
             applyLanguage(currentLang);
             setupFilters();
         });
-
-        window.addEventListener('load', () => { setTimeout(hideSplash, 2000); });
-        setTimeout(hideSplash, 2500); // حماية أكيدة
-        
-        window.toggleSidebar = function() {
-            const sidebar = document.getElementById('sidebar');
-            const overlay = document.getElementById('sidebar-overlay');
-            if(!sidebar || !overlay) return;
-            
-            if (currentLang === 'ar') { 
-                sidebar.classList.toggle('translate-x-full');
-                sidebar.classList.toggle('translate-x-0');
-            } else { 
-                sidebar.classList.toggle('-translate-x-full');
-                sidebar.classList.toggle('translate-x-0');
-            }
-            overlay.classList.toggle('hidden');
-        }
     </script>
 </body>
 </html>
