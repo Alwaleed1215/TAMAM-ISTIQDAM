@@ -43,8 +43,6 @@
     </script>
     <style>
         body { font-family: 'Cairo', sans-serif; overflow-x: hidden; width: 100%; transition: background-color 0.3s, color 0.3s; }
-        .loading-dots::after { content: '.'; animation: dots 1.5s steps(5, end) infinite; }
-        @keyframes dots { 0%, 20% { content: '.'; } 40% { content: '..'; } 60%, 100% { content: '...'; } }
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-thumb { background: #112240; border-radius: 10px; }
         html.dark ::-webkit-scrollbar-thumb { background: #eab308; }
@@ -103,26 +101,6 @@
 </head>
 <body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100" id="body-content">
 
-    <div id="splash-screen" class="fixed inset-0 bg-white dark:bg-slate-900 z-[100] flex flex-col justify-center items-center transition-opacity duration-700">
-        <div class="flex flex-col items-center">
-            <div class="relative w-36 h-36 flex justify-center items-center mb-6">
-                <div class="absolute inset-0 rounded-full border-4 border-slate-100 dark:border-slate-800 border-t-primary dark:border-t-secondary animate-spin-slow shadow-lg"></div>
-                <div class="w-28 h-28 bg-white dark:bg-slate-800 rounded-full flex justify-center items-center z-10 p-1 overflow-hidden shadow-inner">
-                    <img src="https://imgg.io/images/2026/03/22/3905f931b0fa4f5e93531423df3036d8.png" class="h-16 object-contain">
-                </div>
-            </div>
-            <h2 class="text-sm font-bold text-primary dark:text-white mb-2" data-i18n="splashTitle">مكتب تمام للإستقدام</h2>
-            <div class="text-slate-400 font-semibold text-xs"><span data-i18n="loadingText">جاري تحميل الموقع</span><span class="loading-dots text-primary dark:text-secondary text-base"></span></div>
-        </div>
-        <div class="absolute bottom-10 px-4 w-full max-w-sm animate-bounce-slight mt-auto">
-            <div class="block w-full bg-white dark:bg-slate-800 border border-primary/10 dark:border-slate-700 rounded-full py-2.5 px-4 shadow-sm text-center">
-                <span class="text-[10px] font-semibold text-primary/70 dark:text-gray-400" data-i18n="devSignatureFooter">
-                    👑 تم التطوير والتصميم بواسطة : م إسلام الشيخ 👑
-                </span>
-            </div>
-        </div>
-    </div>
-
     <div id="sidebar-overlay" class="fixed inset-0 bg-black/60 z-40 hidden transition-opacity backdrop-blur-sm" onclick="toggleSidebar()"></div>
     <div id="sidebar" class="fixed top-0 bottom-0 right-0 w-64 bg-white dark:bg-slate-800 shadow-2xl z-50 transform translate-x-full transition-transform duration-300 flex flex-col">
         <div class="p-4 border-b border-gray-100 dark:border-slate-700 flex justify-between items-center bg-primary dark:bg-slate-950 text-white">
@@ -133,6 +111,11 @@
             <button onclick="toggleSidebar()" class="text-white hover:text-secondary transition"><i class="fa-solid fa-xmark text-2xl"></i></button>
         </div>
         <nav class="flex-1 px-4 py-6 space-y-2 overflow-y-auto">
+            <div class="flex gap-2 mb-6 border-b border-gray-100 dark:border-slate-700 pb-6">
+                <a href="login.html" class="flex-1 text-center border-2 border-primary dark:border-secondary text-primary dark:text-secondary font-bold py-2 rounded-lg hover:bg-primary hover:text-white dark:hover:bg-secondary dark:hover:text-primary transition" data-i18n="navLogin">دخول</a>
+                <a href="register.html" class="flex-1 text-center bg-primary dark:bg-secondary text-white dark:text-primary font-bold py-2 rounded-lg hover:bg-opacity-90 transition shadow-md" data-i18n="navRegister">تسجيل</a>
+            </div>
+
             <a href="index.html" class="block px-4 py-2.5 rounded-lg bg-primary/10 dark:bg-secondary/10 text-primary dark:text-secondary font-bold transition" data-i18n="navHome">الرئيسية</a>
             
             <div class="pt-2 pb-1">
@@ -182,6 +165,11 @@
             </nav>
             
             <div class="flex items-center gap-3">
+                <div class="hidden lg:flex items-center gap-3 mx-2 border-l border-slate-200 dark:border-slate-700 pl-4 rtl:border-l-0 rtl:border-r rtl:pl-0 rtl:pr-4">
+                    <a href="login.html" class="text-primary dark:text-gray-300 font-bold text-sm hover:text-secondary transition" data-i18n="navLogin">تسجيل الدخول</a>
+                    <a href="register.html" class="bg-primary text-white dark:bg-secondary dark:text-primary px-5 py-2 rounded-full font-bold text-sm shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all" data-i18n="navRegister">حساب جديد</a>
+                </div>
+
                 <button onclick="toggleDarkMode()" class="text-primary dark:text-secondary text-lg hover:scale-110 transition-transform focus:outline-none" id="darkModeBtn">
                     <i class="fa-solid fa-moon"></i>
                 </button>
@@ -512,10 +500,10 @@
             document.querySelector('#darkModeBtn i').className = isDark ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
         }
 
-        // 2. الترجمة (اللغة)
+        // 2. الترجمة (اللغة) مع إضافة الأزرار الجديدة
         const translations = {
             ar: {
-                title: "مكتب تمام للاستقدام | خيارك الموثوق", splashTitle: "مكتب تمام للإستقدام", loadingText: "جاري تحميل الموقع", devSignatureFooter: "👑 تم التطوير والتصميم بواسطة : م إسلام الشيخ 👑", menuTitle: "القائمة", navHome: "الرئيسية", navServicesBtn: "خدماتنا", navServices: "خدماتنا", navIndiv: "خدمات الأفراد", navBusiness: "خدمات الأعمال", navMediation: "التوسط في الاستقدام", navWorkers: "العمالة المستهدفة", navCVs: "السير الذاتية", navCountries: "الدول المتاحة", navAbout: "من نحن", navContact: "اتصل بنا", topBar: "مكتب معتمد من منصة مساند | ترخيص رقم: 3701262", btnFreeConsult: "أحصل على استشارة مجانية عبر واتساب",
+                title: "مكتب تمام للاستقدام | خيارك الموثوق", menuTitle: "القائمة", navHome: "الرئيسية", navServicesBtn: "خدماتنا", navServices: "خدماتنا", navIndiv: "خدمات الأفراد", navBusiness: "خدمات الأعمال", navMediation: "التوسط في الاستقدام", navWorkers: "العمالة المستهدفة", navCVs: "السير الذاتية", navCountries: "الدول المتاحة", navAbout: "من نحن", navContact: "اتصل بنا", navLogin: "تسجيل الدخول", navRegister: "حساب جديد", topBar: "مكتب معتمد من منصة مساند | ترخيص رقم: 3701262", btnFreeConsult: "أحصل على استشارة مجانية عبر واتساب",
                 heroTitle1: "مكتب تمام للإستقدام", heroTitle2: "خيارك الأول لخدمات إستقدام موثوقة وإحترافية", heroDesc: "نسعى لتقديم أرقى مستويات الخدمة في توفير الكوادر البشرية المتميزة والعمالة المنزلية المدربة بعناية.",
                 guaranteeDays: "90 يوماً", viaMusaned: "عبر منصة مساند", whyUsTitle: "لماذا تختار مكتب تمام للإستقدام؟", whyUsDesc: "نحرص على تقديم تجربة استقدام فريدة ومريحة تليق بك.",
                 feat1Title: "ضمان العمالة", feat1Desc: "راحتك مضمونة، نقدم لك ضمان 90 يوم وفق أنظمة مساند.", feat2Title: "أسعار تنافسية", feat2Desc: "وفر فلوسك مع أقوى باقات الاستقدام في السوق.", feat3Title: "عمالة مدربة", feat3Desc: "نفخر بتوفير كوادر مفحوصة ومدربة على أعلى مستوى.", feat4Title: "خدمة 24/7", feat4Desc: "فريقنا متواجد للرد على استفساراتك وحل أي إشكالية.",
@@ -527,7 +515,7 @@
                 chatGreeting: "يا هلا، معك خالد بالخدمة! 👨‍💼", chatBotName: "خالد - مساعد تمام"
             },
             en: {
-                title: "Tamam Recruitment | Your Trusted Choice", splashTitle: "Tamam Recruitment Agency", loadingText: "Loading Website", devSignatureFooter: "👑 Developed & Designed by: Eng. Islam Elsheikh 👑", menuTitle: "Menu", navHome: "Home", navServicesBtn: "Services", navServices: "Services", navIndiv: "Individual Services", navBusiness: "Business Services", navMediation: "Recruitment Mediation", navWorkers: "Targeted Workers", navCVs: "CVs", navCountries: "Available Countries", navAbout: "About Us", navContact: "Contact Us", topBar: "Certified by Musaned | License No: 3701262", btnFreeConsult: "Get a Free Consultation",
+                title: "Tamam Recruitment | Your Trusted Choice", menuTitle: "Menu", navHome: "Home", navServicesBtn: "Services", navServices: "Services", navIndiv: "Individual Services", navBusiness: "Business Services", navMediation: "Recruitment Mediation", navWorkers: "Targeted Workers", navCVs: "CVs", navCountries: "Available Countries", navAbout: "About Us", navContact: "Contact Us", navLogin: "Login", navRegister: "Sign Up", topBar: "Certified by Musaned | License No: 3701262", btnFreeConsult: "Get a Free Consultation",
                 heroTitle1: "Tamam Recruitment Agency", heroTitle2: "Your First Choice for Reliable Services", heroDesc: "We strive to provide the highest level of service in supplying distinguished human resources.",
                 guaranteeDays: "90 Days", viaMusaned: "via Musaned", whyUsTitle: "Why Choose Tamam Recruitment?", whyUsDesc: "We provide a unique and comfortable recruitment experience.",
                 feat1Title: "Worker Guarantee", feat1Desc: "Your comfort is guaranteed with a 90-day warranty.", feat2Title: "Competitive Pricing", feat2Desc: "Save your money with the strongest recruitment packages.", feat3Title: "Trained Workers", feat3Desc: "We provide highly trained and screened human resources.", feat4Title: "24/7 Service", feat4Desc: "Our team is available round the clock.",
@@ -608,24 +596,14 @@
                     greeting.classList.remove('animate-slide-in-left');
                     greeting.classList.add('animate-slide-out-left');
                 }, 6000);
-            }, 4000); // تظهر بعد 4 ثواني من تحميل الصفحة
+            }, 1000); // تظهر بعد ثانية واحدة من تشغيل الصفحة
         }
 
-        // 4. شاشة التحميل المطورة
-        function hideSplash() {
-            const splash = document.getElementById('splash-screen');
-            if (splash && !splash.classList.contains('hidden')) {
-                splash.classList.add('opacity-0');
-                setTimeout(() => {
-                    splash.classList.add('hidden');
-                    if(typeof window.resumeSlider === 'function') window.resumeSlider();
-                    triggerChatGreeting(); // تشغيل حركة الترحيب لخالد
-                }, 700);
-            }
-        }
-        
-        window.addEventListener('load', () => { setTimeout(hideSplash, 3000); });
-        setTimeout(hideSplash, 3500); // حماية إجبارية
+        // تشغيل السلايدر ورسالة الترحيب فوراً بعد الغاء شاشة التحميل
+        window.addEventListener('load', () => {
+            if(typeof window.resumeSlider === 'function') window.resumeSlider();
+            triggerChatGreeting(); 
+        });
     </script>
 </body>
 </html>
