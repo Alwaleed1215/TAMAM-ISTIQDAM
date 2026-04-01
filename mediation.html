@@ -32,8 +32,9 @@
     </script>
     <style>
         body { font-family: 'Cairo', sans-serif; overflow-x: hidden; width: 100%; transition: background-color 0.3s, color 0.3s; }
-        .loading-dots::after { content: '.'; animation: dots 1.5s steps(5, end) infinite; }
-        @keyframes dots { 0%, 20% { content: '.'; } 40% { content: '..'; } 60%, 100% { content: '...'; } }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-thumb { background: #112240; border-radius: 10px; }
+        html.dark ::-webkit-scrollbar-thumb { background: #eab308; }
         
         .floating-btn { transition: transform 0.3s ease, box-shadow 0.3s ease; }
         .floating-btn:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
@@ -45,18 +46,7 @@
         .group:hover .step-circle { transform: scale(1.1); background-color: #eab308; border-color: #eab308; color: #112240; }
     </style>
 </head>
-<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 overflow-hidden" id="body-content">
-
-    <div id="splash-screen" class="fixed inset-0 bg-white dark:bg-slate-900 z-[100] flex flex-col justify-center items-center transition-opacity duration-700">
-        <div class="flex flex-col items-center">
-            <div class="relative w-36 h-36 flex justify-center items-center mb-6">
-                <div class="absolute inset-0 rounded-full border-4 border-slate-100 dark:border-slate-800 border-t-primary dark:border-t-secondary animate-spin-slow"></div>
-                <img src="https://imgg.io/images/2026/03/22/3905f931b0fa4f5e93531423df3036d8.png" class="h-16 object-contain">
-            </div>
-            <h2 class="text-xs font-bold text-primary dark:text-white mb-2" data-i18n="splashTitle">مكتب تمام للإستقدام</h2>
-            <div class="text-slate-400 text-[10px]"><span data-i18n="loadingText">جاري تحميل الصفحة</span><span class="loading-dots"></span></div>
-        </div>
-    </div>
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100" id="body-content">
 
     <div id="sidebar-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden transition-opacity" onclick="toggleSidebar()"></div>
     <div id="sidebar" class="fixed top-0 bottom-0 right-0 w-64 bg-white dark:bg-slate-800 shadow-2xl z-50 transform translate-x-full transition-transform duration-300 flex flex-col">
@@ -68,6 +58,11 @@
             <button onclick="toggleSidebar()" class="text-white"><i class="fa-solid fa-xmark text-2xl"></i></button>
         </div>
         <nav class="flex-1 px-4 py-6 space-y-2 overflow-y-auto">
+            <div class="flex gap-2 mb-6 border-b border-gray-100 dark:border-slate-700 pb-6">
+                <a href="login.html" class="flex-1 text-center border-2 border-primary dark:border-secondary text-primary dark:text-secondary font-bold py-2 rounded-lg hover:bg-primary hover:text-white dark:hover:bg-secondary dark:hover:text-primary transition" data-i18n="navLogin">دخول</a>
+                <a href="register.html" class="flex-1 text-center bg-primary dark:bg-secondary text-white dark:text-primary font-bold py-2 rounded-lg hover:bg-opacity-90 transition shadow-md" data-i18n="navRegister">تسجيل</a>
+            </div>
+
             <a href="index.html" class="block px-4 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-bold hover:bg-primary hover:text-white transition" data-i18n="navHome">الرئيسية</a>
             
             <div class="pt-2 pb-1">
@@ -117,6 +112,11 @@
             </nav>
             
             <div class="flex items-center gap-3">
+                <div class="hidden lg:flex items-center gap-3 mx-2 border-l border-slate-200 dark:border-slate-700 pl-4 rtl:border-l-0 rtl:border-r rtl:pl-0 rtl:pr-4">
+                    <a href="login.html" class="text-primary dark:text-gray-300 font-bold text-sm hover:text-secondary transition" data-i18n="navLogin">تسجيل الدخول</a>
+                    <a href="register.html" class="bg-primary text-white dark:bg-secondary dark:text-primary px-5 py-2 rounded-full font-bold text-sm shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all" data-i18n="navRegister">حساب جديد</a>
+                </div>
+
                 <button onclick="toggleDarkMode()" class="text-primary dark:text-secondary text-lg hover:scale-110 transition-transform focus:outline-none" id="darkModeBtn">
                     <i class="fa-solid fa-moon"></i>
                 </button>
@@ -292,11 +292,7 @@
         <div class="bg-white/95 dark:bg-slate-900/95 backdrop-blur-sm border dark:border-slate-800 rounded-2xl shadow-xl flex justify-around items-center h-14">
             <a href="index.html" class="flex flex-col items-center text-slate-400 dark:text-slate-500 hover:text-primary dark:hover:text-secondary transition group"><div class="p-1.5 rounded-full group-hover:bg-primary/10 dark:group-hover:bg-secondary/10"><i class="fa-solid fa-house text-lg"></i></div><span class="text-[8px] font-bold" data-i18n="navHome">الرئيسية</span></a>
             <a href="cvs.html" class="flex flex-col items-center text-slate-400 dark:text-slate-500 hover:text-primary dark:hover:text-secondary transition group"><div class="p-1.5 rounded-full group-hover:bg-primary/10 dark:group-hover:bg-secondary/10"><i class="fa-solid fa-file-pdf text-lg"></i></div><span class="text-[8px] font-bold" data-i18n="navCVs">السير الذاتية</span></a>
-            <div class="-mt-6">
-                <button class="bg-primary dark:bg-secondary border-4 border-slate-50 dark:border-slate-900 w-12 h-12 rounded-full flex flex-col items-center justify-center text-white dark:text-primary shadow-lg hover:scale-105 transition transform">
-                    <i class="fa-solid fa-handshake text-xl"></i>
-                </button>
-            </div>
+            <a href="workers.html" class="flex flex-col items-center text-slate-400 dark:text-slate-500 hover:text-primary dark:hover:text-secondary transition group"><div class="p-1.5 rounded-full group-hover:bg-primary/10 dark:group-hover:bg-secondary/10"><i class="fa-solid fa-user-tie text-lg"></i></div><span class="text-[8px] font-bold" data-i18n="navWorkers">العمالة</span></a>
             <a href="countries.html" class="flex flex-col items-center text-slate-400 dark:text-slate-500 hover:text-primary dark:hover:text-secondary transition group"><div class="p-1.5 rounded-full group-hover:bg-primary/10 dark:group-hover:bg-secondary/10"><i class="fa-solid fa-globe text-lg"></i></div><span class="text-[8px] font-bold" data-i18n="navCountries">الدول</span></a>
             <a href="contact.html" class="flex flex-col items-center text-slate-400 dark:text-slate-500 hover:text-primary dark:hover:text-secondary transition group"><div class="p-1.5 rounded-full group-hover:bg-primary/10 dark:group-hover:bg-secondary/10"><i class="fa-solid fa-phone text-lg"></i></div><span class="text-[8px] font-bold" data-i18n="navContact">تواصل</span></a>
         </div>
@@ -306,22 +302,7 @@
         const translations = {
             ar: {
                 mediationTitlePage: "التوسط في الاستقدام | مكتب تمام للاستقدام",
-                splashTitle: "مكتب تمام للإستقدام",
-                loadingText: "جاري تحميل الصفحة",
-                devSignatureFooter: "👑 تم التطوير والتصميم بواسطة : م إسلام الشيخ 👑",
-                menuTitle: "القائمة",
-                navHome: "الرئيسية",
-                navServicesBtn: "خدماتنا",
-                navServices: "خدماتنا",
-                navIndiv: "خدمات الأفراد",
-                navBusiness: "خدمات الأعمال",
-                navMediation: "التوسط في الاستقدام",
-                navWorkers: "العمالة المستهدفة",
-                navCVs: "السير الذاتية",
-                navCountries: "الدول المتاحة",
-                navAbout: "من نحن",
-                navContact: "اتصل بنا",
-                topBar: "مكتب معتمد من منصة مساند | ترخيص رقم: 3701262",
+                menuTitle: "القائمة", navHome: "الرئيسية", navServicesBtn: "خدماتنا", navServices: "خدماتنا", navIndiv: "خدمات الأفراد", navBusiness: "خدمات الأعمال", navMediation: "التوسط في الاستقدام", navWorkers: "العمالة المستهدفة", navCVs: "السير الذاتية", navCountries: "الدول المتاحة", navAbout: "من نحن", navContact: "اتصل بنا", navLogin: "تسجيل الدخول", navRegister: "حساب جديد", topBar: "مكتب معتمد من منصة مساند | ترخيص رقم: 3701262",
                 
                 heroMedTitle: "التوسط في الاستقدام",
                 heroMedDesc: "نوفر العمالة اللازمة لقطاعي الأفراد والأعمال بعد حصولكم على التأشيرات، مع الالتزام التام بتعليمات وزارة الموارد البشرية وإتمام كافة الإجراءات باحترافية عالية.",
@@ -332,45 +313,22 @@
                 medImageCaption: "توثيق رسمي ومتابعة مستمرة لنتائج الاستقدام",
                 
                 whyMedTitle: "لماذا تختار \"تمام\" لتخليص إجراءاتك؟",
-                medFeat1Title: "سرعة الإنجاز والتوفير",
-                medFeat1Desc: "نمتلك شبكة علاقات لإنهاء المعاملات، وتوفير العمالة اللازمة لك في وقت قياسي بعد إصدار التأشيرة.",
-                medFeat2Title: "الالتزام بالأنظمة الرسمية",
-                medFeat2Desc: "جميع إجراءات الاستقدام تتم وفق تعليمات وقوانين وزارة الموارد البشرية لضمان سلامة العملية القانونية.",
-                medFeat3Title: "استمرارية التواصل والمتابعة",
-                medFeat3Desc: "لا ينتهي دورنا عند التعاقد، بل نستمر في التواصل المباشر معك ومتابعة النتائج حتى استلام العمالة.",
-                medFeat4Title: "أسعار شفافة وتنافسية",
-                medFeat4Desc: "نقدم لك تكلفة إجمالية واضحة من البداية لتخليص وتوفير العمالة بدون أي رسوم خفية.",
+                medFeat1Title: "سرعة الإنجاز والتوفير", medFeat1Desc: "نمتلك شبكة علاقات لإنهاء المعاملات، وتوفير العمالة اللازمة لك في وقت قياسي بعد إصدار التأشيرة.",
+                medFeat2Title: "الالتزام بالأنظمة الرسمية", medFeat2Desc: "جميع إجراءات الاستقدام تتم وفق تعليمات وقوانين وزارة الموارد البشرية لضمان سلامة العملية القانونية.",
+                medFeat3Title: "استمرارية التواصل والمتابعة", medFeat3Desc: "لا ينتهي دورنا عند التعاقد، بل نستمر في التواصل المباشر معك ومتابعة النتائج حتى استلام العمالة.",
+                medFeat4Title: "أسعار شفافة وتنافسية", medFeat4Desc: "نقدم لك تكلفة إجمالية واضحة من البداية لتخليص وتوفير العمالة بدون أي رسوم خفية.",
                 
                 medStepsTitle: "كيف تتم خدمة التوسط؟",
-                medStep1Title: "1. تزويدنا بالتأشيرة",
-                medStep1Desc: "إرسال التأشيرة الصادرة من قبلكم وتحديد المهن والمواصفات المطلوبة بدقة.",
-                medStep2Title: "2. توفير الكوادر والتعاقد",
-                medStep2Desc: "نقوم بتوفير العمالة اللازمة وإتمام الإجراءات وتوثيق العقود رسمياً لك.",
-                medStep3Title: "3. الوصول والمتابعة",
-                medStep3Desc: "متابعة الوصول والتواصل المستمر معكم لضمان جودة الخدمة ورضاكم التام.",
+                medStep1Title: "1. تزويدنا بالتأشيرة", medStep1Desc: "إرسال التأشيرة الصادرة من قبلكم وتحديد المهن والمواصفات المطلوبة بدقة.",
+                medStep2Title: "2. توفير الكوادر والتعاقد", medStep2Desc: "نقوم بتوفير العمالة اللازمة وإتمام الإجراءات وتوثيق العقود رسمياً لك.",
+                medStep3Title: "3. الوصول والمتابعة", medStep3Desc: "متابعة الوصول والتواصل المستمر معكم لضمان جودة الخدمة ورضاكم التام.",
                 btnMedStart: "اطلب خدمة التوسط الآن",
                 
-                footerSocial: "تواصل معنا عبر منصات التواصل الإجتماعي",
-                footerCopy: "جميع الحقوق محفوظة لدى | مكتب تمام للإستقدام 2027"
+                footerSocial: "تواصل معنا عبر منصات التواصل الإجتماعي", footerCopy: "جميع الحقوق محفوظة لدى | مكتب تمام للإستقدام 2027", devSignatureFooter: "👑 تم التطوير والتصميم بواسطة : م إسلام الشيخ 👑"
             },
             en: {
                 mediationTitlePage: "Recruitment Mediation | Tamam Recruitment",
-                splashTitle: "Tamam Recruitment Agency",
-                loadingText: "Loading Page",
-                devSignatureFooter: "👑 Developed & Designed by: Eng. Islam Elsheikh 👑",
-                menuTitle: "Menu",
-                navHome: "Home",
-                navServicesBtn: "Services",
-                navServices: "Services",
-                navIndiv: "Individual Services",
-                navBusiness: "Business Services",
-                navMediation: "Recruitment Mediation",
-                navWorkers: "Targeted Workers",
-                navCVs: "CVs",
-                navCountries: "Available Countries",
-                navAbout: "About Us",
-                navContact: "Contact Us",
-                topBar: "Certified by Musaned | License No: 3701262",
+                menuTitle: "Menu", navHome: "Home", navServicesBtn: "Services", navServices: "Services", navIndiv: "Individual Services", navBusiness: "Business Services", navMediation: "Recruitment Mediation", navWorkers: "Targeted Workers", navCVs: "CVs", navCountries: "Available Countries", navAbout: "About Us", navContact: "Contact Us", navLogin: "Login", navRegister: "Sign Up", topBar: "Certified by Musaned | License No: 3701262",
                 
                 heroMedTitle: "Recruitment Mediation",
                 heroMedDesc: "We provide the necessary labor for both individual and business sectors after you obtain the visas, strictly adhering to the Ministry of Human Resources regulations and completing all procedures professionally.",
@@ -381,26 +339,18 @@
                 medImageCaption: "Official Documentation & Continuous Result Follow-up",
                 
                 whyMedTitle: "Why choose 'Tamam' for your procedures?",
-                medFeat1Title: "Speed & Cost-Effectiveness",
-                medFeat1Desc: "We have a strong network to finalize transactions and provide you with the required labor in record time after visa issuance.",
-                medFeat2Title: "Compliance with Regulations",
-                medFeat2Desc: "All procedures are processed strictly according to the Ministry's laws to ensure complete legal safety.",
-                medFeat3Title: "Continuous Follow-up",
-                medFeat3Desc: "Our role does not end at contracting; we maintain direct communication and follow up until you receive your workers.",
-                medFeat4Title: "Transparent Pricing",
-                medFeat4Desc: "We offer a clear total cost from the beginning for processing and providing labor with no hidden fees.",
+                medFeat1Title: "Speed & Cost-Effectiveness", medFeat1Desc: "We have a strong network to finalize transactions and provide you with the required labor in record time after visa issuance.",
+                medFeat2Title: "Compliance with Regulations", medFeat2Desc: "All procedures are processed strictly according to the Ministry's laws to ensure complete legal safety.",
+                medFeat3Title: "Continuous Follow-up", medFeat3Desc: "Our role does not end at contracting; we maintain direct communication and follow up until you receive your workers.",
+                medFeat4Title: "Transparent Pricing", medFeat4Desc: "We offer a clear total cost from the beginning for processing and providing labor with no hidden fees.",
                 
                 medStepsTitle: "How Does It Work?",
-                medStep1Title: "1. Provide the Visa",
-                medStep1Desc: "Send us your issued visa and clearly specify the required professions and qualifications.",
-                medStep2Title: "2. Sourcing & Contracting",
-                medStep2Desc: "We provide the requested labor, complete the procedures, and officially authenticate the contracts for you.",
-                medStep3Title: "3. Arrival & Follow-up",
-                medStep3Desc: "We follow up on the arrival process and maintain constant communication to ensure your absolute satisfaction.",
+                medStep1Title: "1. Provide the Visa", medStep1Desc: "Send us your issued visa and clearly specify the required professions and qualifications.",
+                medStep2Title: "2. Sourcing & Contracting", medStep2Desc: "We provide the requested labor, complete the procedures, and officially authenticate the contracts for you.",
+                medStep3Title: "3. Arrival & Follow-up", medStep3Desc: "We follow up on the arrival process and maintain constant communication to ensure your absolute satisfaction.",
                 btnMedStart: "Request Mediation Service Now",
                 
-                footerSocial: "Connect with us on social media",
-                footerCopy: "All Rights Reserved | Tamam Recruitment Agency 2027"
+                footerSocial: "Connect with us on social media", footerCopy: "All Rights Reserved | Tamam Recruitment Agency 2027", devSignatureFooter: "👑 Developed & Designed by: Eng. Islam Elsheikh 👑"
             }
         };
 
@@ -470,17 +420,6 @@
         window.addEventListener('DOMContentLoaded', () => {
             initDarkMode();
             applyLanguage(currentLang);
-        });
-
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                const splash = document.getElementById('splash-screen');
-                if(splash) splash.classList.add('opacity-0');
-                setTimeout(() => {
-                    if(splash) splash.classList.add('hidden');
-                    document.getElementById('body-content').classList.remove('overflow-hidden');
-                }, 700);
-            }, 1500);
         });
     </script>
 </body>
