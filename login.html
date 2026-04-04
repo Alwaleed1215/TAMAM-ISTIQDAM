@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="html-root" class="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title data-i18n="loginTitlePage">تسجيل الدخول | بوابة الشركاء - مكتب تمام</title>
+    
+    <link rel="icon" type="image/png" href="https://imgg.io/images/2026/03/22/3905f931b0fa4f5e93531423df3036d8.png">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: { 
+                        primary: '#112240', secondary: '#eab308', whatsapp: '#25D366',
+                        instagram: '#E1306C', snapchat: '#FFFC00', facebook: '#1877F2', tiktok: '#ffffff'
+                    },
+                    fontFamily: { sans: ['Cairo', 'sans-serif'] },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite'
+                    },
+                    keyframes: {
+                        fadeInUp: { '0%': { opacity: '0', transform: 'translateY(20px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Cairo', sans-serif; overflow-x: hidden; width: 100%; transition: background-color 0.3s, color 0.3s; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-thumb { background: #112240; border-radius: 10px; }
+        html.dark ::-webkit-scrollbar-thumb { background: #eab308; }
+        
+        .login-input { @apply w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-12 py-3.5 text-sm focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition-all text-slate-800 dark:text-slate-100 shadow-inner; }
+        .login-icon { @apply absolute top-1/2 -translate-y-1/2 text-gray-400 rtl:right-4 ltr:left-4 text-lg transition-colors; }
+        .login-input:focus ~ .login-icon { @apply text-secondary; }
+        
+        .floating-shape { position: absolute; z-index: -1; filter: blur(40px); opacity: 0.5; animation: float 10s infinite ease-in-out alternate; }
+        @keyframes float { 0% { transform: translateY(0) scale(1); } 100% { transform: translateY(-20px) scale(1.05); } }
+    </style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 flex flex-col min-h-screen relative" id="body-content">
+
+    <div class="floating-shape bg-secondary/20 dark:bg-secondary/10 w-64 h-64 rounded-full top-20 right-10"></div>
+    <div class="floating-shape bg-primary/20 dark:bg-blue-500/10 w-96 h-96 rounded-full bottom-20 left-10" style="animation-delay: -5s;"></div>
+
+    <header class="bg-white/95 dark:bg-slate-900/95 backdrop-blur-md shadow-sm sticky top-0 z-30 border-b border-slate-100 dark:border-slate-800 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 h-20 flex justify-between items-center">
+            <a href="index.html" class="flex-shrink-0 flex items-center h-full py-1 group">
+                <img src="https://imgg.io/images/2026/03/22/ce7f90873f720d041ffcdb63cfe66b05.png" alt="مكتب تمام للاستقدام" class="h-14 md:h-16 object-contain dark:brightness-0 dark:invert transition-transform group-hover:scale-105">
+            </a>
+            
+            <div class="flex items-center gap-4">
+                <a href="index.html" class="text-sm font-bold text-gray-500 hover:text-primary dark:hover:text-secondary transition flex items-center gap-2">
+                    <span data-i18n="backToHome">العودة للموقع</span>
+                    <i class="fa-solid fa-arrow-left rtl:hidden"></i>
+                    <i class="fa-solid fa-arrow-right ltr:hidden"></i>
+                </a>
+                <div class="w-px h-6 bg-gray-200 dark:bg-slate-700"></div>
+                <button onclick="toggleDarkMode()" class="text-primary dark:text-secondary text-lg hover:scale-110 transition-transform focus:outline-none" id="darkModeBtn"><i class="fa-solid fa-moon"></i></button>
+                <button onclick="switchLanguage()" class="text-[10px] border border-primary/20 dark:border-secondary/30 px-2 py-1 rounded bg-slate-50 dark:bg-slate-800 text-primary dark:text-white font-bold hover:bg-primary hover:text-white dark:hover:bg-secondary dark:hover:text-primary transition-colors">EN/AR</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow flex items-center justify-center py-12 px-4 relative z-10">
+        
+        <div class="w-full max-w-[450px] bg-white dark:bg-slate-800 rounded-[2rem] shadow-2xl border border-slate-100 dark:border-slate-700 p-8 md:p-10 opacity-0 animate-fade-in-up">
+            
+            <div class="text-center mb-8">
+                <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/5 dark:bg-secondary/10 text-primary dark:text-secondary mb-4">
+                    <i class="fa-solid fa-user-shield text-3xl"></i>
+                </div>
+                <h1 class="text-2xl md:text-3xl font-extrabold text-primary dark:text-white mb-2" data-i18n="loginTitle">بوابة الوكلاء</h1>
+                <p class="text-gray-500 dark:text-gray-400 text-sm font-semibold" data-i18n="loginSubtitle">سجل دخولك لإدارة السير الذاتية وطلبات الاستقدام</p>
+            </div>
+
+            <form action="#" method="POST" class="space-y-6" onsubmit="event.preventDefault(); alert('جاري تسجيل الدخول...');">
+                
+                <div class="relative">
+                    <input type="email" id="email" required class="login-input peer" placeholder=" ">
+                    <label for="email" class="absolute rtl:right-12 ltr:left-12 top-1/2 -translate-y-1/2 text-gray-400 text-sm transition-all duration-200 peer-focus:-top-2 peer-focus:text-xs peer-focus:text-secondary peer-focus:bg-white dark:peer-focus:bg-slate-800 px-1 peer-valid:-top-2 peer-valid:text-xs peer-valid:bg-white dark:peer-valid:bg-slate-800" data-i18n="loginEmail">البريد الإلكتروني</label>
+                    <i class="fa-solid fa-envelope login-icon"></i>
+                </div>
+
+                <div class="relative">
+                    <input type="password" id="password" required class="login-input peer pr-12 ltr:pr-4 ltr:pl-12 rtl:pl-12" placeholder=" ">
+                    <label for="password" class="absolute rtl:right-12 ltr:left-12 top-1/2 -translate-y-1/2 text-gray-400 text-sm transition-all duration-200 peer-focus:-top-2 peer-focus:text-xs peer-focus:text-secondary peer-focus:bg-white dark:peer-focus:bg-slate-800 px-1 peer-valid:-top-2 peer-valid:text-xs peer-valid:bg-white dark:peer-valid:bg-slate-800" data-i18n="loginPassword">كلمة المرور</label>
+                    <i class="fa-solid fa-lock login-icon"></i>
+                    <button type="button" onclick="togglePassword()" class="absolute rtl:left-4 ltr:right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-primary dark:hover:text-white transition-colors focus:outline-none">
+                        <i class="fa-regular fa-eye" id="eyeIcon"></i>
+                    </button>
+                </div>
+
+                <div class="flex items-center justify-between text-sm">
+                    <label class="flex items-center gap-2 cursor-pointer group">
+                        <input type="checkbox" class="w-4 h-4 rounded border-gray-300 text-secondary focus:ring-secondary dark:bg-slate-700 dark:border-slate-600 cursor-pointer">
+                        <span class="text-gray-600 dark:text-gray-300 font-semibold group-hover:text-primary dark:group-hover:text-white transition-colors" data-i18n="loginRemember">تذكرني</span>
+                    </label>
+                    <a href="#" class="text-secondary font-bold hover:underline transition-all" data-i18n="loginForgot">نسيت كلمة المرور؟</a>
+                </div>
+
+                <button type="submit" class="w-full bg-primary text-white font-extrabold text-base py-4 rounded-xl hover:bg-secondary hover:text-primary transition-all duration-300 shadow-[0_10px_20px_-10px_rgba(17,34,64,0.5)] hover:shadow-[0_10px_20px_-10px_rgba(234,179,8,0.5)] transform hover:-translate-y-1 flex justify-center items-center gap-2">
+                    <span data-i18n="loginBtn">تسجيل الدخول الآمن</span>
+                    <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                </button>
+
+            </form>
+
+            <div class="mt-8 pt-6 border-t border-gray-100 dark:border-slate-700 text-center">
+                <p class="text-gray-500 dark:text-gray-400 text-sm font-semibold">
+                    <span data-i18n="loginNoAccount">ليس لديك حساب وكيل؟</span> 
+                    <a href="register.html" class="text-primary dark:text-secondary font-extrabold hover:underline mx-1 transition-colors" data-i18n="loginRegisterNow">قدم طلب انضمام الآن</a>
+                </p>
+            </div>
+            
+        </div>
+    </main>
+
+    <footer class="bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800 py-6 mt-auto transition-colors z-20">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-right">
+            <div class="text-slate-400 text-xs font-semibold" dir="auto" data-i18n="footerCopy">
+                جميع الحقوق محفوظة لدى | مكتب تمام للإستقدام 2027
+            </div>
+            <div class="flex gap-4">
+                <a href="https://wa.me/966545797339" class="text-gray-400 hover:text-whatsapp transition-colors"><i class="fa-brands fa-whatsapp text-xl"></i></a>
+                <a href="contact.html" class="text-gray-400 hover:text-primary dark:hover:text-white transition-colors"><i class="fa-solid fa-envelope text-xl"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const translations = {
+            ar: {
+                loginTitlePage: "تسجيل الدخول | بوابة الشركاء - مكتب تمام",
+                backToHome: "العودة للموقع",
+                loginTitle: "بوابة الوكلاء",
+                loginSubtitle: "سجل دخولك لإدارة السير الذاتية وطلبات الاستقدام",
+                loginEmail: "البريد الإلكتروني",
+                loginPassword: "كلمة المرور",
+                loginRemember: "تذكرني",
+                loginForgot: "نسيت كلمة المرور؟",
+                loginBtn: "تسجيل الدخول الآمن",
+                loginNoAccount: "ليس لديك حساب وكيل؟",
+                loginRegisterNow: "قدم طلب انضمام الآن",
+                footerCopy: "جميع الحقوق محفوظة لدى | مكتب تمام للإستقدام 2027"
+            },
+            en: {
+                loginTitlePage: "Login | Partners Portal - Tamam",
+                backToHome: "Back to Home",
+                loginTitle: "Agents Portal",
+                loginSubtitle: "Login to manage CVs and recruitment requests",
+                loginEmail: "Email Address",
+                loginPassword: "Password",
+                loginRemember: "Remember Me",
+                loginForgot: "Forgot Password?",
+                loginBtn: "Secure Login",
+                loginNoAccount: "Don't have an agent account?",
+                loginRegisterNow: "Apply to join now",
+                footerCopy: "All Rights Reserved | Tamam Recruitment Agency 2027"
+            }
+        };
+
+        let currentLang = localStorage.getItem('siteLang') || 'ar';
+        
+        function applyLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('siteLang', lang);
+            document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+            document.documentElement.lang = lang;
+            
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang][key]) el.textContent = translations[lang][key];
+            });
+
+            if(translations[lang] && translations[lang]['loginTitlePage']) {
+                document.title = translations[lang]['loginTitlePage'];
+            }
+        }
+
+        function initDarkMode() {
+            const isDark = localStorage.getItem('darkMode') === 'true';
+            if(isDark) {
+                document.documentElement.classList.add('dark');
+                document.querySelector('#darkModeBtn i').className = 'fa-solid fa-sun';
+            } else {
+                document.documentElement.classList.remove('dark');
+                document.querySelector('#darkModeBtn i').className = 'fa-solid fa-moon';
+            }
+        }
+
+        window.toggleDarkMode = function() {
+            const isDark = document.documentElement.classList.toggle('dark');
+            localStorage.setItem('darkMode', isDark);
+            document.querySelector('#darkModeBtn i').className = isDark ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+        }
+
+        window.switchLanguage = function() { applyLanguage(currentLang === 'ar' ? 'en' : 'ar'); }
+
+        window.togglePassword = function() {
+            const pwdInput = document.getElementById('password');
+            const eyeIcon = document.getElementById('eyeIcon');
+            if (pwdInput.type === 'password') {
+                pwdInput.type = 'text';
+                eyeIcon.classList.remove('fa-eye');
+                eyeIcon.classList.add('fa-eye-slash');
+            } else {
+                pwdInput.type = 'password';
+                eyeIcon.classList.remove('fa-eye-slash');
+                eyeIcon.classList.add('fa-eye');
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            initDarkMode();
+            applyLanguage(currentLang);
+        });
+    </script>
+</body>
+</html>
